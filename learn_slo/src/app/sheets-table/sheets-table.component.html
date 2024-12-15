@@ -1,0 +1,19 @@
+<div *ngIf="!isAuthenticated">
+    <button (click)="signIn()">Sign In with Google</button>
+  </div>
+  
+  <div *ngIf="isAuthenticated">
+    <button (click)="signOut()">Sign Out</button>
+    <table *ngIf="data.length > 0">
+      <thead>
+        <tr>
+          <th *ngFor="let header of data[0]">{{ header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data.slice(1)">
+          <td *ngFor="let cell of row">{{ cell }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

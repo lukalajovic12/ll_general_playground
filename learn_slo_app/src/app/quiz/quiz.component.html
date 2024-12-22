@@ -1,0 +1,25 @@
+<div class="game_area">
+    <div>
+        <ng-container *ngIf="gameState === 'settings'">
+            <app-quiz-menu
+            [(numberOfQuestions)]="numberOfQuestions"
+            [(categories)]="categories"
+            [startGame]="startGame"
+            [(time)]="time"
+            [title]="title"
+            [chooseCategories]="chooseCategories"
+            />         
+        </ng-container>
+        <ng-container *ngIf="gameState === 'game'">
+            <div class="time">  time: {{ timeLeft }}</div>
+            <div class="question"> {{displayQuestionText()}}</div>
+            <app-quiz-button *ngFor="let cc of questions"  [text]="cc.anwser" 
+            [correctAnwser]="correctAnwser === cc" 
+            [wrongAnwser]="wrongAnwser === cc" 
+            [action]="checkAnswer.bind(this, cc)" />
+        </ng-container>
+        <ng-container *ngIf="gameState === 'end'">
+            <app-quiz-end [action]="playAgain" [anwsers]="anwsers" [displayQuestion]="displayQuestion" />
+        </ng-container>
+    </div>
+  </div>

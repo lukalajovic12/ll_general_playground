@@ -1,0 +1,25 @@
+<h1>SLO</h1>
+<table>
+  <thead>
+    <tr>
+      <th>
+        SLO
+      </th>
+      <th>
+        ENG
+      </th>
+      <th>
+        KATEGORIJA
+      </th>            
+    </tr>
+  </thead>
+  <tbody>
+    @for(row of tableData;track row) {
+      <tr>
+        <td>{{ row.slo }}</td>
+        <td>{{ row.eng }}</td>
+        <td>{{ row.category }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

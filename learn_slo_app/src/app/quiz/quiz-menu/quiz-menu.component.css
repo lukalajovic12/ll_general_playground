@@ -1,0 +1,29 @@
+@import "../../../styles.css";
+
+.ll_button.menu_button {
+    padding: 4px
+}
+.ll_button:disabled {
+    opacity: 0.56
+}
+
+.ll_value {
+    font-size: 18px;
+    padding: 1px;
+    color:#fffffffb;
+}
+
+.data_settings {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+}
+
+.categories_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+}
+

@@ -1,0 +1,6 @@
+<div class="quiz_button_container" >
+    <button (click)="invokeAction()" 
+    [ngClass]="correctAnwser ?'correct_anwser':wrongAnwser ?'wrong_anwser':undefined" >
+        {{ text }}
+    </button>
+</div>

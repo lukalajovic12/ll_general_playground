@@ -1,0 +1,17 @@
+<div *ngFor="let anwser of anwsers; let i = index">
+    <div class="question">
+    {{i+1}}. {{displayQuestion(anwser.correct.question)}}
+    </div>
+    <div class="correct">
+        <div class="correct_left">Correct anwser</div>
+        <div class="correct_right" >{{ anwser.correct.anwser }}</div>        
+    </div>
+    <div class="anwsered" [ngClass]="anwser.correct === anwser.anwsered ? 'correct':'wrong'">
+        <div class="anwsered_left">Anwsered</div>
+        <div class="anwsered_right">{{ anwser.anwsered.anwser }} </div>   
+    </div>
+</div>
+<div class="play_again">
+    <button class="ll_button quiz_button" (click)="invokeAction()"> Play again </button>
+    <button (click)="toHome()" class="ll_button quiz_button"> Back </button>    
+</div>

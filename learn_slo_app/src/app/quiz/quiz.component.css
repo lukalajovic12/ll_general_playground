@@ -1,0 +1,45 @@
+@import "../../styles.css";
+
+.quiz_button {
+    border-radius: 50%;
+    display: inline-block;
+    padding: 1px 1px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fffffffb;
+    background-color: #02643b;
+    border: none;
+    vertical-align: middle;
+    border: 1px solid #fffffffb;  
+}
+
+.quiz_button:hover {
+    background-color: #fed131;
+}
+.quiz_button:active {
+    background-color: #02643b;
+    transform: translateY(4px);
+}
+
+.time {
+    color:#fffffffb;
+    font-size: 18px;
+}
+
+.question {
+    color:#fffffffb;
+    font-size: 18px;
+}
+
+.ll_value {
+    font-size: 18px;
+    padding: 5px;
+    color:#fffffffb;
+}
+
+.ll_button.quiz_button {
+    font-size: 18px;
+}

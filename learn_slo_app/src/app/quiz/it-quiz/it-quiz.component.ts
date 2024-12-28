@@ -1,18 +1,17 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Category, QuizObject } from '../../game-util';
 import { QuizComponent } from '../quiz.component'
 import { SheetsDataService } from '../../sheets-data.service';
 
 @Component({
-  selector: 'app-slo-quiz',
+  selector: 'app-it-quiz',
   standalone: true,
   imports: [QuizComponent],
-  templateUrl: './slo-quiz.component.html',
-  styleUrl: './slo-quiz.component.css'
+  templateUrl: './it-quiz.component.html',
+  styleUrl: './it-quiz.component.css'
 })
-export class SloQuizComponent implements OnInit {
-
-  public words:{ [key: string]: string[][]; }={};
+export class ItQuizComponent implements OnInit {
+ public words:{ [key: string]: string[][]; }={};
   public title="slo";
   public chooseCategories="kategorije";
 
@@ -29,5 +28,4 @@ export class SloQuizComponent implements OnInit {
         this.categories.push({category:key,selected:false});
       });
   }
-    
 }

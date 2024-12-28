@@ -1,4 +1,4 @@
-import { Component ,Input, OnDestroy, OnInit } from '@angular/core';
+import { Component ,Input, OnDestroy } from '@angular/core';
 import { interval, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import { Category, QuizObject, QuizAnwser } from '../game-util';
@@ -16,7 +16,7 @@ export type QuizState = 'settings' | 'game' | 'end';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
+export class QuizComponent extends AreaBase implements OnDestroy  {
 
   protected questions:QuizObject[] = [];
   protected question:QuizObject;
@@ -33,6 +33,8 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
+
+  @Input()
   public categories: Category[]= [];
 
   protected quizData:QuizObject[] = [];
@@ -54,11 +56,6 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
 
   constructor() {
     super();
-  }
-
-  override ngOnInit() {
-    super.ngOnInit();
-    this.categories=this.getCategories();
   }
 
   protected displayQuestionText():string {
@@ -163,12 +160,6 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
     }
   }
 
-  private getCategories():Category[] {
-    let list:Category[] =[];
-    for(let key in this.quizList){
-      list.push({category:key,selected:false});
-    }
-    return list;
-  }
+
 
 }

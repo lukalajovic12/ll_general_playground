@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Word, SheetsDataService } from '../sheets-data.service';
 
@@ -10,13 +10,14 @@ import { Word, SheetsDataService } from '../sheets-data.service';
   templateUrl: './sheets-data-table.component.html',
   styleUrl: './sheets-data-table.component.css'
 })
-export class SheetsDataTableComponent {
+export class SheetsDataTableComponent implements OnInit {
 
   tableData: Word[] = [];
 
-  constructor(sheetsDataService:SheetsDataService) {
-    //this.tableData=sheetsDataService.fetchSheetData();
+  constructor(protected sheetsDataService:SheetsDataService) {
   }
 
-
+  async ngOnInit(): Promise<void> {
+     this.tableData = await this.sheetsDataService.fetchSheetData('slo');
+  }
 }

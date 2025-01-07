@@ -51,7 +51,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   protected wrongAnwser:QuizObject = null;  
   protected correctAnwser:QuizObject = null;  
 
-  public time = 30;
+  public time = 100;
   protected timeLeft = this.time;
 
   constructor() {

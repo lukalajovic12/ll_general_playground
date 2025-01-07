@@ -13,14 +13,14 @@ import { SheetsDataService } from '../../sheets-data.service';
 export class SloQuizComponent implements OnInit {
 
   public words:{ [key: string]: string[][]; }={};
-  public title="slo";
-  public chooseCategories="kategorije";
+  public title="Učimo se slovensko";
+  public chooseCategories="Izberi kategorije";
 
   public categories: Category[]= [];
 
   public displayQuestion: (QuizObject) => string = (question) => "Kaj pomeni "+question.question+" ?";
   
-  constructor(public sheetsDataService: SheetsDataService) {}
+  constructor(private sheetsDataService: SheetsDataService) {}
 
   async ngOnInit(): Promise<void> {
       this.words = await this.sheetsDataService.loadData('slo');

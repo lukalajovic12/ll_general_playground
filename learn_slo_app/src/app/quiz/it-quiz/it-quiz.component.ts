@@ -12,8 +12,8 @@ import { SheetsDataService } from '../../sheets-data.service';
 })
 export class ItQuizComponent implements OnInit {
  public words:{ [key: string]: string[][]; }={};
-  public title="slo";
-  public chooseCategories="kategorije";
+  public title="Učimo se italjansko";
+  public chooseCategories="izberi kategorije";
 
   public categories: Category[]= [];
 
@@ -22,7 +22,7 @@ export class ItQuizComponent implements OnInit {
   constructor(public sheetsDataService: SheetsDataService) {}
 
   async ngOnInit(): Promise<void> {
-      this.words = await this.sheetsDataService.loadData('slo');
+      this.words = await this.sheetsDataService.loadData('it');
       this.categories = [];
       Object.keys(this.words).forEach(key=>{
         this.categories.push({category:key,selected:false});

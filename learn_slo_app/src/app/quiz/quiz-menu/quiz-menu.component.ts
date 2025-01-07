@@ -28,7 +28,7 @@ export class QuizMenuComponent {
   @Output() protected numberOfQuestionsChange = new EventEmitter<number>();
 
   @Input()
-  public time =30;
+  public time =100;
   @Output() protected timeChange = new EventEmitter<number>();
 
   constructor(private location: Location) {
@@ -61,10 +61,8 @@ export class QuizMenuComponent {
   }
 
   protected plusTime(){
-    if(this.time<100){
       this.time+=10;
       this.timeChange.emit(this.time);
-    }
   }
 
   protected minusTime(){

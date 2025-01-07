@@ -1,0 +1,33 @@
+@import "../../../styles.css";
+
+.menu_button_container {
+    padding-top: calc(var(--window-height) / 32);
+    padding-bottom: calc(var(--window-height) / 32);
+}
+
+.menu_button {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50%;
+    outline: none;
+    color: #fffffffb;
+    background-color: #02643b;
+    border: none;
+    border-radius: 15px;
+    vertical-align: middle;
+    border: 1px solid #fffffffb;
+    width: var(--window-width);
+
+}
+
+.menu_button:hover {
+    background-color: #fed131;
+}
+.menu_button:active {
+    background-color: #fed131;
+    transform: translateY(4px);
+}

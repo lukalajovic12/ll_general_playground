@@ -1,0 +1,30 @@
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.buttons_container {
+  display:flex;
+  padding-top: 20px;    
+  gap: 10px;
+}
+
+.categories_container {
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.language_container {
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.ll_button:disabled {
+  opacity: 0.56
+}

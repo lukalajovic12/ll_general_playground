@@ -7,6 +7,7 @@ import { QuizMenuComponent } from './quiz-menu/quiz-menu.component'
 import { QuizButtonComponent } from './quiz-button/quiz-button.component' 
 import { QuizEndComponent } from './quiz-end/quiz-end.component' 
 import { CommonModule } from '@angular/common';
+import { Word } from '../sheets-data.service';
 export type QuizState = 'settings' | 'game' | 'end';
 
 @Component({
@@ -27,7 +28,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   public chooseCategories?:string;
 
   @Input()
-  public quizList:{ [key: string]: string[][]; }={};
+  public quizList:{ [key: string]: Word[]; }={};
 
   @Input() displayQuestion: (QuizObject) => string;
 
@@ -153,7 +154,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     for(let con of this.categories) {
       if(noneSelected || con.selected){
         for(let c of this.quizList[con.category]) {
-          let q:QuizObject ={categoy:con.category, anwser:c[0],question:c[1]};
+          let q:QuizObject ={categoy:con.category, anwser:c.sourceLanguage,question:c.targetLanguage};
           this.quizData.push(q);
         }
       }

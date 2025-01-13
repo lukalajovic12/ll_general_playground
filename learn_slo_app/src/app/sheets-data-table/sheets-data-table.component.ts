@@ -19,10 +19,5 @@ export class SheetsDataTableComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
      this.tableData = await this.sheetsDataService.fetchSheetData('slo');
-
-
-     console.log('DATA',this.tableData.length);
-     console.log(this.tableData[0]);
-
   }
 }

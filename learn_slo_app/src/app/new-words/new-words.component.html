@@ -1,15 +1,20 @@
 <div class="game_area">
     <div>
         <h1>New words</h1>
-        <div class="language_container">
-            <label for="sourceLanguage">{{ sourceLanguage }}
-                <input id="sourceLanguage" type="text" [(ngModel)]="textToTranslate" />
-            </label>
-            <button (click)="translate()" class="ll_button" [disabled]="!allowTranslate()">Translate</button>
-            <label for="targetLanguage">{{ targetLanguage }}
-                <input id="targetLanguage" type="text" [(ngModel)]="translatedText" />
-            </label>
-        </div>
+        <dialog #myDialog>
+            <div class="language_container">
+                <label for="sourceLanguage">{{ sourceLanguage }}
+                    <input id="sourceLanguage" type="text" [(ngModel)]="textToTranslate" />
+                </label>
+                <button (click)="translate()" class="ll_button" [disabled]="!allowTranslate()">Translate</button>
+                <label for="targetLanguage">{{ targetLanguage }}
+                    <input id="targetLanguage" type="text" [(ngModel)]="translatedText" />
+                </label>
+                <div></div>
+                <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
+                <button (click)="closeDialog(myDialog)" class="ll_button">Close</button>
+            </div>
+        </dialog>
         <h2>Categories</h2>
         <div class="categories_container">
             @for(con of categories; track con) {
@@ -22,8 +27,30 @@
         <input id="newCategory" type="text" [(ngModel)]="newCategory" />
         }        
         <div class="buttons_container">
-            <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
+            <button (click)="openDialog(myDialog)" class="ll_button" [disabled]="noCategory()">New Word</button>
             <button (click)="toHome()" class="ll_button"> Back </button>  
         </div>
+        <table>
+            <thead>
+              <tr>
+                <th>
+                    {{ sourceLanguage }}
+                </th>
+                <th>
+                    {{ targetLanguage }}
+                </th>          
+              </tr>
+            </thead>
+            <tbody>
+              @for(word of displayWords();track word) {
+                <tr (click)="editWord(word,myDialog)">
+                  <td>{{ word.sourceLanguage }}</td>
+                  <td>{{ word.targetLanguage }}</td>                  
+                </tr>
+              }
+            </tbody>
+          </table>
+
+
     </div>
 </div>

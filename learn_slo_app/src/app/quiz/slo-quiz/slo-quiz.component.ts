@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import {Category, QuizObject } from '../../game-util';
 import { QuizComponent } from '../quiz.component'
-import { SheetsDataService } from '../../sheets-data.service';
+import { SheetsDataService,Word } from '../../sheets-data.service';
 
 @Component({
   selector: 'app-slo-quiz',
@@ -12,7 +12,7 @@ import { SheetsDataService } from '../../sheets-data.service';
 })
 export class SloQuizComponent implements OnInit {
 
-  public words:{ [key: string]: string[][]; }={};
+  public words:{ [key: string]: Word[]; }={};
   public title="Učimo se slovensko";
   public chooseCategories="Izberi kategorije";
 

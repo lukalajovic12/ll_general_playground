@@ -35,7 +35,6 @@ dialog {
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   background-color: #02643b;
-  font-family: century-gothic;
 }
 
 table {
@@ -45,4 +44,13 @@ table {
 
 td {
   width: 50%;
+}
+
+.icon_class {
+  background-color: #02643b;
+  border-width: 0;
+}
+
+.icon_class i {
+  color:#fffffffb;  
 }

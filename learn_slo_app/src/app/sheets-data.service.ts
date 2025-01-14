@@ -9,6 +9,15 @@ export interface Word {
   row:number;
 }
 
+
+export interface PostWord {
+  sourceLanguage: string;
+  targetLanguage: string;
+  category: string;
+  row:number;
+  deleteRow:boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +26,7 @@ export class SheetsDataService {
   error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private url = 'https://script.google.com/macros/s/AKfycbxTIkrHazw84Nz659FSwJNYaTDTvPQboHkdzQhUmZ5PPTxFEYoQxdZs_oS8dcAVd1qr/exec';
+  private url = 'https://script.google.com/macros/s/AKfycbyuLr-LjnEPEcqqapiVEBE9lZJ3b7xmYrtO29FplPWFPlBev21zwDLNLxBuiSZ_E-b6/exec';
 
 
   constructor() {
@@ -51,9 +60,9 @@ public async loadData(sheetName:string): Promise<{ [key: string]: Word[]; }> {
   let wordsList = await this.fetchSheetData(sheetName);
   let words:{ [key: string]: Word[]; }={};
   let cc:string[] = [];
-  wordsList.forEach((w,index)=>{
+  wordsList.forEach((w)=>{
     if (!words[w.category]) {
-      words[w.category] = [ w];
+      words[w.category] = [w];
       cc.push(w.category);
     } else {
       words[w.category].push(w);
@@ -63,12 +72,12 @@ public async loadData(sheetName:string): Promise<{ [key: string]: Word[]; }> {
 }
 
 
-  public appendWord(textToTranslate:string,translatedText:string,category:string,row:number,sheetName:string) {
-      const data:Word = {sourceLanguage:textToTranslate,targetLanguage:translatedText,category:category,row:row};
+  public appendWord(textToTranslate:string,translatedText:string,category:string,row:number,sheetName:string,deleteRow:boolean) {
+      const data:PostWord = {sourceLanguage:textToTranslate,targetLanguage:translatedText,category:category,row:row,deleteRow:deleteRow};
       const scriptURL = `${this.url}?sheetName=${sheetName}`;
       const headers = new HttpHeaders({ 
         'Content-Type': 'application/x-www-form-urlencoded' });
-      this.http.post<Word>(scriptURL, { values: data }, { headers }).subscribe({
+      this.http.post<PostWord>(scriptURL, { values: data }, { headers }).subscribe({
         next: (response) => {
           console.log('Data written successfully:', response);
         },

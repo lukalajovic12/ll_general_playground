@@ -11,7 +11,7 @@
                     <input id="targetLanguage" type="text" [(ngModel)]="translatedText" />
                 </label>
                 <div></div>
-                <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
+                <button (click)="onSubmit(myDialog)" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
                 <button (click)="closeDialog(myDialog)" class="ll_button">Close</button>
             </div>
         </dialog>
@@ -45,7 +45,17 @@
               @for(word of displayWords();track word) {
                 <tr (click)="editWord(word,myDialog)">
                   <td>{{ word.sourceLanguage }}</td>
-                  <td>{{ word.targetLanguage }}</td>                  
+                  <td>{{ word.targetLanguage }}</td> 
+                  <td>
+                    <button class="icon_class" (click)="editWord(word,myDialog)">
+                    <i class="fa fa-pencil"></i>
+                    </button>
+                  </td>   
+                  <td>
+                    <button class="icon_class" (click)="deleteWord(word)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>                    
                 </tr>
               }
             </tbody>

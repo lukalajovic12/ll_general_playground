@@ -78,6 +78,23 @@ export class NewWordsComponent extends AreaBase {
     dialog.showModal();
   }
 
+  protected deleteWord(word:Word){
+
+    let index= this.words[word.category].indexOf(word);
+    this.words[word.category].splice(index,1);
+    this.sheetsDataService.appendWord(word.sourceLanguage, word.targetLanguage,word.category,word.row,this.language,true);
+    Object.values(this.words).forEach(words => {
+      words.forEach(w =>{
+        if(w.row>word.row){
+          w.row-=1;
+
+        }
+      });
+
+    });
+
+  }
+
   protected closeDialog(dialog: HTMLDialogElement) {
     dialog.close();
   }
@@ -134,10 +151,10 @@ export class NewWordsComponent extends AreaBase {
   }
   }  
 
-  protected onSubmit():void {
+  protected onSubmit(dialog: HTMLDialogElement):void {
     if(this.allowSubmit()) {
       const category = this.selectedCategory===this.other ? this.newCategory :this.selectedCategory;
-      this.sheetsDataService.appendWord(this.textToTranslate, this.translatedText,category,this.row,this.language);
+      this.sheetsDataService.appendWord(this.textToTranslate, this.translatedText,category,this.row,this.language,false);
       if(this.selectedCategory === this.other) {
         this.categories.push(this.newCategory);
       }
@@ -159,6 +176,7 @@ export class NewWordsComponent extends AreaBase {
       this.textToTranslate="";
       this.translatedText="";
       this.newCategory="";
+      dialog.close();
     }
   }
 

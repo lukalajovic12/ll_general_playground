@@ -1,4 +1,4 @@
-import { Component ,Input, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuButtonComponent } from '../menu-button/menu-button.component';
 @Component({
@@ -12,23 +12,12 @@ export class HomeMenuComponent {
 
   constructor(private router: Router) { }
 
-  public toSlo = () => {
-    this.router.navigate(['/slo']);      
+  protected toSlo = () => {
+    this.router.navigate(['/menu'], { queryParams: { language: 'slo' } });
   }
 
-  public toIt = () => {
-    this.router.navigate(['/it']);      
+  protected toIt = () => {
+    this.router.navigate(['/menu'], { queryParams: { language: 'it' } });
   }
-
-  protected toNewSlo = () => {
-    this.router.navigate(['/new'], { queryParams: { language: 'slo' } });
-  }
-
-  protected toNewIt = () => {
-    this.router.navigate(['/new'], { queryParams: { language: 'it' } });
-  }
-
-
-   
 
 }

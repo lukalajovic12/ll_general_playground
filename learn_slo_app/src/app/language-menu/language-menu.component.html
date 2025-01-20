@@ -1,1 +1,8 @@
-<p>language-menu works!</p>
+<div class="game_area">
+    <div class="menu_class">
+        <h1>Learn {{ language }}</h1>
+        <app-menu-button [text]="'To quiz'" [action]="toQuiz"/>
+        <app-menu-button [text]="'Add new words'" [action]="toNewWords"/>
+        <app-menu-button [text]="'Generator'" [action]="toGenerator"/>
+     </div>
+</div>

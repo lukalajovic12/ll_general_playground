@@ -23,6 +23,8 @@ export class QuizMenuComponent {
 
   @Input() startGame:() => void;
 
+  @Input() languageDirection:() => void;
+
   @Input()
   public numberOfQuestions =3;
   @Output() protected numberOfQuestionsChange = new EventEmitter<number>();
@@ -30,6 +32,13 @@ export class QuizMenuComponent {
   @Input()
   public time =100;
   @Output() protected timeChange = new EventEmitter<number>();
+
+  @Input()
+  public loading = true;
+  @Input()
+  public displaySourceLanguage:() => string;
+  @Input()
+  public displayTargetLanguage:() => string;
 
   constructor(private location: Location) {
   }

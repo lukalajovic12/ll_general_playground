@@ -13,11 +13,16 @@ export class HomeMenuComponent {
   constructor(private router: Router) { }
 
   protected toSlo = () => {
-    this.router.navigate(['/menu'], { queryParams: { language: 'slo' } });
+    this.router.navigate(['/menu'], { queryParams: { language: 'slo_eng' } });
   }
 
   protected toIt = () => {
-    this.router.navigate(['/menu'], { queryParams: { language: 'it' } });
+    this.router.navigate(['/menu'], { queryParams: { language: 'slo_it' } });
   }
+  protected toImageGenerator = () => {
+    this.router.navigate(['/image-generator']);
+  }
+
+  
 
 }

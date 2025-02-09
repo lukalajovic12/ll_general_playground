@@ -5,9 +5,13 @@
             [(numberOfQuestions)]="numberOfQuestions"
             [(categories)]="categories"
             [startGame]="startGame"
+            [languageDirection]="languageDirection"
             [(time)]="time"
             [title]="title"
+            [loading]="loading"
             [chooseCategories]="chooseCategories"
+            [displaySourceLanguage]="displaySourceLanguage"
+            [displayTargetLanguage]="displayTargetLanguage"
             />         
         </ng-container>
         <ng-container *ngIf="gameState === 'game'">

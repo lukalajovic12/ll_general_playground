@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -6,11 +6,12 @@ import { SheetsDataService, Word } from '../sheets-data.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
-
+import { WordsGeneratorComponent } from './words-generator/words-generator.component';
+import { GeneratedWord } from '../gemini-word-generator.service';
 @Component({
   selector: 'app-new-words',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,WordsGeneratorComponent],
   templateUrl: './new-words.component.html',
   styleUrl: './new-words.component.css'
 })
@@ -18,26 +19,49 @@ export class NewWordsComponent extends AreaBase {
 
   private  language = '';
 
-  protected textToTranslate: string = '';
-  protected translatedText: string = '';
+  protected textToTranslate = '';
+  protected translatedText = '';
 
-  protected sourceLanguage='';
-  protected targetLanguage='';
+  protected sourceLanguage = '';
+  protected targetLanguage = '';
 
-  protected other = 'other';
+  public generatorPrompt = '';
+  public generatorPromptEnd = '';
+  public other = 'other';
+  public newCategory = '';
+  public selectedCategory = '';
+  public categories: string[] = []; 
 
-  protected newCategory = '';
+  protected loading = true;
 
-  protected selectedCategory="";
+  protected row = -1;
 
-
-  protected row=-1;
-
-  protected index=-1;
+  protected index = -1;
 
   public words:{ [key: string]: Word[]; }={};
 
-    public categories: string[] = [];
+  @ViewChild('aiDialog') public aiDialog!: ElementRef<HTMLDialogElement>;
+
+  public closeGenerator = () => {
+    this.aiDialog.nativeElement.close();
+  }
+
+  public submitGenerator = (generatedWord:GeneratedWord[]) => {
+    const category = this.selectedCategory===this.other ? this.newCategory :this.selectedCategory;
+    let totalLength = 0;
+    for (const key in this.words) {
+      if (Array.isArray(this.words[key])) {
+        totalLength += this.words[key].length;
+      }
+    }
+    for(let i=0; i<generatedWord.length;i++) {
+      let gw =generatedWord[i];
+      this.sheetsDataService.appendWord(gw.sourceLanguage, gw.targetLanguage,category,-1,this.language,false);
+      this.words[category].push({sourceLanguage:this.textToTranslate,
+        targetLanguage:this.translatedText,
+        category:category,row:totalLength+2+i});
+    }    
+  }
 
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
@@ -48,26 +72,31 @@ export class NewWordsComponent extends AreaBase {
 
   override async ngOnInit(): Promise<void> {
     super.ngOnInit();
+    this.loading=true;
     this.route.queryParams.subscribe(params => 
     this.language = params['language']);
-    if(this.language==='slo'){
-      this.sourceLanguage='en';
-      this.targetLanguage='sl';
-    } else if(this.language==='it') {
+    if(this.language==='slo_eng'){
+      this.sourceLanguage='sl';
+      this.targetLanguage='en';
+      this.generatorPrompt='Generiraj 10 besed o:';
+      this.generatorPromptEnd='ločenih z vejico.';
+    } else if(this.language==='slo_it') {
       this.sourceLanguage='sl';
       this.targetLanguage='it';    
+      this.generatorPrompt='Generiraj 10 besed o:'
+      this.generatorPromptEnd='ločenih z vejico.';
     }
     this.words = await this.sheetsDataService.loadData(this.language);
     this.categories = [];
     this.categories=Object.keys(this.words);
     this.categories.push(this.other);
+    this.loading=false;
   }
 
   protected openDialog(dialog: HTMLDialogElement) {
     dialog.showModal();
     this.row=-1;
   }
-
 
   protected editWord(word:Word,dialog: HTMLDialogElement){
     this.textToTranslate=word.sourceLanguage;
@@ -79,7 +108,6 @@ export class NewWordsComponent extends AreaBase {
   }
 
   protected deleteWord(word:Word){
-
     let index= this.words[word.category].indexOf(word);
     this.words[word.category].splice(index,1);
     this.sheetsDataService.appendWord(word.sourceLanguage, word.targetLanguage,word.category,word.row,this.language,true);
@@ -87,12 +115,9 @@ export class NewWordsComponent extends AreaBase {
       words.forEach(w =>{
         if(w.row>word.row){
           w.row-=1;
-
         }
       });
-
     });
-
   }
 
   protected closeDialog(dialog: HTMLDialogElement) {

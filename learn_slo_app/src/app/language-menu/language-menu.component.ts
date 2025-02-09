@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuButtonComponent } from '../home/menu-button/menu-button.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-language-menu',
@@ -16,7 +17,7 @@ export class LanguageMenuComponent extends AreaBase {
   protected language = '';
 
 
-  constructor(private router: Router,private route: ActivatedRoute) {
+  constructor(private router: Router,private route: ActivatedRoute,private location: Location) {
     super();
    }
 
@@ -27,9 +28,8 @@ export class LanguageMenuComponent extends AreaBase {
     this.language = params['language']);
   }
 
- 
   protected toQuiz = () => {
-    this.router.navigate(['/'+this.language] );
+    this.router.navigate(['/quiz'], { queryParams: { language: this.language } });
   }
 
   protected toNewWords = () => {
@@ -37,10 +37,12 @@ export class LanguageMenuComponent extends AreaBase {
   }
 
   protected toGenerator = () => {
-    this.router.navigate(['/generator']);
+    this.router.navigate(['/generator'], { queryParams: { language: this.language } });
   }
 
-
+  protected toBack = () => {
+    this.location.back();
+  }  
 
 
 

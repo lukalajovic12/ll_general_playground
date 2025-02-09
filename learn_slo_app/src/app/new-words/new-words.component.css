@@ -9,13 +9,7 @@ input {
   gap: 10px;
 }
 
-.categories_container {
-  padding-top: 5px;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 10px;
-  padding: 10px;
-}
+
 
 .language_container {
   padding-top: 5px;
@@ -46,11 +40,10 @@ td {
   width: 50%;
 }
 
-.icon_class {
-  background-color: #02643b;
-  border-width: 0;
-}
-
-.icon_class i {
-  color:#fffffffb;  
+.categories_container {
+  padding-top: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  padding: 10px;
 }

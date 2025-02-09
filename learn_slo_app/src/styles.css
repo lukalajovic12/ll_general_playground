@@ -37,6 +37,7 @@ th {
     vertical-align: middle;
     vertical-align: middle;
     border: 1px solid #fffffffb;  
+    padding:8px;
 }
 
 .ll_button:hover {
@@ -55,4 +56,19 @@ th {
 .game_area div {
     max-width: min(100vw, 800px); 
     max-height: 100vh;
+}
+
+.icon_class {
+    color:#fffffffb;  
+    background-color: #02643b;
+    border-width: 0;
+}
+
+.icon_class:hover {
+    background-color: #fed131;
+}
+
+.icon_class:active {
+    background-color: #fed131;
+    transform: translateY(4px);
 }

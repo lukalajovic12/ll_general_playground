@@ -25,8 +25,6 @@ export class NewWordsComponent extends AreaBase {
   protected sourceLanguage = '';
   protected targetLanguage = '';
 
-  public generatorPrompt = '';
-  public generatorPromptEnd = '';
   public other = 'other';
   public newCategory = '';
   public selectedCategory = '';
@@ -75,16 +73,12 @@ export class NewWordsComponent extends AreaBase {
     this.loading=true;
     this.route.queryParams.subscribe(params => 
     this.language = params['language']);
-    if(this.language==='slo_eng'){
-      this.sourceLanguage='sl';
-      this.targetLanguage='en';
-      this.generatorPrompt='Generiraj 10 besed o:';
-      this.generatorPromptEnd='ločenih z vejico.';
-    } else if(this.language==='slo_it') {
-      this.sourceLanguage='sl';
+    if(this.language==='eng_slo'){
+      this.sourceLanguage='eng';
+      this.targetLanguage='sl';
+    } else if(this.language==='eng_it') {
+      this.sourceLanguage='eng';
       this.targetLanguage='it';    
-      this.generatorPrompt='Generiraj 10 besed o:'
-      this.generatorPromptEnd='ločenih z vejico.';
     }
     this.words = await this.sheetsDataService.loadData(this.language);
     this.categories = [];

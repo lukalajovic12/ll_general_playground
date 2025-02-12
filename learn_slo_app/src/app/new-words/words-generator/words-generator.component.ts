@@ -17,9 +17,6 @@ export class WordsGeneratorComponent extends AreaBase {
   @Input() public submit:(generatedWords:GeneratedWord[]) => void;
   @Input() public sourceLanguage = '';
   @Input() public targetLanguage = '';  
-  @Input() public generatorPrompt = '';
-  @Input() public generatorPromptEnd = '';
-
 
 
   protected prompt: string = '';
@@ -40,7 +37,7 @@ export class WordsGeneratorComponent extends AreaBase {
   }
 
   async generateWords() {
-    this.words = await this.geminiWordGeneratorService.generateWords(this.generatorPrompt,this.generatorPromptEnd,this.prompt,this.sourceLanguage,this.targetLanguage);
+    this.words = await this.geminiWordGeneratorService.generateWords(this.prompt,this.sourceLanguage,this.targetLanguage);
   }
 
   protected toClose():void {

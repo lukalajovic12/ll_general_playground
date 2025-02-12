@@ -59,24 +59,26 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     this.loading=true;
     this.route.queryParams.subscribe(params => 
     this.language = params['language']);
-    if(this.language==='slo_eng'){
-       this.title="Učimo se slovensko";
-        this.chooseCategories="Izberi kategorije";
+    if(this.language==='eng_slo'){
+      this.sourceLanguage='en';
+      this.targetLanguage='slo';   
+       this.title="Learning slovenian";
+        this.chooseCategories="Choose categories";
         this.displayQuestion = (question) => {
           if(this.direction) {
-            return "Kaj pomeni "+question.question+"?";
+            return  "what does "+question.question+" mean?";
           } else {
-            return "what does "+question.question+" mean?";
+            return "Kaj pomeni "+question.question+"?";
           }        
           };           
-    } else if(this.language==='slo_it') {
-      this.sourceLanguage='sl';
+    } else if(this.language==='eng_it') {
+      this.sourceLanguage='en';
       this.targetLanguage='it';    
-      this.title="Učimo se italjansko";
-      this.chooseCategories="izberi kategorije";
+      this.title="Learning Italian";
+      this.chooseCategories="Choose categories";
       this.displayQuestion = (question) => {
         if(this.direction) {
-          return "Kaj pomeni "+question.question+"?";
+          return "what does "+question.question+" mean?";
         } else {
           return "Cosa significa "+question.question+"?";
         }        

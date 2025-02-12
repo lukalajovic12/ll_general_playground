@@ -47,12 +47,14 @@ export class GeminiWordGeneratorService {
     }
 }
 
-  public async generateWords(generatorPrompt:string,generatorEnd:string,prompt:string,sourceLanguage:string,targetLanguage:string):Promise<GeneratedWord[]> {
+  public async generateWords(prompt:string,sourceLanguage:string,targetLanguage:string):Promise<GeneratedWord[]> {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent(generatorPrompt+' '+prompt+' '+generatorEnd);
+    const result = await model.generateContent('Generate 10 words about '+prompt+' seperated by commas.');
     const generatedText = result.response.text();
+    console.log('generatedText');
+    console.log(generatedText);
     const words:string[] = generatedText.split(',').filter(word => word.trim() !== '');
     let generatedWords:GeneratedWord[] = [];
 
@@ -65,9 +67,12 @@ export class GeminiWordGeneratorService {
   }
 
 
-
-
   private async translate(sourceLanguage:string,targetLanguage:string,textToTranslate:string):Promise<string> {
+    let translatedText='xy';
+    return translatedText;
+  }
+
+  private async 2(sourceLanguage:string,targetLanguage:string,textToTranslate:string):Promise<string> {
       let translatedText='';
       const url = 'https://translate.googleapis.com/translate_a/single';
       const params = new HttpParams()
@@ -83,7 +88,7 @@ export class GeminiWordGeneratorService {
       if (parsedResponse && parsedResponse[0] && parsedResponse[0][0] && parsedResponse[0][0][0]) {
         translatedText = parsedResponse[0][0][0];
       } else {
-        console.error('Unexpected translation response format:', parsedResponse);
+        translatedText='';
       }
       return translatedText;
   } 

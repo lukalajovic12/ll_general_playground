@@ -1,12 +1,21 @@
 <div class="game_area">
     <div>
         <h1>Generator</h1>
-        <h2>Generate 10 words about</h2>
+
+
+        <div class="number_of_words">
+          <div class="ll_value">Anwsers: {{numberOfWords}}</div>
+          <button (click)="plusNumberOfWords()" class="ll_button">+1</button>
+          <button (click)="minusNumberOfWords()" class="ll_button">-1</button>
+        </div>
+
+        <h2> {{displaywords()}}  </h2>
+       
         <textarea [(ngModel)]="prompt" rows="5" cols="50"></textarea>
         <div class="buttons_container">
             <button (click)="generateWords()" class="ll_button">Generate Words</button>
             <button (click)="toClose()" class="ll_button"> Close </button>  
-            <button (click)="toSubmit()" class="ll_button"> Submit </button>  
+            <button (click)="toSubmit()" class="ll_button" [disabled]="words.length===0"> Submit </button>  
         </div>
         <table>
             <thead>
@@ -16,14 +25,20 @@
                 </th>
                 <th>
                     {{ targetLanguage }}
-                </th>          
+                </th>       
               </tr>
             </thead>
             <tbody>
               @for(word of words;track word) {
                 <tr>
                   <td>{{ word.sourceLanguage }}</td>
-                  <td>{{ word.targetLanguage }}</td>                   
+                  <td>{{ word.targetLanguage }}</td>     
+                  <td>
+                    <button class="icon_class" (click)="deleteWord(word)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>                    
+                  
                 </tr>
               }
             </tbody>
@@ -32,7 +47,7 @@
             <div style="color: red;">{{ error }}</div>
         }
         @if(loading) {
-            <div>Loading...</div>
+            <div class="loading">Loading...</div>
         }
     </div>
 </div>

@@ -72,3 +72,7 @@ th {
     background-color: #fed131;
     transform: translateY(4px);
 }
+
+.loading {
+    color:#fffffffb;  
+}

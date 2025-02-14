@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { GoogleGenerativeAI  } from '@google/generative-ai';
-import { HttpClient, HttpParams } from '@angular/common/http'; // Import HttpClient
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { lastValueFrom } from 'rxjs';
+import { translate } from './game-util';
 
 export interface GeneratedWord {
   sourceLanguage: string;
@@ -47,19 +48,18 @@ export class GeminiWordGeneratorService {
     }
 }
 
-  public async generateWords(prompt:string,sourceLanguage:string,targetLanguage:string):Promise<GeneratedWord[]> {
+  public async generateWords(prefixPrompt:string,prompt:string,sourceLanguage:string,targetLanguage:string):Promise<GeneratedWord[]> {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent('Generate 10 words about '+prompt+' seperated by commas.');
+    const result = await model.generateContent(prefixPrompt+' '+prompt+' seperated by commas without spaces in between.');
     const generatedText = result.response.text();
-    console.log('generatedText');
-    console.log(generatedText);
+
     const words:string[] = generatedText.split(',').filter(word => word.trim() !== '');
     let generatedWords:GeneratedWord[] = [];
 
     for(let s of words) {
-      let t = await this.translate(sourceLanguage,targetLanguage,s);
+      let t = await translate(sourceLanguage,targetLanguage,s,this.http);
       let w:GeneratedWord ={sourceLanguage:s, targetLanguage:t};
       generatedWords.push(w);
     }
@@ -67,41 +67,13 @@ export class GeminiWordGeneratorService {
   }
 
 
-  private async translate(sourceLanguage:string,targetLanguage:string,textToTranslate:string):Promise<string> {
-    let translatedText='xy';
-    return translatedText;
-  }
-
-  private async 2(sourceLanguage:string,targetLanguage:string,textToTranslate:string):Promise<string> {
-      let translatedText='';
-      const url = 'https://translate.googleapis.com/translate_a/single';
-      const params = new HttpParams()
-        .set('client', 'gtx') // Required parameter
-        .set('sl', sourceLanguage)
-        .set('tl', targetLanguage)
-        .set('dt', 't') // Data type: text
-        .set('q', textToTranslate); // The text to translate
-
-      let response = await lastValueFrom(this.http.get(url, { params, responseType: 'text' }));
-
-      const parsedResponse = JSON.parse(response);
-      if (parsedResponse && parsedResponse[0] && parsedResponse[0][0] && parsedResponse[0][0][0]) {
-        translatedText = parsedResponse[0][0][0];
-      } else {
-        translatedText='';
-      }
-      return translatedText;
-  } 
 
   public async generateSVG(prompt:string):Promise<string> {
     await this.fetchSheetKey();
-
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent('generate an SVG containing '+prompt+'. your response should only contain an SVG');
+    const result = await model.generateContent('generate an SVG containing '+prompt+'. your response must only contain an SVG');
     const generatedSVG = result.response.text();
-    console.log('ALFA');
-    console.log(generatedSVG);
     return generatedSVG;
   }
 

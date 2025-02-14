@@ -16,3 +16,14 @@ table {
 td {
     width: 50%;
 }
+
+.number_of_words {
+    display: flex;
+    gap:10;
+}
+
+.ll_value {
+    font-size: 18px;
+    padding: 5px;
+    color:#fffffffb;
+}

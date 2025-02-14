@@ -20,11 +20,14 @@
           <app-words-generator
           [close]="closeGenerator"
           [submit]="submitGenerator"
+          [sourceLanguage]="sourceLanguage"
+          [targetLanguage]="targetLanguage"
+          [prompt]="getCategory()"
           />
       </dialog>
 
         @if(loading) {
-          <div>Loading...</div>
+          <div class="loading">Loading...</div>
         } @else {
           <h2>Categories</h2>
           <div class="categories_container">

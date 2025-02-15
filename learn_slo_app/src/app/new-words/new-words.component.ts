@@ -1,27 +1,25 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { SheetsDataService, Word } from '../sheets-data.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { WordsGeneratorComponent } from './words-generator/words-generator.component';
 import { GeneratedWord } from '../gemini-word-generator.service';
-import { translate } from '../game-util';
+import { WordEditDialogComponent } from './word-edit-dialog/word-edit-dialog.component';
+
 @Component({
   selector: 'app-new-words',
   standalone: true,
-  imports: [CommonModule, FormsModule,WordsGeneratorComponent],
+  imports: [CommonModule, FormsModule,WordsGeneratorComponent,WordEditDialogComponent],
   templateUrl: './new-words.component.html',
   styleUrl: './new-words.component.css'
 })
 export class NewWordsComponent extends AreaBase {
 
   private  language = '';
-
-  protected textToTranslate = '';
-  protected translatedText = '';
 
   protected sourceLanguage = '';
   protected targetLanguage = '';
@@ -39,32 +37,11 @@ export class NewWordsComponent extends AreaBase {
 
   public words:{ [key: string]: Word[]; }={};
 
-  @ViewChild('aiDialog') public aiDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('wordEditDialogComponent') public wordEditDialogComponent!: WordEditDialogComponent;
+  @ViewChild('wordsGeneratorComponent') public wordsGeneratorComponent!: WordsGeneratorComponent;
 
-  public closeGenerator = () => {
-    this.aiDialog.nativeElement.close();
-  }
-
-  public submitGenerator = (generatedWord:GeneratedWord[]) => {
-    const category = this.getCategory();
-    this.setupCategory(category);
-    let totalLength = 0;
-    for (const key in this.words) {
-      if (Array.isArray(this.words[key])) {
-        totalLength += this.words[key].length;
-      }
-    }
-    for(let i=0; i<generatedWord.length;i++) {
-      let gw =generatedWord[i];
-      this.sheetsDataService.appendWord(gw.sourceLanguage, gw.targetLanguage,category,-1,this.language,false);
-      this.words[category].push({sourceLanguage:gw.sourceLanguage,
-        targetLanguage:gw.targetLanguage,
-        category:category,row:totalLength+2+i});
-    }    
-  }
 
   constructor(private route: ActivatedRoute,
-    private http: HttpClient,
     private location: Location,
   private sheetsDataService: SheetsDataService) {
   super();
@@ -89,18 +66,27 @@ export class NewWordsComponent extends AreaBase {
     this.loading=false;
   }
 
-  protected openDialog(dialog: HTMLDialogElement) {
-    dialog.showModal();
+  protected openDialog() {
+    this.wordEditDialogComponent.textToTranslate='';
+    this.wordEditDialogComponent.translatedText='';
+    this.wordEditDialogComponent.show();
     this.row=-1;
   }
 
-  protected editWord(word:Word,dialog: HTMLDialogElement){
-    this.textToTranslate=word.sourceLanguage;
+  protected openAIDialog() {
+    this.wordsGeneratorComponent.show();
+    this.wordsGeneratorComponent.prompt = this.getCategory();
+    this.row=-1;
+  }
+
+
+  protected editWord(word:Word) {
+    this.wordEditDialogComponent.textToTranslate=word.sourceLanguage;
     const category = this.getCategory();
-    this.translatedText=word.targetLanguage;
+    this.wordEditDialogComponent.translatedText=word.targetLanguage;
     this.row=word.row;
     this.index= this.words[category].indexOf(word)
-    dialog.showModal();
+    this.wordEditDialogComponent.show();
   }
 
   protected deleteWord(word:Word) {
@@ -116,10 +102,6 @@ export class NewWordsComponent extends AreaBase {
     });
   }
 
-  protected closeDialog(dialog: HTMLDialogElement) {
-    dialog.close();
-  }
-
  protected displayWords():Word[] {
     if(this.selectedCategory===null || this.selectedCategory==='') {
       return [];
@@ -128,7 +110,7 @@ export class NewWordsComponent extends AreaBase {
     }
   }
 
-  public getCategory():string{
+  private getCategory():string{
     return this.selectedCategory===this.other ? this.newCategory :this.selectedCategory;
   }
 
@@ -138,20 +120,6 @@ export class NewWordsComponent extends AreaBase {
     || (this.selectedCategory===this.other && (this.newCategory===null || this.newCategory===''));
   }
 
-  protected allowTranslate():boolean {
-    return this.textToTranslate.length>0;
-  }
-
-  protected allowSubmit():boolean {
-    const category = this.getCategory();
-    return this.textToTranslate.length>0 && this.translatedText.length>0 && category.length>0;
-  }
-
-  protected async translate():Promise<void> {
-    if(this.allowTranslate()) {
-      this.translatedText = await translate(this.sourceLanguage,this.targetLanguage,this.textToTranslate,this.http);
-    }
-  }  
 
   private setupCategory(category:string):void{
     if(this.selectedCategory === this.other) {
@@ -162,10 +130,9 @@ export class NewWordsComponent extends AreaBase {
     }
   }
 
-  protected onSubmit(dialog: HTMLDialogElement):void {
-    if(this.allowSubmit()) {
+  protected onSubmitWord = (textToTranslate:string,translatedText:string) => {
       const category = this.getCategory();
-      this.sheetsDataService.appendWord(this.textToTranslate, this.translatedText,category,this.row,this.language,false);
+      this.sheetsDataService.appendWord(textToTranslate, translatedText,category,this.row,this.language,false);
       this.setupCategory(category);
       if(this.row === -1) {
         let totalLength = 0;
@@ -174,20 +141,34 @@ export class NewWordsComponent extends AreaBase {
             totalLength += this.words[key].length;
           }
         }
-        this.words[category].push({sourceLanguage:this.textToTranslate,
-          targetLanguage:this.translatedText,
+        this.words[category].push({sourceLanguage:textToTranslate,
+          targetLanguage:translatedText,
           category:category,row:totalLength+2});
       } else {
-        this.words[category][this.index].sourceLanguage=this.textToTranslate;
-        this.words[category][this.index].targetLanguage=this.translatedText;
+        this.words[category][this.index].sourceLanguage=textToTranslate;
+        this.words[category][this.index].targetLanguage=translatedText;
 
       }
-      this.textToTranslate="";
-      this.translatedText="";
       this.newCategory="";
-      dialog.close();
-    }
   }
+
+  public submitGenerator = (generatedWord:GeneratedWord[]) => {
+    const category = this.getCategory();
+    this.setupCategory(category);
+    let totalLength = 0;
+    for (const key in this.words) {
+      if (Array.isArray(this.words[key])) {
+        totalLength += this.words[key].length;
+      }
+    }
+    for(let i=0; i<generatedWord.length;i++) {
+      let gw =generatedWord[i];
+      this.sheetsDataService.appendWord(gw.sourceLanguage, gw.targetLanguage,category,-1,this.language,false);
+      this.words[category].push({sourceLanguage:gw.sourceLanguage,
+        targetLanguage:gw.targetLanguage,
+        category:category,row:totalLength+2+i});
+    }    
+  }  
 
   protected toHome():void {
     this.location.back();

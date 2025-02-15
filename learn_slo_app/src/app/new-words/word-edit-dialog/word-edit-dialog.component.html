@@ -1,0 +1,14 @@
+<dialog #newWordsDialog>
+    <div class="language_container">
+        <label for="sourceLanguage">{{ sourceLanguage }}
+            <input id="sourceLanguage" type="text" [(ngModel)]="textToTranslate" />
+        </label>
+        <button (click)="translate()" class="ll_button" [disabled]="!allowTranslate()">Translate</button>
+        <label for="targetLanguage">{{ targetLanguage }}
+            <input id="targetLanguage" type="text" [(ngModel)]="translatedText" />
+        </label>
+        <div></div>
+        <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
+        <button (click)="close()" class="ll_button">Close</button>
+    </div>
+</dialog>

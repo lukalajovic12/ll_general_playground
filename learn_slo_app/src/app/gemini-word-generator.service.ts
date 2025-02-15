@@ -72,7 +72,7 @@ export class GeminiWordGeneratorService {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent('generate an SVG containing '+prompt+'. your response must only contain an SVG');
+    const result = await model.generateContent('generate an SVG about '+prompt+'. your response must only contain an SVG');
     const generatedSVG = result.response.text();
     return generatedSVG;
   }

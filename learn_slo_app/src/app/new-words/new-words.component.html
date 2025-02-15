@@ -1,31 +1,18 @@
 <div class="game_area">
     <div>
         <h1>New words</h1>
-        <dialog #newWordsDialog>
-            <div class="language_container">
-                <label for="sourceLanguage">{{ sourceLanguage }}
-                    <input id="sourceLanguage" type="text" [(ngModel)]="textToTranslate" />
-                </label>
-                <button (click)="translate()" class="ll_button" [disabled]="!allowTranslate()">Translate</button>
-                <label for="targetLanguage">{{ targetLanguage }}
-                    <input id="targetLanguage" type="text" [(ngModel)]="translatedText" />
-                </label>
-                <div></div>
-                <button (click)="onSubmit(newWordsDialog)" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
-                <button (click)="closeDialog(newWordsDialog)" class="ll_button">Close</button>
-            </div>
-        </dialog>
-
-        <dialog #aiDialog>
-          <app-words-generator
-          [close]="closeGenerator"
+        <app-word-edit-dialog 
+        #wordEditDialogComponent
+        [submit]="onSubmitWord"
+        [sourceLanguage]="sourceLanguage"
+        [targetLanguage]="targetLanguage"       
+        />
+        <app-words-generator
+          #wordsGeneratorComponent
           [submit]="submitGenerator"
           [sourceLanguage]="sourceLanguage"
           [targetLanguage]="targetLanguage"
-          [prompt]="getCategory()"
-          />
-      </dialog>
-
+        />
         @if(loading) {
           <div class="loading">Loading...</div>
         } @else {
@@ -41,8 +28,8 @@
           <input id="newCategory" type="text" [(ngModel)]="newCategory" />
           } 
           <div class="buttons_container">
-              <button (click)="openDialog(newWordsDialog)" class="ll_button" [disabled]="noCategory()">New Word</button>
-              <button (click)="openDialog(aiDialog)" class="ll_button" [disabled]="noCategory()">New Words with AI</button>
+              <button (click)="openDialog()" class="ll_button" [disabled]="noCategory()">New Word</button>
+              <button (click)="openAIDialog()" class="ll_button" [disabled]="noCategory()">New Words with AI</button>
               <button (click)="toHome()" class="ll_button"> Back </button>  
           </div>
           @if(selectedCategory) {
@@ -63,7 +50,7 @@
                     <td>{{ word.sourceLanguage }}</td>
                     <td>{{ word.targetLanguage }}</td> 
                     <td>
-                      <button class="icon_class" (click)="editWord(word,newWordsDialog)">
+                      <button class="icon_class" (click)="editWord(word)">
                       <i class="fa fa-pencil"></i>
                       </button>
                     </td>   

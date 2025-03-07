@@ -21,6 +21,9 @@ import { lastValueFrom } from 'rxjs';
     anwsered:QuizObject
   }
 
+  export const languages = {'eng_slo':['eng','sl'],'eng_it':['eng','it'],'eng_de':['eng','de'],'eng_srb':['eng','sr'],};
+
+
   export async function translate(sourceLanguage:string,targetLanguage:string,textToTranslate:string,http:HttpClient):Promise<string> {
    
     let translatedText='';

@@ -1,0 +1,14 @@
+@for(cc of questions; track cc) {
+
+    <div class="buttons_row">
+        <button class="ll_button"
+        (click)="checkSource(cc[0])" >
+        {{ cc[0] }}
+        </button>
+        <button class="ll_button"
+        (click)="checkTarget(cc[1])" >
+        {{ cc[1] }}
+        </button>
+    </div>
+
+}

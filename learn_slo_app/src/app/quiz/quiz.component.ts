@@ -8,7 +8,7 @@ import { QuizButtonComponent } from './quiz-button/quiz-button.component'
 import { QuizEndComponent } from './quiz-end/quiz-end.component' 
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { SheetsDataService, Word } from '../sheets-data.service';
+import { SheetsWordsService, Word } from '../sheets-words.service';
 
 
 export type QuizState = 'settings' | 'game' | 'end';
@@ -50,7 +50,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(private route: ActivatedRoute,
-  private sheetsDataService: SheetsDataService) {
+  private sheetsWordsService: SheetsWordsService) {
   super();
   }
 
@@ -85,7 +85,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
         };
     }
 
-    this.quizList = await this.sheetsDataService.loadData(this.language);
+    this.quizList = await this.sheetsWordsService.loadWords(this.language);
     this.categories = [];
     Object.keys(this.quizList).forEach(key=>{
       this.categories.push({category:key,selected:false});

@@ -1,0 +1,7 @@
+<div class="question"> {{displayQuestionText()}}</div>
+@for(cc of questions; track cc) {
+    <app-quiz-button [text]="cc.anwser" 
+    [correctAnwser]="correctAnwser === cc" 
+    [wrongAnwser]="wrongAnwser === cc" 
+    [action]="checkAnswer.bind(this, cc)" />
+}

@@ -7,7 +7,11 @@
             <button (click)="generateImage()" class="ll_button">Generate Image</button>
             <button (click)="toHome()" class="ll_button"> Back </button> 
         </div>
-        <textarea [(ngModel)]="svgCode" rows="5" cols="50"></textarea>
-        <div [innerHTML]="svgCode"></div>
+        @if(loading==='loading') {
+            <div class="loading">Loading...</div>
+          } @else if(loading==='done'){
+            <textarea [(ngModel)]="svgCode" rows="5" cols="50"></textarea>
+            <div [innerHTML]="safeSvg"></div>
+          }
     </div>
 </div>

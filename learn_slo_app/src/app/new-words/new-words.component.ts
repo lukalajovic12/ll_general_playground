@@ -2,13 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute } from '@angular/router';
 
-import { SheetsDataService, Word } from '../sheets-data.service';
+import { SheetsWordsService, Word } from '../sheets-words.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { WordsGeneratorComponent } from './words-generator/words-generator.component';
 import { GeneratedWord } from '../gemini-word-generator.service';
 import { WordEditDialogComponent } from './word-edit-dialog/word-edit-dialog.component';
+import { languages } from '../game-util';
 
 @Component({
   selector: 'app-new-words',
@@ -21,8 +22,8 @@ export class NewWordsComponent extends AreaBase {
 
   private  language = '';
 
-  protected sourceLanguage = '';
-  protected targetLanguage = '';
+  public sourceLanguage = '';
+  public targetLanguage = '';
 
   public other = 'other';
   public newCategory = '';
@@ -43,7 +44,7 @@ export class NewWordsComponent extends AreaBase {
 
   constructor(private route: ActivatedRoute,
     private location: Location,
-  private sheetsDataService: SheetsDataService) {
+  private sheetsWordsService: SheetsWordsService) {
   super();
   }
 
@@ -52,14 +53,10 @@ export class NewWordsComponent extends AreaBase {
     this.loading=true;
     this.route.queryParams.subscribe(params => 
     this.language = params['language']);
-    if(this.language==='eng_slo'){
-      this.sourceLanguage='eng';
-      this.targetLanguage='sl';
-    } else if(this.language==='eng_it') {
-      this.sourceLanguage='eng';
-      this.targetLanguage='it';    
-    }
-    this.words = await this.sheetsDataService.loadData(this.language);
+        this.sourceLanguage=languages[this.language][0];
+        this.targetLanguage=languages[this.language][1];
+
+    this.words = await this.sheetsWordsService.loadWords(this.language);
     this.categories = [];
     this.categories=Object.keys(this.words);
     this.categories.push(this.other);
@@ -92,7 +89,7 @@ export class NewWordsComponent extends AreaBase {
   protected deleteWord(word:Word) {
     let index= this.words[word.category].indexOf(word);
     this.words[word.category].splice(index,1);
-    this.sheetsDataService.appendWord(word.sourceLanguage, word.targetLanguage,word.category,word.row,this.language,true);
+    this.sheetsWordsService.appendWord(word.sourceLanguage, word.targetLanguage,word.category,word.row,this.language,true);
     Object.values(this.words).forEach(words => {
       words.forEach(w =>{
         if(w.row>word.row){
@@ -132,7 +129,7 @@ export class NewWordsComponent extends AreaBase {
 
   protected onSubmitWord = (textToTranslate:string,translatedText:string) => {
       const category = this.getCategory();
-      this.sheetsDataService.appendWord(textToTranslate, translatedText,category,this.row,this.language,false);
+      this.sheetsWordsService.appendWord(textToTranslate, translatedText,category,this.row,this.language,false);
       this.setupCategory(category);
       if(this.row === -1) {
         let totalLength = 0;
@@ -163,7 +160,7 @@ export class NewWordsComponent extends AreaBase {
     }
     for(let i=0; i<generatedWord.length;i++) {
       let gw =generatedWord[i];
-      this.sheetsDataService.appendWord(gw.sourceLanguage, gw.targetLanguage,category,-1,this.language,false);
+      this.sheetsWordsService.appendWord(gw.sourceLanguage, gw.targetLanguage,category,-1,this.language,false);
       this.words[category].push({sourceLanguage:gw.sourceLanguage,
         targetLanguage:gw.targetLanguage,
         category:category,row:totalLength+2+i});

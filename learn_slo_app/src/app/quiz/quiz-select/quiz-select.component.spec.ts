@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SheetsDataTableComponent } from './sheets-data-table.component';
+import { QuizSelectComponent } from './quiz-select.component';
 
-describe('SheetsDataTableComponent', () => {
-  let component: SheetsDataTableComponent;
-  let fixture: ComponentFixture<SheetsDataTableComponent>;
+describe('QuizSelectComponent', () => {
+  let component: QuizSelectComponent;
+  let fixture: ComponentFixture<QuizSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SheetsDataTableComponent]
+      imports: [QuizSelectComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SheetsDataTableComponent);
+    fixture = TestBed.createComponent(QuizSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

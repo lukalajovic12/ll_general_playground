@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImageGeneratorComponent } from './image-generator.component';
+import { NewSentencesComponent } from './new-sentences.component';
 
-describe('ImageGeneratorComponent', () => {
-  let component: ImageGeneratorComponent;
-  let fixture: ComponentFixture<ImageGeneratorComponent>;
+describe('NewSentencesComponent', () => {
+  let component: NewSentencesComponent;
+  let fixture: ComponentFixture<NewSentencesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageGeneratorComponent]
+      imports: [NewSentencesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ImageGeneratorComponent);
+    fixture = TestBed.createComponent(NewSentencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

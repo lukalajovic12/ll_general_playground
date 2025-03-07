@@ -1,0 +1,31 @@
+<dialog #sentenceDialog>
+      <div>
+            <div class="language_container">
+            <label for="sourceLanguage">{{ sourceLanguage }}
+                <input id="sourceLanguage" type="text" [(ngModel)]="wordToTranslate" />
+            </label>
+            <button (click)="translate()" class="ll_button" [disabled]="!allowTranslate()">Translate</button>
+            <label for="targetLanguage">{{ targetLanguage }}
+                <input id="targetLanguage" type="text" [(ngModel)]="translatedWord" />
+            </label>
+            <button (click)="generateSentence()" class="ll_button">Generate Sentence</button>
+        </div>
+          <div class="title">
+            Sentence
+          </div>
+          <textarea [(ngModel)]="generatedSentence" rows="5" cols="50"></textarea>
+          @if(error) {
+              <div style="color: red;">{{ error }}</div>
+          }
+          @if(loading) {
+              <div class="loading">Loading...</div>
+          }
+          <div class="buttons_container">
+            <button (click)="toClose()" class="ll_button"> Close </button>  
+            <button (click)="toSubmit()"
+             class="ll_button" 
+             [disabled]="generatedSentence.length===0 || wordToTranslate.length===0 || translatedWord.length===0"> Submit </button>  
+        </div>
+
+      </div>
+    </dialog>

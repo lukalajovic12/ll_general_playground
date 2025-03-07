@@ -19,10 +19,20 @@ export class HomeMenuComponent {
   protected toIt = () => {
     this.router.navigate(['/menu'], { queryParams: { language: 'eng_it' } });
   }
-  protected toImageGenerator = () => {
-    this.router.navigate(['/image-generator']);
+
+  protected toDe = () => {
+    this.router.navigate(['/menu'], { queryParams: { language: 'eng_de' } });
   }
 
-  
+  protected toSrb = () => {
+    this.router.navigate(['/menu'], { queryParams: { language: 'eng_srb' } });
+  }
+  protected toImageSvgGenerator = () => {
+    this.router.navigate(['/image-svg-generator']);
+  }
+
+  protected toImageBasicGenerator = () => {
+    this.router.navigate(['/image-basic-generator']);
+  }
 
 }

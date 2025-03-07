@@ -36,6 +36,10 @@ export class LanguageMenuComponent extends AreaBase {
     this.router.navigate(['/new-words'], { queryParams: { language: this.language } });
   }
 
+  protected toNewSentences = () => {
+    this.router.navigate(['/new-sentences'], { queryParams: { language: this.language } });
+  }
+
   protected toGenerator = () => {
     this.router.navigate(['/generator'], { queryParams: { language: this.language } });
   }

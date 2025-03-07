@@ -14,10 +14,8 @@ import { CommonModule } from '@angular/common';
 export class WordEditDialogComponent {
 
   @ViewChild('newWordsDialog') public dialog!: ElementRef<HTMLDialogElement>;  
-
   @Input() public sourceLanguage = '';
   @Input() public targetLanguage = '';  
-
   @Input() public submit:(textToTranslate:string,translatedText:string) => void;
 
   public textToTranslate = '';

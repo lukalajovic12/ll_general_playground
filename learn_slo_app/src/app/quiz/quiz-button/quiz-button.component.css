@@ -4,7 +4,6 @@
 .quiz_button_container {
     padding-top: calc(var(--window-height) / 32);
     padding-bottom: calc(var(--window-height) / 32);
-
 }
 
 

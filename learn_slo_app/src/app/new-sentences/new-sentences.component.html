@@ -1,0 +1,62 @@
+<div class="game_area">
+    <div>
+        <h1>New words</h1>
+        <app-sentence-edit-dialog
+        #sentenceEditDialogComponent
+        [submit]="onSubmitSentence"
+        [sourceLanguage]="sourceLanguage"
+        [targetLanguage]="targetLanguage"       
+        />
+        @if(loading) {
+          <div class="loading">Loading...</div>
+        } @else {
+          <h2>Categories</h2>
+          <div class="categories_container">
+              @for(con of categories; track con) {
+                  <label>
+                  <input type="radio" [name]="con" [(ngModel)]="selectedCategory" [value]="con">
+                   {{con}} </label>
+              }
+          </div>
+          @if(selectedCategory === 'other') {
+          <input id="newCategory" type="text" [(ngModel)]="newCategory" />
+          } 
+          <div class="buttons_container">
+              <button (click)="openDialog()" class="ll_button" [disabled]="noCategory()">New Sentence</button>
+              <button (click)="toHome()" class="ll_button"> Back </button>  
+          </div>
+          @if(selectedCategory) {
+          <table>
+              <thead>
+                <tr>
+                  <th>
+                      {{ sourceLanguage }}
+                  </th>
+                  <th>
+                      {{ targetLanguage }}
+                  </th>                           
+                </tr>
+              </thead>
+              <tbody>
+                @for(sentence of displaySentences();track sentence) {
+                  <tr>
+                    <td>{{ sentence.sourceLanguage }} {{ sentence.targetLanguage }}</td>
+                    <td>{{ sentence.sentence }}</td> 
+                    <td>
+                      <button class="icon_class" (click)="editSentence(sentence)">
+                      <i class="fa fa-pencil"></i>
+                      </button>
+                    </td>   
+                    <td>
+                      <button class="icon_class" (click)="deleteSentence(sentence)">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>                    
+                  </tr>
+                }
+              </tbody>
+            </table>
+          }
+        }
+    </div>
+</div>

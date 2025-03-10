@@ -13,17 +13,11 @@ export class QuizMenuComponent {
 
   @Input()
   public title:string;
-
-  @Input()
-  public chooseCategories?:string;
-
   @Input()
   public categories: Category[]=[];
   @Output() categoriesChange = new EventEmitter<Category[]>();
 
   @Input() startGame:() => void;
-
-  @Input() languageDirection:() => void;
 
   @Input()
   public numberOfQuestions =3;
@@ -51,7 +45,7 @@ export class QuizMenuComponent {
     return this.categories.length > 1 && this.categories.filter(c =>c.selected).length===0;
   }
 
-  protected continentsValueChange():void{
+  protected categoriesValueChange():void{
     this.categoriesChange.emit(this.categories);
   }
 

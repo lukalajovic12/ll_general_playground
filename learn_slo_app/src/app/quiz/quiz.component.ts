@@ -1,14 +1,12 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input ,OnDestroy } from '@angular/core';
 import { interval, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
-import { Category, QuizObject, QuizAnwser } from '../game-util';
+import { Category, QuizObject, QuizAnwser, languagesTitle } from '../game-util';
 import { AreaBase } from '../area-base';
 import { QuizMenuComponent } from './quiz-menu/quiz-menu.component' 
 import { QuizButtonComponent } from './quiz-button/quiz-button.component' 
 import { QuizEndComponent } from './quiz-end/quiz-end.component' 
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { SheetsWordsService, Word } from '../sheets-words.service';
 
 
 export type QuizState = 'settings' | 'game' | 'end';
@@ -22,15 +20,17 @@ export type QuizState = 'settings' | 'game' | 'end';
 })
 export class QuizComponent extends AreaBase implements OnDestroy  {
 
+  @Input() quizData:QuizObject[] = [];
+  @Input() sourceLanguage='';
+  @Input() targetLanguage='';
+  @Input() categories: Category[]= [];
 
-
+  @Input() public quizList:{ [key: string]: QuizObject[]; }={};
   public time = 100;
   public title="";
-  public chooseCategories="";
+
   public loading = true;
-  public quizList:{ [key: string]: Word[]; }={};
-  public displayQuestion: (QuizObject) => string;
-  public categories: Category[]= [];
+
   public numberOfQuestions = 3;
 
   protected anwsers:QuizAnwser[]=[];
@@ -38,54 +38,24 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   protected wrongAnwser:QuizObject = null;  
   protected correctAnwser:QuizObject = null;  
   protected timeLeft = this.time;
-  protected quizData:QuizObject[] = [];
+
   protected gameState:QuizState='settings';
   protected questions:QuizObject[] = [];
   protected question:QuizObject;
-  protected sourceLanguage='';
-  protected targetLanguage='';
 
-  private direction = true;
-  private  language = '';
+
+ // private direction = true;
+
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  constructor(private route: ActivatedRoute,
-  private sheetsWordsService: SheetsWordsService) {
+  constructor() {
   super();
   }
 
   override async ngOnInit(): Promise<void> {
     super.ngOnInit();
     this.loading=true;
-    this.route.queryParams.subscribe(params => 
-    this.language = params['language']);
-    if(this.language==='eng_slo'){
-      this.sourceLanguage='en';
-      this.targetLanguage='slo';   
-       this.title="Learning slovenian";
-        this.chooseCategories="Choose categories";
-        this.displayQuestion = (question) => {
-          if(this.direction) {
-            return  "what does "+question.question+" mean?";
-          } else {
-            return "Kaj pomeni "+question.question+"?";
-          }        
-          };           
-    } else if(this.language==='eng_it') {
-      this.sourceLanguage='en';
-      this.targetLanguage='it';    
-      this.title="Learning Italian";
-      this.chooseCategories="Choose categories";
-      this.displayQuestion = (question) => {
-        if(this.direction) {
-          return "what does "+question.question+" mean?";
-        } else {
-          return "Cosa significa "+question.question+"?";
-        }        
-        };
-    }
-
-    this.quizList = await this.sheetsWordsService.loadWords(this.language);
+    this.title=languagesTitle[this.targetLanguage];
     this.categories = [];
     Object.keys(this.quizList).forEach(key=>{
       this.categories.push({category:key,selected:false});
@@ -93,8 +63,9 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     this.loading=false;
   }
 
-
+/*
   public displaySourceLanguage:() => string = () => {
+
     if(this.direction) {
       return this.sourceLanguage;
     } else {
@@ -110,11 +81,11 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
       return this.sourceLanguage;
     }
   };
-
+*/
 
   protected displayQuestionText():string {
     if(this.question) {
-      return this.displayQuestion(this.question);
+      return this.question.question;
     } else {
       return "";
     }
@@ -179,9 +150,10 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     this.startCountdown();
   }
 
-  public languageDirection = () => {
+  /*
+ public languageDirection = () => {
     this.direction=!this.direction;
-  }
+  } */
 
 
   public playAgain = () => { 
@@ -210,13 +182,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     for(let con of this.categories) {
       if(noneSelected || con.selected){
         for(let c of this.quizList[con.category]) {
-          let q:QuizObject;
-          if(this.direction) {
-            q={categoy:con.category, anwser:c.sourceLanguage,question:c.targetLanguage};
-          } else {
-            q={categoy:con.category, anwser:c.targetLanguage,question:c.sourceLanguage};
-          }
-          this.quizData.push(q);
+          this.quizData.push(c);
         }
       }
     }

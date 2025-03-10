@@ -1,6 +1,6 @@
 <div class="game_area">
     <div>
-        <h1>New words</h1>
+        <h1>New sentences</h1>
         <app-sentence-edit-dialog
         #sentenceEditDialogComponent
         [submit]="onSubmitSentence"
@@ -40,8 +40,8 @@
               <tbody>
                 @for(sentence of displaySentences();track sentence) {
                   <tr>
-                    <td>{{ sentence.sourceLanguage }} {{ sentence.targetLanguage }}</td>
-                    <td>{{ sentence.sentence }}</td> 
+                    <td>{{ sentence.sourceLanguage }}</td>
+                    <td>{{ sentence.targetLanguage }}</td> 
                     <td>
                       <button class="icon_class" (click)="editSentence(sentence)">
                       <i class="fa fa-pencil"></i>

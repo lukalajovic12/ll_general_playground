@@ -53,8 +53,8 @@ export class NewWordsComponent extends AreaBase {
     this.loading=true;
     this.route.queryParams.subscribe(params => 
     this.language = params['language']);
-        this.sourceLanguage=languages[this.language][0];
-        this.targetLanguage=languages[this.language][1];
+    this.sourceLanguage=languages[this.language][0];
+    this.targetLanguage=languages[this.language][1];
 
     this.words = await this.sheetsWordsService.loadWords(this.language);
     this.categories = [];

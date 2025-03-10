@@ -7,23 +7,25 @@
   } @else {
 @if( categories.length>1){
     <h2>
-    {{chooseCategories}} 
+    Choose categories
     </h2>
     <div class="categories_container">
         @for(con of categories; track con) {
         <div>
-            <input type="checkbox" id="{{con.category}}" name="{{con.category}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
+            <input type="checkbox" id="{{con.category}}" name="{{con.category}}" [(ngModel)]="con.selected" (ngModelChange)="categoriesValueChange()">
             <label for="{{con.category}}"> {{con.category}} </label>
         </div>   
         }
     </div>
     }
     <div class="data_settings">
+        <!--
         <div class="source_language">{{displaySourceLanguage()}}</div>
         <div class="target_language">{{displayTargetLanguage()}}</div>
         <button class="icon_class" (click)="languageDirection()">
             <i class="fa fa-exchange"></i>
         </button>
+        -->
         <div class="ll_value">Anwsers: {{numberOfQuestions}}</div>
         <button (click)="plusNumberOfQuestions()" class="ll_button menu_button">+1</button>
         <button (click)="minusNumberOfQuestions()" class="ll_button menu_button">-1</button>

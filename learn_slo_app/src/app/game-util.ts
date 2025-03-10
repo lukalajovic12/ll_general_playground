@@ -7,8 +7,8 @@ import { lastValueFrom } from 'rxjs';
  
   export interface QuizObject {
     question: string,
-    anwser: string,
-    categoy: string
+    anwser: string
+ //   category: string
   }
   
   export interface Category {
@@ -22,6 +22,12 @@ import { lastValueFrom } from 'rxjs';
   }
 
   export const languages = {'eng_slo':['eng','sl'],'eng_it':['eng','it'],'eng_de':['eng','de'],'eng_srb':['eng','sr'],};
+  export const languagesTitle = {'sl':'Learning slovenian',
+     'de':'learning german',
+     'it':'learning italian','sr':'learning serbian'};
+
+
+
 
 
   export async function translate(sourceLanguage:string,targetLanguage:string,textToTranslate:string,http:HttpClient):Promise<string> {

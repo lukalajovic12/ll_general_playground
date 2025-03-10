@@ -28,8 +28,8 @@ export class LanguageMenuComponent extends AreaBase {
     this.language = params['language']);
   }
 
-  protected toQuiz = () => {
-    this.router.navigate(['/quiz'], { queryParams: { language: this.language } });
+  protected toQuizWords = () => {
+    this.router.navigate(['/quiz-words'], { queryParams: { language: this.language } });
   }
 
   protected toNewWords = () => {
@@ -38,6 +38,10 @@ export class LanguageMenuComponent extends AreaBase {
 
   protected toNewSentences = () => {
     this.router.navigate(['/new-sentences'], { queryParams: { language: this.language } });
+  }
+
+  protected toQuizSentences = () => {
+    this.router.navigate(['/quiz-sentences'], { queryParams: { language: this.language } });
   }
 
   protected toGenerator = () => {

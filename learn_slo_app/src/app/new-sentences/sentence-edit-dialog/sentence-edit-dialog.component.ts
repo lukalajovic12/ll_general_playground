@@ -39,8 +39,8 @@ export class SentenceEditDialogComponent {
 
   async generateSentence() {
     this.loading = true;
-    let s:string[]= await this.geminiWordGeneratorService.generateSentence(this.wordToTranslate,this.targetLanguage);
-    this.generatedSentence=s[0];
+    this.generatedSentence= await this.geminiWordGeneratorService.generateSentence(this.wordToTranslate,this.targetLanguage);
+
     this.loading = false;
   }
 

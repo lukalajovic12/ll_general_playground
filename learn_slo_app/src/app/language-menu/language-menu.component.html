@@ -1,11 +1,10 @@
 <div class="game_area">
     <div class="menu_class">
         <h1>Learn {{ language }}</h1>
-        <app-menu-button [text]="'To quiz'" [action]="toQuiz"/>
+        <app-menu-button [text]="'To quiz words'" [action]="toQuizWords"/>
         <app-menu-button [text]="'Add new words'" [action]="toNewWords"/>
+        <app-menu-button [text]="'To quiz sentences'" [action]="toQuizSentences"/>
         <app-menu-button [text]="'Add new sentences'" [action]="toNewSentences"/>
-
-        
         <app-menu-button [text]="'Back'" [action]="toBack"/>
      </div>
 </div>

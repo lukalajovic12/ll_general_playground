@@ -30,7 +30,7 @@ export class SheetsWordsService {
   constructor() {
   }
 
-  async fetchSheetWords(sheetName:string): Promise<Word[]> {
+  public async fetchSheetWords(sheetName:string): Promise<Word[]> {
 
   const scriptURL = `${this.urlWord}?sheetName=${sheetName}`;
     try {

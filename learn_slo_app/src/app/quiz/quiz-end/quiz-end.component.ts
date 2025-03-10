@@ -16,8 +16,6 @@ export class QuizEndComponent {
 
   @Input() action: () => void;
 
-  @Input() displayQuestion: (QuizObject) => string;
-
   constructor(private location: Location) {
   }
 

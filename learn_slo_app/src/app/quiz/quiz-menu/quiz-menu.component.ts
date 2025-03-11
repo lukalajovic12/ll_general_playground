@@ -34,6 +34,8 @@ export class QuizMenuComponent {
   @Input()
   public displayTargetLanguage:() => string;
 
+  protected selectAll = false;
+
   constructor(private location: Location) {
   }
 
@@ -46,6 +48,11 @@ export class QuizMenuComponent {
   }
 
   protected categoriesValueChange():void{
+    this.categoriesChange.emit(this.categories);
+  }
+
+  protected categoriesAllChange():void{
+    this.categories.forEach(c => c.selected=this.selectAll);
     this.categoriesChange.emit(this.categories);
   }
 

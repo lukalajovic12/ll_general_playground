@@ -58,7 +58,7 @@ export class GeminiWordGeneratorService {
   public async generateWords(prefixPrompt: string, prompt: string, sourceLanguage: string, targetLanguage: string): Promise<GeneratedWord[]> {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const result = await model.generateContent(prefixPrompt + ' ' + prompt + ' seperated by commas without spaces in between.');
     const generatedText = result.response.text();
 
@@ -75,8 +75,9 @@ export class GeminiWordGeneratorService {
 
   public async generateSentence(prompt: string, targetLanguage: string): Promise<string> {
     await this.fetchSheetKey();
+
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     let tl = '';
     if (targetLanguage === 'sl') {
@@ -89,14 +90,12 @@ export class GeminiWordGeneratorService {
       tl = 'german';
     }
     if (targetLanguage === 'sr') {
-      tl = 'serbian';
+      tl = 'serbian using the cirilic alphabet';
     }
-    const p = 'Generate a sentence in ' + tl + ' using the word' + ' ' + prompt + '. Instead of the word write ___. Do not add a translation';
+    const p = 'Generate a sentence in ' + tl + ' using the word' + ' ' + prompt + '. Use the word only once. Instead of the word '+ prompt + ' write ___. Do not add a translation or that word.';  
     const result = await model.generateContent(p);
     const generatedText = result.response.text();
     return generatedText;
-
-
   }
 
 

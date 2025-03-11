@@ -16,7 +16,11 @@
             <label for="{{con.category}}"> {{con.category}} </label>
         </div>   
         }
-    </div>
+        <div>
+            <input type="checkbox" id="selectAll" name="selectAll" [(ngModel)]="selectAll" (ngModelChange)="categoriesAllChange()">
+            <label for="selectAll"> Select all </label>
+        </div>
+    </div>   
     }
     <div class="data_settings">
         <!--

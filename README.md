@@ -1,4 +1,4 @@
-# learn_slo
-a simple app for learning slovenian
+# ll_general_playground
+my playground for experementing in angular
 to deploy run 
-ng build --configuration production --base-href https://lukalajovic12.github.io/learn_slo/
+ng build --configuration production --base-href https://lukalajovic12.github.io/ll_general_playground/

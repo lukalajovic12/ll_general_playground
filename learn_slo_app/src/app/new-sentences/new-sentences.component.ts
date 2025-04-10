@@ -71,14 +71,14 @@ export class NewSentencesComponent extends AreaBase {
     this.row=-1;
   }
 
-  protected editSentence(word:Sentence) {
-    this.sentenceEditDialogComponent.wordToTranslate=word.sourceLanguage;
+  protected editSentence(sentence:Sentence) {
+    this.sentenceEditDialogComponent.wordToTranslate=sentence.sourceLanguage;
     const category = this.getCategory();
-    this.sentenceEditDialogComponent.translatedWord=word.targetLanguage;
-    this.sentenceEditDialogComponent.generatedSentence=word.sentence;
+    this.sentenceEditDialogComponent.translatedWord=sentence.targetLanguage;
+    this.sentenceEditDialogComponent.generatedSentence=sentence.sentence;
 
-    this.row=word.row;
-    this.index= this.sentences[category].indexOf(word)
+    this.row=sentence.row;
+    this.index= this.sentences[category].indexOf(sentence)
     this.sentenceEditDialogComponent.show();
   }
 

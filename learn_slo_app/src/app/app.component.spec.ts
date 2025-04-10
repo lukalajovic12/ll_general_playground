@@ -18,6 +18,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, learn_slo_app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ll_general_playground_app');
   });
 });

@@ -55,6 +55,8 @@ export class GeminiWordGeneratorService {
     }
   }
 
+  generateSentences
+
   public async generateWords(prefixPrompt: string, prompt: string, sourceLanguage: string, targetLanguage: string): Promise<GeneratedWord[]> {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);

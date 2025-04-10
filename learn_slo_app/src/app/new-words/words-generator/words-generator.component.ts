@@ -44,7 +44,7 @@ export class WordsGeneratorComponent {
     }
   }
 
-  protected displaywords(){
+  protected displayWords(){
     if(this.numberOfWords>1){
       return 'Generate ' + this.numberOfWords +' words about';
     } else {
@@ -60,7 +60,7 @@ export class WordsGeneratorComponent {
 
   async generateWords() {
     this.loading = true;
-    this.words = await this.geminiWordGeneratorService.generateWords(this.displaywords(),this.prompt,this.sourceLanguage,this.targetLanguage);
+    this.words = await this.geminiWordGeneratorService.generateWords(this.displayWords(),this.prompt,this.sourceLanguage,this.targetLanguage);
     this.loading = false;
   }
 

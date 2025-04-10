@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "learn_slo_app": {
+    "ll_general_playground_app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "learn_slo_app:build:production"
+              "buildTarget": "ll_general_playground_app:build:production"
             },
             "development": {
-              "buildTarget": "learn_slo_app:build:development"
+              "buildTarget": "ll_general_playground_app:build:development"
             }
           },
           "defaultConfiguration": "development"

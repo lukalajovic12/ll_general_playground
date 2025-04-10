@@ -1,0 +1,60 @@
+<dialog #aiDialog>
+    <app-sentence-edit-dialog 
+    #sentenceDialog
+    [submit]="onSubmitEditSentence"
+    [sourceLanguage]="sourceLanguage"
+    [targetLanguage]="targetLanguage"       
+    />  
+      <div>
+          <h1>Generator</h1>
+          <div class="number_of_sentences">
+            <div class="ll_value">Anwsers: {{numberOfSentences}}</div>
+            <button (click)="plusNumberOfSentences()" class="ll_button">+1</button>
+            <button (click)="minusNumberOfSentences()" class="ll_button">-1</button>
+          </div>
+          <h2> {{displaySentences()}}  </h2>
+          <textarea [(ngModel)]="prompt" rows="5" cols="50"></textarea>
+          <div class="buttons_container">
+              <button (click)="generateSentences()" class="ll_button">Generate Sentrences</button>
+              <button (click)="toClose()" class="ll_button"> Close </button>  
+              <button (click)="toSubmit()" class="ll_button" [disabled]="sentences.length===0"> Submit </button>  
+          </div>
+          <table>
+              <thead>
+                <tr>
+                  <th>
+                      {{ sourceLanguage }}
+                  </th>
+                  <th>
+                      {{ targetLanguage }}
+                  </th>       
+                </tr>
+              </thead>
+              <tbody>
+                @for(sentence of sentences;track sentence) {
+                  <tr>
+                    <td>{{ sentence.sourceLanguage }}</td>
+                    <td>{{ sentence.targetLanguage }}</td>     
+                    <td>
+                      <button class="icon_class" (click)="editSentence(sentence)">
+                      <i class="fa fa-pencil"></i>
+                      </button>
+                    </td>                  
+                    <td>
+                      <button class="icon_class" (click)="deleteSentence(sentence)">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>                    
+                    
+                  </tr>
+                }
+              </tbody>
+            </table>
+          @if(error) {
+              <div style="color: red;">{{ error }}</div>
+          }
+          @if(loading) {
+              <div class="loading">Loading...</div>
+          }
+      </div>
+    </dialog>

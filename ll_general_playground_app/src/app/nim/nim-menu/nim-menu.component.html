@@ -1,0 +1,24 @@
+<div class="menu_class">
+    <h1>Nim</h1>
+    <app-menu-button [text]="'Play'" [action]="action"/>
+    <app-menu-button [text]="'Home'" [action]="toHome"/>
+    <div class="data_settings">
+      <div class="ll_value">Rows: {{numberOfRows}}</div>
+      <button (click)="plusNumberOfRows()" class="ll_button menu_button">+1</button>
+      <button (click)="minusNumberOfRows()" class="ll_button menu_button">-1</button> 
+  </div>  
+    <h1 class="nim_text">
+        @switch (status) {
+            @case ('win') {
+              Awesome, you WIN
+            }
+            @case ('loose') {
+              You loose, don't worry try again. It's just an algorithm once you figure it out you will win every time.
+            }
+            @default {
+                when it's your turn take one or more matches from one row. 
+                Then the computer will do the same. If you take the last match you win.
+            }
+          }
+        </h1>
+ </div>

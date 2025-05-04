@@ -7,6 +7,8 @@ import { ImageBasicGenerationComponent } from './image-basic-generation/image-ba
 import { NewSentencesComponent } from './new-sentences/new-sentences.component';
 import { QuizWordsComponent } from './quiz-words/quiz-words.component';
 import { QuizSentencesComponent } from './quiz-sentences/quiz-sentences.component';
+import { NimComponent } from './nim/nim.component';
+import { CardsEditorComponent } from './cards-editor/cards-editor.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -17,6 +19,8 @@ export const APP_ROUTES: Routes = [
   { path: 'menu', component:LanguageMenuComponent},
   { path: 'image-svg-generator', component:ImageSvgGeneratorComponent},
   { path: 'image-basic-generator', component:ImageBasicGenerationComponent},
+  { path: 'nim', component:NimComponent},
+  { path: 'cards', component:CardsEditorComponent},
 ];
 
 

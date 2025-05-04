@@ -1,0 +1,18 @@
+.nim_text {
+    color: white;
+}
+.menu_class {
+    text-align: center;  
+}
+
+.data_settings {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+}
+
+.ll_value {
+    font-size: 18px;
+    padding: 5px;
+    color:#fffffffb;
+}

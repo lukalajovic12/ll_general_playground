@@ -27,6 +27,14 @@ export class HomeMenuComponent {
   protected toSrb = () => {
     this.router.navigate(['/menu'], { queryParams: { language: 'eng_srb' } });
   }
+
+  protected toNim = () => {
+    this.router.navigate(['/nim']);
+  }
+
+  protected toCards = () => {
+    this.router.navigate(['/cards']);
+  }
   protected toImageSvgGenerator = () => {
     this.router.navigate(['/image-svg-generator']);
   }

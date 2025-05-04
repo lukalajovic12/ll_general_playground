@@ -1,0 +1,18 @@
+@for(card of cards;track card) {
+    <div>
+      <div>{{ card.name }}</div>
+      <div>{{ card.description }}</div> 
+      <div>{{ card.protein }}</div>
+      <div>{{ card.svg }}</div> 
+      <div>
+        <button class="icon_class" (click)="editCard(card)">
+        <i class="fa fa-pencil"></i>
+        </button>
+      </div>   
+      <div>
+        <button class="icon_class" (click)="deleteCard(card)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>                    
+    </div>
+  }

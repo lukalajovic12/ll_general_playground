@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SheetsWordsService, Word } from '../sheets-words.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category, languages, QuizObject } from '../game-util';
 import { QuizComponent } from '../quiz/quiz.component';

@@ -1,0 +1,31 @@
+
+:host {
+    --ll-nim-canvas-color:white;
+    --ll-nim-circle-color:blue;
+    --ll-nim-line-color:black;
+}
+.game_area .svg_canvas {
+    background-color: var(--ll-nim-canvas-color);
+    height: calc(var(--window-height) - 10px);
+    max-height: calc(var(--window-height) - 10px);
+}
+
+.game_circle {
+    stroke: var(--ll-nim-circle-color);
+    stroke-width: 3;
+    fill:var(--ll-nim-circle-color);
+}
+
+.circle-line {
+    stroke: var(--ll-nim-line-color);
+    stroke-width: 2;   
+}
+
+.circle-line.choosen {
+    stroke: red;
+}
+
+.game_circle.choosen {
+    stroke: red;
+    fill: red;
+}

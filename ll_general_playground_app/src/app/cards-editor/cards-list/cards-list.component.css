@@ -1,0 +1,10 @@
+.cardd_list {
+    display:block;
+    padding-top: 20px;    
+    gap: 10px;
+}
+
+.card_container {
+    display:flex; 
+    gap: 10px;
+}

@@ -1,18 +1,16 @@
-@for(card of cards;track card) {
-    <div>
-      <div>{{ card.name }}</div>
-      <div>{{ card.description }}</div> 
-      <div>{{ card.protein }}</div>
-      <div>{{ card.svg }}</div> 
-      <div>
+<div class="card_list">
+    @for(card of cards;track card) {
+    <div class="card_container">
+        <app-card [svg]="card.svg" [name]="card.name" [description]="card.description"
+            [protein]="card.protein"></app-card>
+           <div>
         <button class="icon_class" (click)="editCard(card)">
-        <i class="fa fa-pencil"></i>
+            <i class="fa fa-pencil"></i>
         </button>
-      </div>   
-      <div>
         <button class="icon_class" (click)="deleteCard(card)">
-          <i class="fa fa-trash"></i>
+            <i class="fa fa-trash"></i>
         </button>
-      </div>                    
+    </div> 
     </div>
-  }
+    }
+</div>

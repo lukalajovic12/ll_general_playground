@@ -23,7 +23,11 @@ export class CardsEditorComponent extends AreaBase {
 
   protected index = -1;
 
+  protected displayTabele=false;
+
   public cards:Card[]=[];
+
+  private sheetName='genes';
 
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
@@ -36,7 +40,7 @@ export class CardsEditorComponent extends AreaBase {
   override async ngOnInit(): Promise<void> {
     super.ngOnInit();
     this.loading=true;
-    this.cards = await this.sheetsCardsService.loadCards('genes');
+    this.cards = await this.sheetsCardsService.loadCards(this.sheetName);
     this.loading=false;
   }
 
@@ -49,7 +53,7 @@ export class CardsEditorComponent extends AreaBase {
     this.row=-1;
   }
 
-  public editCard(card:Card) {
+  public editCard = (card:Card) => {
     this.cardEditDialogComponent.name=card.name;
     this.cardEditDialogComponent.description=card.description;
     this.cardEditDialogComponent.protein=card.protein;
@@ -59,7 +63,7 @@ export class CardsEditorComponent extends AreaBase {
     this.cardEditDialogComponent.show();
   }
 
-  public deleteCard(card:Card) {
+  public deleteCard = (card:Card) => {
     let index= this.cards.indexOf(card);
     this.cards.splice(index,1);
     this.sheetsCardsService.appendCard(card.name, card.description,card.protein,card.svg,card.row,true,'genes');
@@ -75,7 +79,21 @@ export class CardsEditorComponent extends AreaBase {
       } else {
         this.cards[this.index].name=name;
         this.cards[this.index].description=description;
+        this.cards[this.index].protein=protein;
+        this.cards[this.index].svg=svg;
       }
+  }
+
+  protected changeView():void {
+    this.displayTabele=!this.displayTabele;
+  }
+
+  protected async changeSheet(sheetName:string):Promise<void> {
+    this.sheetName=sheetName;
+    this.loading=true;
+    this.cards = await this.sheetsCardsService.loadCards(this.sheetName);
+    this.loading=false;
+
   }
 
   protected toHome():void {

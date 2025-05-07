@@ -1,43 +1,42 @@
 <table>
     <thead>
-      <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>   
-        <th>
-          Protein
-       </th>                       
-       <th>
-        Svg
-        </th>                    
-        <th>
-          <button class="icon_class" (click)="addCard()">
-            <i class="fa fa-plus"></i>
-            </button>
-      </th>                      
-      </tr>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Protein
+            </th>
+            <th>
+                Svg
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>Delete</th>
+        </tr>
     </thead>
     <tbody>
-      @for(card of cards;track card) {
+        @for(card of cards;track card) {
         <tr>
-          <td>{{ card.name }}</td>
-          <td>{{ card.description }}</td> 
-          <td>{{ card.protein }}</td>
-          <td>{{ card.svg }}</td> 
-          <td>
-            <button class="icon_class" (click)="editCard(card)">
-            <i class="fa fa-pencil"></i>
-            </button>
-          </td>   
-          <td>
-            <button class="icon_class" (click)="deleteCard(card)">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>                    
+            <td>{{ card.name }}</td>
+            <td>{{ card.description }}</td>
+            <td>{{ card.protein }}</td>
+            <td>{{ card.svg }}</td>
+            <td>
+                <button class="icon_class" (click)="editCard(card)">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </td>
+            <td>
+                <button class="icon_class" (click)="deleteCard(card)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
         </tr>
-      }
+        }
     </tbody>
-  </table>
+</table>

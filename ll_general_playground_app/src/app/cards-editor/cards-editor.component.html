@@ -1,30 +1,29 @@
 <div class="game_area">
-    <div>
-        <h1>Cards</h1>
-        <app-card-edit-dialog 
-        #cardEditDialogComponent
-        [submit]="onSubmitCard"  
-        />
-        @if(loading) {
-          <div class="loading">Loading...</div>
-        } @else {
+  <div>
+  
+    <app-card-edit-dialog #cardEditDialogComponent [submit]="onSubmitCard" />
+    <div class="buttons_container">
+      <div class="title">Cards</div>
+      <button (click)="toHome()" class="ll_button"> Back </button>
+      <button class="ll_button" (click)="changeSheet('genes')">Genes </button>
+      <button class="ll_button" (click)="changeSheet('mother_nature')">Mother nature </button>
+    </div>  
+    @if(loading) {
+    <div class="loading">Loading...</div>
+    } @else {
 
-          <app-cards-tabele
-            [editCard]="editCard"
-            [deleteCard]="deleteCard"
-            [addCard]="addCard"
-            [cards]="cards"
-          />
-          <app-cards-list
-          [editCard]="editCard"
-          [deleteCard]="deleteCard"
-          [addCard]="addCard"
-          [cards]="cards"
-          />
-
-            <div class="buttons_container">
-              <button (click)="toHome()" class="ll_button"> Back </button>  
-          </div>           
-        }
+    <div class="buttons_container">
+      <button class="ll_button" (click)="changeView()">List </button>     
+      <button class="ll_button" (click)="changeView()">Tabele </button>
+      <button class="icon_class" (click)="addCard()">
+        <i class="fa fa-plus"></i>
+      </button>
     </div>
+    @if(displayTabele) {
+    <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" />
+    } @else {
+    <app-cards-list [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" />
+    }
+    }
+  </div>
 </div>

@@ -1,20 +1,20 @@
 <div class="game_area">
   <div>
-  
     <app-card-edit-dialog #cardEditDialogComponent [submit]="onSubmitCard" />
+    <h2>Cards</h2>
     <div class="buttons_container">
-      <div class="title">Cards</div>
-      <button (click)="toHome()" class="ll_button"> Back </button>
-      <button class="ll_button" (click)="changeSheet('genes')">Genes </button>
-      <button class="ll_button" (click)="changeSheet('mother_nature')">Mother nature </button>
+      <button (click)="toHome()" class="ll_button"> Back </button>      
+      <button class="ll_button" (click)="changeSheet('genes')" [class.selected]="sheetName==='genes'">Genes </button>
+      <button class="ll_button" (click)="changeSheet('mother_nature')" [class.selected]="sheetName==='mother_nature'">Mother nature </button>
+      <button class="ll_button" (click)="changeSheet('retro_virus')" [class.selected]="sheetName==='retro_virus'">Retro virus </button>
     </div>  
     @if(loading) {
     <div class="loading">Loading...</div>
     } @else {
 
     <div class="buttons_container">
-      <button class="ll_button" (click)="changeView()">List </button>     
-      <button class="ll_button" (click)="changeView()">Tabele </button>
+      <button class="ll_button" (click)="changeView()" [class.selected]="displayTabele===false">List </button>     
+      <button class="ll_button" (click)="changeView()" [class.selected]="displayTabele===true">Tabele </button>
       <button class="icon_class" (click)="addCard()">
         <i class="fa fa-plus"></i>
       </button>

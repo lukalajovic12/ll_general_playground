@@ -8,8 +8,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
-  private _svg: string = '';
+export class CardComponent {;
   safeSvg!: SafeHtml;
   @Input() name!: string;
   @Input() description!: string;
@@ -18,7 +17,6 @@ export class CardComponent {
   constructor(private sanitizer: DomSanitizer) {}
   
   @Input() set svg(value: string) {
-    this._svg = value;
     this.safeSvg = this.sanitizer.bypassSecurityTrustHtml(value);
   }
 

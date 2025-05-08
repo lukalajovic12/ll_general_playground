@@ -27,7 +27,7 @@ export class CardsEditorComponent extends AreaBase {
 
   public cards:Card[]=[];
 
-  private sheetName='genes';
+  protected sheetName='genes';
 
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
@@ -66,12 +66,12 @@ export class CardsEditorComponent extends AreaBase {
   public deleteCard = (card:Card) => {
     let index= this.cards.indexOf(card);
     this.cards.splice(index,1);
-    this.sheetsCardsService.appendCard(card.name, card.description,card.protein,card.svg,card.row,true,'genes');
+    this.sheetsCardsService.appendCard(card.name, card.description,card.protein,card.svg,card.row,true,this.sheetName);
 
   }
 
   protected onSubmitCard = (name:string,description:string,protein:number,svg:string) => {
-      this.sheetsCardsService.appendCard(name, description,protein,svg,this.row,false,'genes');
+      this.sheetsCardsService.appendCard(name, description,protein,svg,this.row,false,this.sheetName);
       if(this.row === -1) {
         let totalLength = 0;
         this.cards.push({name:name,

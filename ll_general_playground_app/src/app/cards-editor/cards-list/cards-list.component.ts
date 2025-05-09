@@ -13,5 +13,5 @@ export class CardsListComponent {
     @Input() public cards:Card[]=[];
     @Input() public editCard:(card:Card) => void;
     @Input() public deleteCard:(card:Card) => void;
-
+    @Input() public sheetName='';
 }

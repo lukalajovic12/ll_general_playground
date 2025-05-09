@@ -7,14 +7,15 @@
         <input id="name" type="text" [(ngModel)]="name" />
         <div class="card_label">Description:</div>
         <textarea id="description" rows="5" cols="50" [(ngModel)]="description"> </textarea>
-       
+        @if(sheetName!=='mother_nature') {
         <div class="protein_label">Protein: {{protein}}</div>
         <div>
-     
+
             <button (click)="plusProtein()" class="ll_button menu_button">+1</button>
-            <button (click)="minusProtein()" class="ll_button menu_button">-1</button> 
+            <button (click)="minusProtein()" class="ll_button menu_button">-1</button>
 
         </div>
+        }
         <div class="card_label">SVG:</div>
         <textarea id="description" rows="5" cols="50" [(ngModel)]="svg"> </textarea>
 

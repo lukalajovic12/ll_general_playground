@@ -7,9 +7,11 @@
             <th>
                 Description
             </th>
+            @if(sheetName!=='mother_nature') {
             <th>
                 Protein
             </th>
+            }
             <th>
                 Svg
             </th>
@@ -24,8 +26,10 @@
         <tr>
             <td>{{ card.name }}</td>
             <td>{{ card.description }}</td>
+            @if(sheetName!=='mother_nature') {
             <td>{{ card.protein }}</td>
-            <td>{{ card.svg }}</td>
+            }
+            <td [innerHTML]="displaySafeSvg(card)"></td>
             <td>
                 <button class="icon_class" (click)="editCard(card)">
                     <i class="fa fa-pencil"></i>

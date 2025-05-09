@@ -15,7 +15,7 @@ export class CardEditDialogComponent {
   @ViewChild('cardEditDialog') public dialog!: ElementRef<HTMLDialogElement>;  
 
   @Input() public submit:(name:string,description:string,protein:number,svg:string) => void;
-
+  @Input() public sheetName='';
   public name = '';
   public description = '';
   public svg='';

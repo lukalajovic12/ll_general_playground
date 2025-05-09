@@ -2,7 +2,9 @@
     <div class="card-icon" [innerHTML]="safeSvg"></div>
     <h2 class="card-title">{{ name }}</h2>
     <p class="card-description">{{ description }}</p>
+    @if(sheetName!=='mother_nature') {
     <div class="card-protein">
       Proteins: <span class="protein-number">{{ protein }}</span>
     </div>
+    }
 </div>

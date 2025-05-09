@@ -13,7 +13,7 @@ export class CardComponent {;
   @Input() name!: string;
   @Input() description!: string;
   @Input() protein!: number;
-
+  @Input() public sheetName='';
   constructor(private sanitizer: DomSanitizer) {}
   
   @Input() set svg(value: string) {

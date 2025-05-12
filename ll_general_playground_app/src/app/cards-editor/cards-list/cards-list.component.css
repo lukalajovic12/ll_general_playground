@@ -1,8 +1,31 @@
 .card_list {
-    padding-top: 20px;    
+    padding: 20px;    
     display: grid;
     grid-template-columns: auto;
     gap: 20px;
+}
+
+.card_list.one {
+    display: grid;
+    grid-template-columns: auto;
+}
+.card_list.two {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.card_list.three {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.card_list.four {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.card_list.five {
+    display: grid;
+    grid-template-columns: auto auto auto  auto auto;
 }
 
 .card_container {
@@ -14,5 +37,13 @@
     display: grid;
     grid-template-columns: auto;
     gap: 10px;
+}
 
+.rows_label {
+    color:white;
+}
+
+.rows_container {
+    display: flex;
+    gap: 10px;
 }

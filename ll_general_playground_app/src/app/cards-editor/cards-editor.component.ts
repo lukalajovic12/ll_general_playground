@@ -7,11 +7,12 @@ import { CardEditDialogComponent } from './card-edit-dialog/card-edit-dialog.com
 import { Card, SheetsCardsService } from '../sheets-cards.service';
 import { CardsTabeleComponent } from './cards-tabele/cards-tabele.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
+import { EnvironmentCardListComponent } from './environment-card-list/environment-card-list.component';
 
 @Component({
   selector: 'app-cards-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule,CardEditDialogComponent,CardsTabeleComponent,CardsListComponent],
+  imports: [CommonModule, FormsModule,CardEditDialogComponent,CardsTabeleComponent,CardsListComponent,EnvironmentCardListComponent],
   templateUrl: './cards-editor.component.html',
   styleUrl: './cards-editor.component.css'
 })

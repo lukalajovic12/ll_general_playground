@@ -35,6 +35,12 @@ export class HomeMenuComponent {
   protected toCards = () => {
     this.router.navigate(['/cards']);
   }
+
+  protected toEnviormentCards = () => {
+    this.router.navigate(['/enviorment-cards']);
+  }
+
+  
   protected toImageSvgGenerator = () => {
     this.router.navigate(['/image-svg-generator']);
   }

@@ -9,6 +9,7 @@ import { QuizWordsComponent } from './quiz-words/quiz-words.component';
 import { QuizSentencesComponent } from './quiz-sentences/quiz-sentences.component';
 import { NimComponent } from './nim/nim.component';
 import { CardsEditorComponent } from './cards-editor/cards-editor.component';
+import { PhysicsSimulationComponent } from './physics-simulation/physics-simulation.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -21,6 +22,7 @@ export const APP_ROUTES: Routes = [
   { path: 'image-basic-generator', component:ImageBasicGenerationComponent},
   { path: 'nim', component:NimComponent},
   { path: 'cards', component:CardsEditorComponent},
+  {path:'physics',component:PhysicsSimulationComponent},
 ];
 
 

@@ -49,4 +49,9 @@ export class HomeMenuComponent {
     this.router.navigate(['/image-basic-generator']);
   }
 
+  protected toPhysics = () => {
+    this.router.navigate(['/physics']);
+  }
+  
+
 }

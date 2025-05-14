@@ -1,0 +1,20 @@
+.card_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .card_label {
+    color:white;
+  }
+
+  .protein_label {
+    color:white;
+  }
+
+  .card_icon {
+    display: flex;
+    justify-content: center;
+}

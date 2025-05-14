@@ -1,8 +1,20 @@
+
+<app-particle-dialog #particleEditDialog [submit]="onSubmitParticle" />
 <div class="game_area">
   <div>
+    <div class="buttons_container">
     <button class="ll_button" (click)="toggleAnimation()">
       {{ isRunning ? 'Stop' : 'Start' }}
-    </button><br>
+    </button>
+    <button class="ll_button" (click)="addParticle()">
+      Add particle
+    </button>
+    <button class="ll_button" (click)="clearAll()">
+      Clear All
+    </button>
+  </div>
+
+    <br>
     <canvas #canvas width="500" height="500" style="border:1px solid black;"></canvas>
   </div>
 </div>

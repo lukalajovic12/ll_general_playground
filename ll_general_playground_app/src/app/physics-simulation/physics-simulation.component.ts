@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AreaBase } from '../area-base';
+import { ParticleDialogComponent } from './particle-dialog/particle-dialog.component';
 
 export interface Particle {
   x: number;
@@ -12,11 +13,21 @@ export interface Particle {
 @Component({
   selector: 'app-physics-simulation',
   standalone: true,
-  imports: [],
+  imports: [ParticleDialogComponent],
   templateUrl: './physics-simulation.component.html',
   styleUrl: './physics-simulation.component.css'
 })
 export class PhysicsSimulationComponent extends AreaBase implements AfterViewInit {
+
+
+
+ 
+  @ViewChild('particleEditDialog') public particleEditDialog!: ParticleDialogComponent;
+
+  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  private ctx!: CanvasRenderingContext2D;
+
+  protected particles: Particle[];
     
   public gravitationalConstant=3000;
 
@@ -47,24 +58,17 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
   }
 
-
   private calculateSpeeds(t:number):void{
     for(let i=0;i<this.particles.length-1;i++){
       for(let j=i+1;j<this.particles.length;j++){
         this.calculateSpeed(this.particles[i],this.particles[j],t);
       }
     }
-
-
-
   }
 
   private radius(p:Particle):number {
     return p.m;
-
-
   }
-
 
   private moveParticles(t:number):void{
     
@@ -88,19 +92,35 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
 
 
-  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  private ctx!: CanvasRenderingContext2D;
 
-  protected particles: Particle[];
 
+
+  protected onSubmitParticle = (x:number,y:number,vx:number,vy:number,m:number) => {
+    this.particles.push({x:x,y:y,vx:vx,vy:vy,m:m});
+    this.draw();
+  }
+
+  protected clearAll() {
+    this.particles = [];
+    this.isRunning=false;
+    this.stop();
+    this.draw();
+  }
 
   ngAfterViewInit() {
-   // this.particles = [{x:50,y:50,vx:15,vy:15,m:10},{x:200,y:200,vx:-15,vy:-15,m:20},{x:50,y:150,vx:-15,vy:0,m:30}];  
-    this.particles = [{x:200,y:250,vx:0,vy:15,m:10},{x:300,y:250,vx:0,vy:-15,m:15},{x:50,y:50,vx:15,vy:15,m:10},{x:200,y:200,vx:-15,vy:-15,m:20},{x:50,y:150,vx:-15,vy:0,m:30}];  
+    this.particles = [];
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext('2d')!;
     this.draw(); // Draw initial frame
   }
+
+
+  public addParticle() {
+    this.isRunning=false;
+    this.stop();
+    this.particleEditDialog.show();
+  }
+
 
   toggleAnimation() {
     this.isRunning ? this.stop() : this.start();

@@ -1,0 +1,6 @@
+.buttons_container {
+    display:flex;
+    padding-top: 20px;    
+    padding-bottom: 20px;   
+    gap: 10px;
+  }

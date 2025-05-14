@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ParticleDialogComponent } from './particle-dialog/particle-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 export interface Particle {
   x: number;
@@ -13,7 +15,7 @@ export interface Particle {
 @Component({
   selector: 'app-physics-simulation',
   standalone: true,
-  imports: [ParticleDialogComponent],
+  imports: [ParticleDialogComponent,CommonModule,FormsModule],
   templateUrl: './physics-simulation.component.html',
   styleUrl: './physics-simulation.component.css'
 })
@@ -24,7 +26,7 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
  
   @ViewChild('particleEditDialog') public particleEditDialog!: ParticleDialogComponent;
 
-  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('particleCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
 
   protected particles: Particle[];

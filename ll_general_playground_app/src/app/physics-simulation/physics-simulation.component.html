@@ -12,9 +12,11 @@
     <button class="ll_button" (click)="clearAll()">
       Clear All
     </button>
+    <div class="card_label">G:</div>
+    <input id="g" type="number"[(ngModel)]="gravitationalConstant" />
   </div>
 
     <br>
-    <canvas  class="ll_canvas"></canvas>
+    <canvas  #particleCanvas  class="ll_canvas"></canvas>
   </div>
 </div>

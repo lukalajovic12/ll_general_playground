@@ -11,3 +11,7 @@
     max-height: calc(var(--window-height) - 50px);
     border:1px solid black;
 }
+
+.card_label {
+    color:white;
+  }

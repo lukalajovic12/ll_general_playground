@@ -1,8 +1,10 @@
 .buttons_container {
-    display:flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
     padding-top: 5x;    
     padding-bottom: 5px;   
     gap: 10px;
+
   }
 
 .ll_canvas{

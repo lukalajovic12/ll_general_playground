@@ -36,8 +36,6 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
   private lastTimestamp = 0;
 
-  public width = 500;
-  public height = 500;
 
 
   private calculateDistance(p1:Particle,p2:Particle):number {
@@ -46,16 +44,13 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
 
   private calculateSpeed(p1:Particle,p2:Particle,t:number):void {
-
     let k = (this.gravitationalConstant*(p1.m*p2.m)/this.calculateDistance(p1,p2)**3);
     let fx  = k*(p1.x-p2.x);
     let fy  = k*(p1.y-p2.y);
-
     p1.vx-=t*fx/p1.m;
     p1.vy-=t*fy/p1.m;
     p2.vx+=t*fx/p2.m;
     p2.vy+=t*fy/p2.m;
-
   }
 
   private calculateSpeeds(t:number):void{
@@ -71,28 +66,24 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
   }
 
   private moveParticles(t:number):void{
-    
+    const canvas = this.canvasRef.nativeElement;
     this.particles.forEach(p=>{
       if((p.x-this.radius(p))<0 && p.vx<0){
         p.vx=-p.vx;
       }
-      if((p.x+this.radius(p))>this.width && p.vx>0){
+      if((p.x+this.radius(p))>canvas.width && p.vx>0){
         p.vx=-p.vx;
       }
       if((p.y-this.radius(p))<0 && p.vy<0){
         p.vy=-p.vy;
       }
-      if((p.y+this.radius(p))>this.height && p.vy>0){
+      if((p.y+this.radius(p))>canvas.height && p.vy>0){
         p.vy=-p.vy;
       }   
       p.x+=p.vx*t;
       p.y+=p.vy*t;
     });
   }
-
-
-
-
 
 
   protected onSubmitParticle = (x:number,y:number,vx:number,vy:number,m:number) => {
@@ -141,9 +132,6 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
     if (!this.isRunning) return;
 
     const deltaTime = (timestamp - this.lastTimestamp) / 1000; // seconds
-
-
-
     this.calculateSpeeds(deltaTime);
     this.moveParticles(deltaTime);
 

@@ -1,6 +1,13 @@
 .buttons_container {
     display:flex;
-    padding-top: 20px;    
-    padding-bottom: 20px;   
+    padding-top: 5x;    
+    padding-bottom: 5px;   
     gap: 10px;
   }
+
+.ll_canvas{
+    width: calc(var(--window-height) - 50px);   
+    height: calc(var(--window-height) - 50px);
+    max-height: calc(var(--window-height) - 50px);
+    border:1px solid black;
+}

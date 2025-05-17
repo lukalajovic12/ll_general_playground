@@ -1,22 +1,40 @@
 
-<app-particle-dialog #particleEditDialog [submit]="onSubmitParticle" />
+
 <div class="game_area">
   <div>
     <div class="buttons_container">
-    <button class="ll_button" (click)="toggleAnimation()">
-      {{ isRunning ? 'Stop' : 'Start' }}
+    <button class="ll_button" [class.selected]="isRunning===true" (click)="toggleAnimation()">
+      {{ isRunning===true ? 'Stop' : 'Start' }}
     </button>
-    <button class="ll_button" (click)="addParticle()">
-      Add particle
+    <button class="ll_button"  (click)="addParticle()">
+      Add
+    </button>
+    <button class="ll_button" [class.selected]="isRunning===false"  (click)="editParticle()">
+      Edit
     </button>
     <button class="ll_button" (click)="clearAll()">
       Clear All
     </button>
-    <div class="card_label">G:</div>
-    <input id="g" type="number"[(ngModel)]="gravitationalConstant" />
-  </div>
+    <button class="ll_button" (click)="removeSelected()">
+      Delete Selected
+    </button>
 
-    <br>
-    <canvas  #particleCanvas  class="ll_canvas"></canvas>
+
+  </div>
+@if(isRunning == false) {
+<div class="card_container">
+    <div class="card_label">vx: {{vx}}</div>
+    <input id="vx" type="range" min="-10" max="10" [(ngModel)]="vx" (change)="updateSelected()" />
+    <div class="card_label">vy: {{vy}}</div>
+    <input id="vy" type="range" min="-10" max="10" [(ngModel)]="vy" (change)="updateSelected()" />        
+    <div class="card_label">m: {{m}}</div>
+    <input id="m" type="range" min="0" max="50" [(ngModel)]="m" (change)="updateSelected()" />  
+    <div class="card_label">G: {{gravitationalConstant}}</div>
+    <input id="m" type="range" min="0" max="5000" [(ngModel)]="gravitationalConstant" />   
+    
+</div>
+}
+
+    <canvas #particleCanvas class="ll_canvas" (click)="onCanvasClick($event)"></canvas>
   </div>
 </div>

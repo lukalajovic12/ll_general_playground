@@ -11,9 +11,21 @@
     width: calc(var(--window-height) - 50px);   
     height: calc(var(--window-height) - 50px);
     max-height: calc(var(--window-height) - 50px);
+    max-width: calc(var(--window-height) - 50px);
     border:1px solid black;
 }
 
 .card_label {
     color:white;
+}
+.ll_button.selected {
+  background-color:#0049b4;
+}
+
+.card_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
   }

@@ -6,7 +6,6 @@ export interface Card {
   name: string;
   description: string;
   protein:number;
-  svg:string;
   row:number;
 }
 
@@ -14,7 +13,6 @@ export interface PostCard {
   name: string;
   description: string;
   protein:number;
-  svg:string;
   row:number;
   deleteRow:boolean;
 }
@@ -50,8 +48,8 @@ export class SheetsCardsService {
 }
 
 
-  public appendCard(name:string,description:string,protein:number,svg:string,row:number,deleteRow:boolean,sheetName:string) {
-      const data:PostCard = {name:name,description:description,protein:protein,svg:svg,row:row,deleteRow:deleteRow};
+  public appendCard(name:string,description:string,protein:number,row:number,deleteRow:boolean,sheetName:string) {
+      const data:PostCard = {name:name,description:description,protein:protein,row:row,deleteRow:deleteRow};
       const scriptURL = `${this.urlCards}?sheetName=${sheetName}`;
       const headers = new HttpHeaders({ 
         'Content-Type': 'application/x-www-form-urlencoded' });

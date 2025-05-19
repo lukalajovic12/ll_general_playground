@@ -9,15 +9,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrl: './card.component.css'
 })
 export class CardComponent {;
-  safeSvg!: SafeHtml;
   @Input() name!: string;
   @Input() description!: string;
   @Input() protein!: number;
   @Input() public sheetName='';
   constructor(private sanitizer: DomSanitizer) {}
   
-  @Input() set svg(value: string) {
-    this.safeSvg = this.sanitizer.bypassSecurityTrustHtml(value);
-  }
 
 }

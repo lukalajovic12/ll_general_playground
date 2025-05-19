@@ -13,9 +13,6 @@
             </th>
             }
             <th>
-                Svg
-            </th>
-            <th>
                 Edit
             </th>
             <th>Delete</th>
@@ -29,7 +26,6 @@
             @if(sheetName!=='mother_nature') {
             <td>{{ card.protein }}</td>
             }
-            <td [innerHTML]="displaySafeSvg(card)"></td>
             <td>
                 <button class="icon_class" (click)="editCard(card)">
                     <i class="fa fa-pencil"></i>

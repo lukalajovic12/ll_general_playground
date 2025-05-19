@@ -13,13 +13,6 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
-  .card-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 16px;
-    color: #2563eb;
-  }
-  
   .card-title {
     font-size: 20px;
     font-weight: 600;

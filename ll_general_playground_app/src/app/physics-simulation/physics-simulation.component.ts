@@ -137,15 +137,11 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
   }
 
 
-  public addParticle() {
+  protected addParticle() {
     this.particles.push({ x: 10, y: 10, vx: this.vx, vy: this.vy, m:  this.m  });
     this.selectedIndex = this.particles.length - 1;
     this.isRunning = false;
     this.draw();
-  }
-
-  public editParticle() {
-    this.isRunning = false;
   }
 
   protected onCanvasClick(event: MouseEvent) {

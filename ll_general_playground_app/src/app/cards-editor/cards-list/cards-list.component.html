@@ -8,7 +8,7 @@
 [class.three]="rows === 3" [class.four]="rows === 4" [class.fice]="rows === 5">
     @for(card of cards;track card) {
     <div class="card_container" >
-        <app-card [svg]="card.svg" [name]="card.name" [description]="card.description"
+        <app-card [name]="card.name" [description]="card.description"
             [protein]="card.protein" [sheetName]="sheetName"></app-card>
            <div>
         @if(showOptions) {

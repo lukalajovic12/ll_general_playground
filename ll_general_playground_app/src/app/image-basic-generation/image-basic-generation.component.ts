@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
 import { GeminiWordGeneratorService } from '../gemini-word-generator.service';
-
 @Component({
   selector: 'app-image-basic-generation',
   standalone: true,
@@ -20,9 +18,8 @@ export class ImageBasicGenerationComponent extends AreaBase {
 
   imageUrl: string | null = null;
 
-    constructor(private location: Location,
-      private geminiWordGeneratorService:GeminiWordGeneratorService) {
-    super();
+    constructor(private geminiWordGeneratorService:GeminiWordGeneratorService) {
+      super();
     }
 
     protected async  generateImage():Promise<void> {
@@ -31,8 +28,5 @@ export class ImageBasicGenerationComponent extends AreaBase {
   
       this.loading='done';
     }
-
-    protected toHome():void {
-      this.location.back();
-    }    
+ 
 }

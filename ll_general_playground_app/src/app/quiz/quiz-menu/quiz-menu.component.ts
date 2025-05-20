@@ -56,31 +56,4 @@ export class QuizMenuComponent {
     this.categoriesChange.emit(this.categories);
   }
 
-  protected plusNumberOfQuestions(){
-    if(this.numberOfQuestions<5){
-      this.numberOfQuestions+=1;
-      this.numberOfQuestionsChange.emit(this.numberOfQuestions);
-    }
-  }
-
-  protected minusNumberOfQuestions(){
-    if(this.numberOfQuestions>2){
-      this.numberOfQuestions-=1;
-      this.numberOfQuestionsChange.emit(this.numberOfQuestions);
-    }
-  }
-
-  protected plusTime(){
-      this.time+=10;
-      this.timeChange.emit(this.time);
-  }
-
-  protected minusTime(){
-    if(this.time>10){
-      this.time-=10;
-      this.timeChange.emit(this.time);
-    }
-  }
-
-
 }

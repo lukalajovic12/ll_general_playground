@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { QuizAnwser, QuizObject } from '../../game-util';
+import { QuizAnwser } from '../../game-util';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';

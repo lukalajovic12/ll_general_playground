@@ -3,11 +3,13 @@ import { Card } from '../../sheets-cards.service';
 import { CardComponent } from './card/card.component';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cards-list',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent,CommonModule, FormsModule],
   templateUrl: './cards-list.component.html',
   styleUrl: './cards-list.component.css'
 })
@@ -21,18 +23,6 @@ export class CardsListComponent {
   protected rows = 1;
 
   protected showOptions = true
-
-  protected plusRows(): void {
-    if (this.rows < 5) {
-      this.rows += 1;
-    }
-  }
-
-  protected minusRows(): void {
-    if (this.rows > 1) {
-      this.rows -= 1;
-    }
-  }
 
   protected async exportPdf(): Promise<void> {
     this.showOptions = false;

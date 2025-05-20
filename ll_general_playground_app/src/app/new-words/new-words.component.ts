@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { SheetsWordsService, Word } from '../sheets-words.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
 import { WordsGeneratorComponent } from './words-generator/words-generator.component';
 import { GeneratedWord } from '../gemini-word-generator.service';
 import { WordEditDialogComponent } from './word-edit-dialog/word-edit-dialog.component';
@@ -42,9 +41,7 @@ export class NewWordsComponent extends AreaBase {
   @ViewChild('wordsGeneratorComponent') public wordsGeneratorComponent!: WordsGeneratorComponent;
 
 
-  constructor(private route: ActivatedRoute,
-    private location: Location,
-  private sheetsWordsService: SheetsWordsService) {
+  constructor(private route: ActivatedRoute,private sheetsWordsService: SheetsWordsService) {
   super();
   }
 
@@ -165,9 +162,5 @@ export class NewWordsComponent extends AreaBase {
         targetLanguage:gw.targetLanguage,
         category:category,row:totalLength+2+i});
     }    
-  }  
-
-  protected toHome():void {
-    this.location.back();
   }  
 }

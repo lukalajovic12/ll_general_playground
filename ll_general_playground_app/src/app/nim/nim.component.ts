@@ -31,7 +31,13 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
 
   private originalRowsLength =6;
 
-  public numberOfRows = 3;
+  public numberOfRows=3;
+
+  public maxLinesInRow=3;
+
+  public custumeRows:number[] = [];
+
+  public custumize = false;
   
   override ngOnInit() {
     super.ngOnInit();
@@ -58,10 +64,15 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
 
   private createRows(): void {
     let nimNumbers = [];
-    for(let i=0;i<this.numberOfRows;i++){
-      let n = Math.floor(this.numberOfRows*Math.random()+1);
-        nimNumbers.push(n);
-      
+
+    if(this.custumize){
+      nimNumbers=this.custumeRows;
+      console.log('GOD: ',nimNumbers);
+    } else {
+      for(let i=0;i<this.numberOfRows;i++){
+        let n = Math.floor(this.maxLinesInRow*Math.random()+1);
+          nimNumbers.push(n);
+      }
     }
     this.originalRowsLength=nimNumbers
     .length;
@@ -75,8 +86,7 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
       }
       this.rows.push(row);
     }
-
-    if(evenPosition(this.rows)){
+    if(evenPosition(this.rows) && this.custumize===false){
       oddMove(this.rows);
       this.removeChoosen();
     }

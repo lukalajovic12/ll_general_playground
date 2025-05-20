@@ -9,8 +9,7 @@
           <h1>Generator</h1>
           <div class="number_of_sentences">
             <div class="ll_value">Anwsers: {{numberOfSentences}}</div>
-            <button (click)="plusNumberOfSentences()" class="ll_button">+1</button>
-            <button (click)="minusNumberOfSentences()" class="ll_button">-1</button>
+            <input id="time" type="range" min="2" max="50" [(ngModel)]="numberOfSentences" /> 
           </div>
           <h2> {{displaySentences()}}  </h2>
           <textarea [(ngModel)]="prompt" rows="5" cols="50"></textarea>

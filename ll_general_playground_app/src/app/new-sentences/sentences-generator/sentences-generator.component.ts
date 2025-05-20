@@ -31,18 +31,6 @@ export class SentencesGeneratorComponent {
   private geminiWordGeneratorService:GeminiWordGeneratorService) {
   }
 
-
-  protected plusNumberOfSentences(){
-      this.numberOfSentences+=1;
-    
-  }
-
-  protected minusNumberOfSentences(){
-    if(this.numberOfSentences>1){
-      this.numberOfSentences-=1;
-    }
-  }
-
   protected displaySentences(){
     if(this.numberOfSentences>1){
       return 'Generate ' + this.numberOfSentences +' sentences about';

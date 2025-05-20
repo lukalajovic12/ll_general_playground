@@ -15,14 +15,14 @@
     border:1px solid black;
 }
 
-.card_label {
+.particle_label {
     color:white;
 }
 .ll_button.selected {
   background-color:#0049b4;
 }
 
-.card_container {
+.particle_container {
     padding-top: 5px;
     display: grid;
     grid-template-columns: auto auto;

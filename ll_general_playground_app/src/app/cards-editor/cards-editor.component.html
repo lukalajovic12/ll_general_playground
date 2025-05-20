@@ -23,14 +23,10 @@
       </button>
     </div>
     @if(displayTabele) {
-    <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" [sheetName]="sheetName" />
+        <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" [sheetName]="sheetName" />
     } @else {
-      @if(sheetName === 'environments') {
-        <app-environment-card-list [cards]="cards"  />
-      } @else {
         <app-cards-list [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" [sheetName]="sheetName" />
-      }
     }
-    }
+  }
   </div>
 </div>

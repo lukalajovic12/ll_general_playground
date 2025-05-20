@@ -2,17 +2,15 @@ import { Component, ViewChild } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
 import { CardEditDialogComponent } from './card-edit-dialog/card-edit-dialog.component';
 import { Card, SheetsCardsService } from '../sheets-cards.service';
 import { CardsTabeleComponent } from './cards-tabele/cards-tabele.component';
 import { CardsListComponent } from './cards-list/cards-list.component';
-import { EnvironmentCardListComponent } from './environment-card-list/environment-card-list.component';
 
 @Component({
   selector: 'app-cards-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule,CardEditDialogComponent,CardsTabeleComponent,CardsListComponent,EnvironmentCardListComponent],
+  imports: [CommonModule, FormsModule,CardEditDialogComponent,CardsTabeleComponent,CardsListComponent],
   templateUrl: './cards-editor.component.html',
   styleUrl: './cards-editor.component.css'
 })
@@ -33,7 +31,6 @@ export class CardsEditorComponent extends AreaBase {
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
   constructor(
-    private location: Location,
   private sheetsCardsService: SheetsCardsService) {
   super();
   }
@@ -94,7 +91,4 @@ export class CardsEditorComponent extends AreaBase {
 
   }
 
-  protected toHome():void {
-    this.location.back();
-  }  
 }

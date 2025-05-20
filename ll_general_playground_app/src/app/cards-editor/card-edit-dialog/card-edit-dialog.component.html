@@ -6,17 +6,8 @@
         <textarea id="description" rows="5" cols="50" [(ngModel)]="description"> </textarea>
         @if(sheetName!=='mother_nature') {
         <div class="protein_label">Protein: {{protein}}</div>
-        <div>
-
-            <button (click)="plusProtein()" class="ll_button menu_button">+1</button>
-            <button (click)="minusProtein()" class="ll_button menu_button">-1</button>
-
-        </div>
+        <input id="time" type="range" min="0" max="50" [(ngModel)]="protein" /> 
         }
-        <div class="card_label">SVG:</div>
-        <textarea id="description" rows="5" cols="50" [(ngModel)]="svg"> </textarea>
-
-
         <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
         <button (click)="close()" class="ll_button">Close</button>
     </div>

@@ -1,7 +1,6 @@
 <div class="rows_container">
     <div class="rows_label">Rows: {{rows}}</div>
-    <button (click)="plusRows()" class="ll_button">+1</button>
-    <button (click)="minusRows()" class="ll_button">-1</button>
+    <input id="time" type="range" min="2" max="50" [(ngModel)]="rows" /> 
     <button (click)="exportPdf()" class="ll_button">Export PDF</button>
 </div>
 <div #pdfContent id="pdfContent" class="card_list" [class.one]="rows === 1" [class.two]="rows === 2" 

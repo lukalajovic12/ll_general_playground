@@ -2,10 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute } from '@angular/router';
 
-
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
 
 import { SentenceEditDialogComponent } from './sentence-edit-dialog/sentence-edit-dialog.component';
 import { Sentence, SheetsSentencesService } from '../sheets-sentences.service';
@@ -42,9 +40,7 @@ export class NewSentencesComponent extends AreaBase {
   @ViewChild('sentenceEditDialogComponent') public sentenceEditDialogComponent!: SentenceEditDialogComponent;
  
 
-  constructor(private route: ActivatedRoute,
-    private location: Location,
-  private sheetsSentenceService: SheetsSentencesService) {
+  constructor(private route: ActivatedRoute,private sheetsSentenceService: SheetsSentencesService) {
   super();
   }
 
@@ -166,11 +162,4 @@ export class NewSentencesComponent extends AreaBase {
     }
     this.newCategory="";
   }
-
-
-  protected toHome():void {
-    this.location.back();
-  }  
-
-
 }

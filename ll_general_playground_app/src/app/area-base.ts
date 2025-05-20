@@ -1,6 +1,5 @@
-import { Directive, HostBinding, HostListener, OnInit } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-
+import { Directive, HostBinding, HostListener, inject, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 interface WindowSize { width: number, height: number }
 
 @Directive()
@@ -11,11 +10,13 @@ export abstract class AreaBase implements OnInit {
     @HostBinding('style.--window-height.px')
     protected windowHeight: number = 700;
 
+
+    public location = inject(Location);
+
     constructor() {}
 
     ngOnInit() {
         this.updateSizes();
-        
     }
   
     @HostListener('window:resize', ['$event'])
@@ -44,4 +45,9 @@ export abstract class AreaBase implements OnInit {
 
         return { width: svgWidth, height: svgHeight };
     }
+
+    public toHome():void {
+        this.location.back();
+      }  
+
 }

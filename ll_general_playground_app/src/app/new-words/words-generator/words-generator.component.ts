@@ -32,18 +32,6 @@ export class WordsGeneratorComponent {
   private geminiWordGeneratorService:GeminiWordGeneratorService) {
   }
 
-
-  protected plusNumberOfWords(){
-      this.numberOfWords+=1;
-    
-  }
-
-  protected minusNumberOfWords(){
-    if(this.numberOfWords>1){
-      this.numberOfWords-=1;
-    }
-  }
-
   protected displayWords(){
     if(this.numberOfWords>1){
       return 'Generate ' + this.numberOfWords +' words about';

@@ -7,6 +7,7 @@ interface Particle {
   x: number;
   y: number;
   m: number;
+  e:number;
   vx: number;
   vy: number;
 }
@@ -25,17 +26,21 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
   private selectedIndex = -1;
 
-  public vx = 0;
-  public vy = 0;
+  protected vx = 0;
+  protected vy = 0;
 
-  public m = 10;
+  protected m = 10;
+
+  protected e = 10;
 
   protected particles: Particle[] = [];
 
-  public gravitationalConstant = 3000;
+  protected gravitationalConstant = 3000;
+
+
+  protected electricallConstant = 3000;
 
   private animationFrameId: number = 0;
-
 
 
   protected isRunning= false;
@@ -47,7 +52,7 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
   }
 
 
-  private calculateSpeed(p1: Particle, p2: Particle, t: number): void {
+  private calculateGravity(p1: Particle, p2: Particle, t: number):void {
     let k = (this.gravitationalConstant * (p1.m * p2.m) / this.calculateDistance(p1, p2) ** 3);
     let fx = k * (p1.x - p2.x);
     let fy = k * (p1.y - p2.y);
@@ -55,6 +60,22 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
     p1.vy -= t * fy / p1.m;
     p2.vx += t * fx / p2.m;
     p2.vy += t * fy / p2.m;
+  }
+
+  private calculateElectricity(p1: Particle, p2: Particle, t: number):void {
+    let k = (this.gravitationalConstant * (p1.m * p2.m) / this.calculateDistance(p1, p2) ** 3);
+    let fx = k * (p1.x - p2.x);
+    let fy = k * (p1.y - p2.y);
+    p1.vx -= t * fx / p1.m;
+    p1.vy -= t * fy / p1.m;
+    p2.vx += t * fx / p2.m;
+    p2.vy += t * fy / p2.m;
+  }
+
+
+  private calculateSpeed(p1: Particle, p2: Particle, t: number): void {
+    this.calculateGravity(p1,p2,t);
+    this.calculateElectricity(p1,p2,t);
     if (this.calculateDistance(p1, p2) < this.radius(p1) + this.radius(p2)) {
       const dx = p2.x - p1.x;
       const dy = p2.y - p2.y;
@@ -82,7 +103,7 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
   }
 
   private radius(p: Particle): number {
-    return p.m;
+    return Math.sqrt(p.m);
   }
 
   private moveParticles(t: number): void {
@@ -117,6 +138,7 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
       this.particles[this.selectedIndex].m = this.m;
       this.particles[this.selectedIndex].vx = this.vx;
       this.particles[this.selectedIndex].vy = this.vy;
+      this.particles[this.selectedIndex].e = this.e;
     }
     this.draw();
   }
@@ -138,7 +160,7 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
 
 
   protected addParticle() {
-    this.particles.push({ x: 10, y: 10, vx: this.vx, vy: this.vy, m:  this.m  });
+    this.particles.push({ x: 10, y: 10, vx: this.vx, vy: this.vy, m:  this.m,e:this.e  });
     this.selectedIndex = this.particles.length - 1;
     this.isRunning = false;
     this.draw();
@@ -214,11 +236,24 @@ export class PhysicsSimulationComponent extends AreaBase implements AfterViewIni
     this.ctx.arc(p.x, p.y, p.m, 0, Math.PI * 2);
     if (this.selectedIndex === index && this.isRunning === false) {
       this.ctx.fillStyle = 'red';
+      this.ctx.strokeStyle = "red";
     } else {
       this.ctx.fillStyle = 'blue';
+      this.ctx.strokeStyle = "blue";
+    }
+
+    if (this.isRunning === false) {
+      const lineWidth = 2;
+      this.ctx.lineWidth = lineWidth;
+      const length = Math.sqrt( p.vx**2+p.vy**2 );
+      const radius = lineWidth+this.radius(p);
+      this.ctx.moveTo(p.x+radius*p.vx/length, p.y+radius*p.vy/length);
+      this.ctx.lineTo(p.x+p.vx+radius*p.vx/length, p.y+p.vy+radius*p.vy/length);
+      this.ctx.stroke();
     }
     this.ctx.fill();
     this.ctx.closePath();
+
   }
 
   private draw(): void {

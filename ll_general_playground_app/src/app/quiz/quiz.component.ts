@@ -8,7 +8,6 @@ import { QuizButtonComponent } from './quiz-button/quiz-button.component'
 import { QuizEndComponent } from './quiz-end/quiz-end.component' 
 import { CommonModule } from '@angular/common';
 
-
 export type QuizState = 'settings' | 'game' | 'end';
 
 @Component({
@@ -43,14 +42,9 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   protected questions:QuizObject[] = [];
   protected question:QuizObject;
 
-
  // private direction = true;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
-
-  constructor() {
-  super();
-  }
 
   override async ngOnInit(): Promise<void> {
     super.ngOnInit();

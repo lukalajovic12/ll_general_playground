@@ -26,18 +26,6 @@ export class CardEditDialogComponent {
     return this.name.length>0 && this.description.length>0;
   }
 
-  protected plusProtein():void {
-    this.protein+=1;
-  }
-
-
-  protected minusProtein():void {
-    if(this.protein>0){
-      this.protein-=1;
-    }
-
-  }
-
   public show():void {
     this.dialog.nativeElement.show();
   }  

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuButtonComponent } from '../home/menu-button/menu-button.component';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-language-menu',
@@ -17,7 +16,7 @@ export class LanguageMenuComponent extends AreaBase {
   protected language = '';
 
 
-  constructor(private router: Router,private route: ActivatedRoute,private location: Location) {
+  constructor(private router: Router,private route: ActivatedRoute) {
     super();
    }
 

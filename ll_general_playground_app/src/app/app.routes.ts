@@ -10,6 +10,7 @@ import { QuizSentencesComponent } from './quiz-sentences/quiz-sentences.componen
 import { NimComponent } from './nim/nim.component';
 import { CardsEditorComponent } from './cards-editor/cards-editor.component';
 import { PhysicsSimulationComponent } from './physics-simulation/physics-simulation.component';
+import { CircleFractalComponent } from './circle-fractal/circle-fractal.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -23,6 +24,9 @@ export const APP_ROUTES: Routes = [
   { path: 'nim', component:NimComponent},
   { path: 'cards', component:CardsEditorComponent},
   {path:'physics',component:PhysicsSimulationComponent},
+  {path:'fractal',component:CircleFractalComponent},
+
+  
 ];
 
 

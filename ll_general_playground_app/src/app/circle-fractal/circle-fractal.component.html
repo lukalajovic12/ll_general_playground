@@ -1,1 +1,22 @@
-<p>circle-fractal works!</p>
+<div class="game_area">
+    <div>
+        <div class="settings">
+            <div class="circle_label">Depth: {{depth}}</div>
+            <input id="depth" type="range" min="1" max="10" [(ngModel)]="depth" (change)="updateFractal()" />
+            <div class="circle_label">Per Circle: {{perCircle}}</div>
+            <input id="perCircle" type="range" min="0" max="10" [(ngModel)]="perCircle" (change)="updateFractal()" /> 
+            <div class="circle_label">Random</div>
+            <input id="isRandom" type="checkbox" [(ngModel)]="isRandom" (change)="updateFractal()" /> 
+            <button (click)="toHome()" class="ll_button"> Back </button>            
+        </div>
+        <svg class="svg_canvas" >
+            @for(c of circles; track c){
+                <circle class="game_circle" [attr.cx]="c.x" [attr.cy]="c.y"
+                [attr.r]="c.r"
+                [attr.fill]="c.color"
+                [attr.stroke]="c.color"
+                 />
+            }
+        </svg>  
+    </div>
+</div>

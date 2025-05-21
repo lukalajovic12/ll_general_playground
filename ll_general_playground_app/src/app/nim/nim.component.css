@@ -6,8 +6,9 @@
 }
 .game_area .svg_canvas {
     background-color: var(--ll-nim-canvas-color);
+    width: calc(var(--window-width) - 10px);
     height: calc(var(--window-height) - 10px);
-    max-height: calc(var(--window-height) - 10px);
+
 }
 
 .game_circle {

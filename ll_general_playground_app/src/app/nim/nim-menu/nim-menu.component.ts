@@ -49,7 +49,7 @@ export class NimMenuComponent {
   } 
 
 
-  trackByIndex(index: number, r: number): number {
+  trackByIndex(index: number): number {
     return index;
   }
 

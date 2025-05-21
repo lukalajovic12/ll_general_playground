@@ -8,7 +8,7 @@
     </div>
       @if(custumize) {
         <div class="custume_rows">
-          @for(r of custumeRows;track trackByIndex; let i = $index) {
+          @for(r of custumeRows;track i; let i = $index) {
             <div class="ll_value">row {{i+1}}: {{r}}</div>
             <input id="'r'+i" type="range" min="1" max="7" [(ngModel)]="custumeRows[i]" (change)="changeCustomRows()" /> 
             <button class="icon_class" (click)="removeRow(i)">

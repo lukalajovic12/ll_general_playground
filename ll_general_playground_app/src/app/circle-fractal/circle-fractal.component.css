@@ -1,0 +1,17 @@
+.game_area .svg_canvas {
+    background-color: #02643b;
+    width: calc(var(--window-width));    
+    height: calc(var(--window-width));
+}
+
+.circle_label {
+    color:white;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-top: 5x;    
+    padding-bottom: 5px;   
+    gap: 10px;
+}

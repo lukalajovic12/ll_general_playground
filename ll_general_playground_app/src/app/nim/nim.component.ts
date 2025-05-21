@@ -74,8 +74,7 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
           nimNumbers.push(n);
       }
     }
-    this.originalRowsLength=nimNumbers
-    .length;
+    this.originalRowsLength=nimNumbers.length;
     const maks = nimNumbers.reduce((a, b) => Math.max(a, b), -Infinity);
     const maksRatio=this.windowWidth/maks;
     for(let i=0; i<nimNumbers.length;i++) {

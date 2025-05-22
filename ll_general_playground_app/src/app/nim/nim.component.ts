@@ -33,7 +33,7 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
 
   public numberOfRows=3;
 
-  public maxLinesInRow=3;
+  public maxMatchesInRow=3;
 
   public custumeRows:number[] = [];
 
@@ -70,7 +70,7 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
       console.log('GOD: ',nimNumbers);
     } else {
       for(let i=0;i<this.numberOfRows;i++){
-        let n = Math.floor(this.maxLinesInRow*Math.random()+1);
+        let n = Math.floor(this.maxMatchesInRow*Math.random()+1);
           nimNumbers.push(n);
       }
     }

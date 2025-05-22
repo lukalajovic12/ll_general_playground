@@ -52,4 +52,8 @@ export class HomeMenuComponent {
     this.router.navigate(['/fractal']);
   }
 
+  protected toModel3d = () => {
+    this.router.navigate(['/model3d']);
+  }
+
 }

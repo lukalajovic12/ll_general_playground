@@ -23,8 +23,8 @@
         <div class="data_settings">
           <div class="ll_value">Rows: {{numberOfRows}}</div>
           <input id="time" type="range" min="1" max="7" [(ngModel)]="numberOfRows" (change)="changeNumberOfRows()" /> 
-          <div class="ll_value">Max rows in line: {{maxLinesInRow}}</div>
-          <input id="time" type="range" min="1" max="7" [(ngModel)]="numberOfRows" (change)="changeMaxLinesInRow()" />  
+          <div class="ll_value">Max matches in row: {{maxMatchesInRow}}</div>
+          <input id="time" type="range" min="1" max="7" [(ngModel)]="maxMatchesInRow" (change)="changeMaxLMatchesInRow()" />  
         </div>   
       }
 

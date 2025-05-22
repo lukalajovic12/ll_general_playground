@@ -11,6 +11,7 @@ import { NimComponent } from './nim/nim.component';
 import { CardsEditorComponent } from './cards-editor/cards-editor.component';
 import { PhysicsSimulationComponent } from './physics-simulation/physics-simulation.component';
 import { CircleFractalComponent } from './circle-fractal/circle-fractal.component';
+import { Model3dComponent } from './model3d/model3d.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -25,6 +26,7 @@ export const APP_ROUTES: Routes = [
   { path: 'cards', component:CardsEditorComponent},
   {path:'physics',component:PhysicsSimulationComponent},
   {path:'fractal',component:CircleFractalComponent},
+  {path:'model3d',component:Model3dComponent},
 
   
 ];

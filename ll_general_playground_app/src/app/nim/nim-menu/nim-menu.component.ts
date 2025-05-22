@@ -19,8 +19,8 @@ export class NimMenuComponent {
   public numberOfRows = 3;
   @Output() protected numberOfRowsChange = new EventEmitter<number>();
   @Input()
-  public maxLinesInRow = 3;
-  @Output() protected maxLinesInRowChange = new EventEmitter<number>();
+  public maxMatchesInRow = 3;
+  @Output() protected maxMatchesInRowChange = new EventEmitter<number>();
   @Input()
   public custumize = false;
   @Output() protected custumizeChange = new EventEmitter<boolean>(); 
@@ -33,8 +33,8 @@ export class NimMenuComponent {
   protected changeNumberOfRows(){
       this.numberOfRowsChange.emit(this.numberOfRows);
   }
-  protected changeMaxLinesInRow(){
-    this.maxLinesInRowChange.emit(this.maxLinesInRow);
+  protected changeMaxLMatchesInRow(){
+    this.maxMatchesInRowChange.emit(this.maxMatchesInRow);
   }
   protected changeCustumize(){
     this.custumizeChange.emit(this.custumize);

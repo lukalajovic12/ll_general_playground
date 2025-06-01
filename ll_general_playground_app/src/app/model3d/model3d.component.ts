@@ -61,6 +61,38 @@ export class Model3dComponent implements OnInit, OnDestroy {
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere.position.x = 1.5;
     this.scene.add(sphere);
+
+
+    // Create a Cubic Bezier Curve from cube to sphere
+    const start = new THREE.Vector3(-1.5, 0, 0); // position of cube
+    const control1 = new THREE.Vector3(0, 2, 0); // control point 1
+    const control2 = new THREE.Vector3(0, -2, 0); // control point 2
+    const end = new THREE.Vector3(1.5, 0, 0);     // position of sphere
+
+    const curve = new THREE.CubicBezierCurve3(start, control1, control2, end);
+
+    // Get points along the curve
+    const points = curve.getPoints(50);
+
+    // Create geometry and material
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+
+    // Create the line and add to scene
+    const curveObject = new THREE.Line(geometry, material);
+    this.scene.add(curveObject);
+
+
+    const loader = new THREE.TextureLoader();
+    loader.load('heart.png', (texture) => {
+      const geometry = new THREE.SphereGeometry(0.75, 32, 32);
+      const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+      const plane = new THREE.Mesh(geometry, material);
+      plane.position.y = -2;
+      this.scene.add(plane) ;
+
+  });
+
   }
 
   private animate = () => {
@@ -75,5 +107,11 @@ export class Model3dComponent implements OnInit, OnDestroy {
     });
 
     this.renderer.render(this.scene, this.camera);
+
+
+
+
+
+
   };
 }

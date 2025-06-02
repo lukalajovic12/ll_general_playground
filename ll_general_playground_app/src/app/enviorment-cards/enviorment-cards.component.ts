@@ -1,0 +1,13 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-enviorment-cards',
+  standalone: true,
+  imports: [],
+  templateUrl: './enviorment-cards.component.html',
+  styleUrl: './enviorment-cards.component.css'
+})
+export class EnviormentCardsComponent {
+    // Replace with your actual web app URL
+    imageUrl = 'https://script.google.com/macros/s/AKfycbx12345abcdef/exec';
+}

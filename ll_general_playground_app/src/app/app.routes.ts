@@ -12,6 +12,7 @@ import { CardsEditorComponent } from './cards-editor/cards-editor.component';
 import { PhysicsSimulationComponent } from './physics-simulation/physics-simulation.component';
 import { CircleFractalComponent } from './circle-fractal/circle-fractal.component';
 import { Model3dComponent } from './model3d/model3d.component';
+import { EnviormentCardsComponent } from './enviorment-cards/enviorment-cards.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -27,6 +28,8 @@ export const APP_ROUTES: Routes = [
   {path:'physics',component:PhysicsSimulationComponent},
   {path:'fractal',component:CircleFractalComponent},
   {path:'model3d',component:Model3dComponent},
+  {path:'enviorment',component:EnviormentCardsComponent},
+  
 
   
 ];

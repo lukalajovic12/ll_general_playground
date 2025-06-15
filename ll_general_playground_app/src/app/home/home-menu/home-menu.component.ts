@@ -56,4 +56,9 @@ export class HomeMenuComponent {
     this.router.navigate(['/model3d']);
   }
 
+  protected toEnviorment = () => {
+    this.router.navigate(['/enviorment']);
+  }
+  
+
 }

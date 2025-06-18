@@ -13,28 +13,22 @@ import { PhysicsSimulationComponent } from './physics-simulation/physics-simulat
 import { CircleFractalComponent } from './circle-fractal/circle-fractal.component';
 import { Model3dComponent } from './model3d/model3d.component';
 import { EnviormentCardsComponent } from './enviorment-cards/enviorment-cards.component';
+import { CircleVisibilityComponent } from './circle-visibility/circle-visibility.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
   { path: 'quiz-words', component:QuizWordsComponent}, 
   { path: 'new-words', component:NewWordsComponent}, 
   { path: 'quiz-sentences', component:QuizSentencesComponent}, 
-  {path:'new-sentences',component:NewSentencesComponent},
+  { path: 'new-sentences', component:NewSentencesComponent},
   { path: 'menu', component:LanguageMenuComponent},
   { path: 'image-svg-generator', component:ImageSvgGeneratorComponent},
   { path: 'image-basic-generator', component:ImageBasicGenerationComponent},
   { path: 'nim', component:NimComponent},
   { path: 'cards', component:CardsEditorComponent},
-  {path:'physics',component:PhysicsSimulationComponent},
-  {path:'fractal',component:CircleFractalComponent},
-  {path:'model3d',component:Model3dComponent},
-  {path:'enviorment',component:EnviormentCardsComponent},
-  
-
-  
+  { path: 'physics', component:PhysicsSimulationComponent},
+  { path: 'fractal', component:CircleFractalComponent},
+  { path: 'model3d', component:Model3dComponent},
+  { path: 'enviorment', component:EnviormentCardsComponent},
+  { path: 'circle-visibility', component:CircleVisibilityComponent},
 ];
-
-
-
-
-

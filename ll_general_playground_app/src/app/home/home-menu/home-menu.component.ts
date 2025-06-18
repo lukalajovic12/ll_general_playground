@@ -59,6 +59,13 @@ export class HomeMenuComponent {
   protected toEnviorment = () => {
     this.router.navigate(['/enviorment']);
   }
+
+  protected toCircleVisibility = () => {
+    this.router.navigate(['/circle-visibility']);
+  }
+
+
+  
   
 
 }

@@ -1,1 +1,42 @@
-<p>circle-visibility works!</p>
+<div class="game_area">
+    <div>
+      <div class="buttons_container">
+      <button class="ll_button"  (click)="addCircle()">
+        Add
+      </button>
+      <button class="ll_button" (click)="clearAll()">
+        Clear All
+      </button>
+      <button class="ll_button" (click)="removeSelected()">
+        Delete Selected
+      </button>
+      <button (click)="toHome()" class="ll_button"> Back </button>     
+  
+    </div>
+
+    <div class="particle_container">
+        <div class="particle_label">x: {{x}}</div>
+        <input id="x" type="range" min="0" max="800" [(ngModel)]="x" (change)="updateSelected()" />
+        <div class="particle_label">y: {{y}}</div>
+        <input id="y" type="range" min="0" max="80" [(ngModel)]="y" (change)="updateSelected()" />        
+        <div class="particle_label">r: {{r}}</div>
+        <input id="m" type="range" min="0" max="50" [(ngModel)]="r" (change)="updateSelected()" />  
+    </div>
+
+    <canvas #particleCanvas class="ll_canvas" (click)="onCanvasClick($event)"></canvas>
+
+        <svg class="svg_canvas" 
+        (click)="onCanvasClick($event)">
+        @for(c of circles; track c){
+                <circle class="game_circle" [attr.cx]="c.x" [attr.cy]="c.y"
+                    [attr.r]="c.r"
+                    class="game_circle"
+                    [class.choosen]="c.choosen" />                                             
+            }
+
+        </svg>
+    
+
+
+    </div>
+  </div>

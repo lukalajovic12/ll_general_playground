@@ -1,0 +1,49 @@
+:host {
+    --ll-nim-canvas-color:white;
+    --ll-nim-circle-color:blue;
+    --ll-nim-line-color:black;
+}
+.game_area .svg_canvas {
+    background-color: var(--ll-nim-canvas-color);
+    width: calc(var(--window-width) - 10px);
+    height: calc(var(--window-height) - 10px);
+
+}
+
+.game_circle {
+    stroke: var(--ll-nim-circle-color);
+    stroke-width: 3;
+    fill:var(--ll-nim-circle-color);
+}
+
+.circle-line.choosen {
+    stroke: red;
+}
+
+.game_circle.choosen {
+    stroke: red;
+    fill: red;
+}
+
+.buttons_container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-top: 5x;    
+    padding-bottom: 5px;   
+    gap: 10px;
+  }
+
+.particle_label {
+    color:white;
+}
+.ll_button.selected {
+  background-color:#0049b4;
+}
+
+.particle_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
+  }

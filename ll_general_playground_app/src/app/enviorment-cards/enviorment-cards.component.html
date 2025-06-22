@@ -1,10 +1,12 @@
 
-<h1>
-t
-</h1>
-<div class="image-container">
-
-
-    <img src="https://drive.google.com/thumbnail?id=1ncrNfeHzXVFBrN4SVMPYY6_2cVs4HM8C" alt="VU" />
-    <img src="https://drive.google.com/thumbnail?&id=1ncrNfeHzXVFBrN4SVMPYY6_2cVs4HM8C" alt="My Google Drive Image" />
-  </div>
+<div class="card_list">
+    @for(card of cards;track card) {
+    <div class="card_container" >
+      <h2 class="card-title">{{ card.name }}</h2>
+      <p class="card-description">{{ card.description }}</p>
+      <img class="card-image" [src]="card.image" alt="{{ card.image_name }}" />
+    <div>
+    </div> 
+    </div>
+    }
+</div>

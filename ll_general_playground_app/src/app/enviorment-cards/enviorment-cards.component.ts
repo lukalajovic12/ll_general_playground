@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AreaBase } from '../area-base';
+import { EnviormentalCard, SheetsEnviormentCardsService } from '../sheets-enviorment-cards.service';
 
 @Component({
   selector: 'app-enviorment-cards',
@@ -7,7 +9,22 @@ import { Component } from '@angular/core';
   templateUrl: './enviorment-cards.component.html',
   styleUrl: './enviorment-cards.component.css'
 })
-export class EnviormentCardsComponent {
-    // Replace with your actual web app URL
-  fileName = 'arctic_ocean';
-  imageUrl = `https://script.google.com/macros/s/AKfycbzILvTSi0jsMZWymCVj1D9IeMSkpB_M4_xcrX1dp3n1rE-2jCur5rDg8DC87ZVK7jAs/exec?name=${encodeURIComponent(this.fileName)}`;}
+export class EnviormentCardsComponent extends AreaBase{
+   protected loading = true;
+ 
+   public cards:EnviormentalCard[]=[];
+
+ 
+   constructor(
+   private sheetsEnviormentCardsService: SheetsEnviormentCardsService) {
+   super();
+   }
+ 
+   override async ngOnInit(): Promise<void> {
+     super.ngOnInit();
+     this.loading=true;
+     this.cards = await this.sheetsEnviormentCardsService.loadCards();
+     this.loading=false;
+   }
+
+   }

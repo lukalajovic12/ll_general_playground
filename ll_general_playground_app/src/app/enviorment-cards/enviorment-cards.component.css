@@ -1,0 +1,14 @@
+
+.card-image {
+    height: 400px;
+    width: calc(var(--window-width) - 10px);
+}
+
+.title {
+    color:white;
+    font-size: 24px;
+}
+.enviorment_container {
+    display: flex;
+    gap: 40px;
+}

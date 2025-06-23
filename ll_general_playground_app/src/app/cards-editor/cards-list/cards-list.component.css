@@ -15,17 +15,17 @@
 }
 .card_list.three {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
 }
 
 .card_list.four {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 
 .card_list.five {
     display: grid;
-    grid-template-columns: auto auto auto  auto auto;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .card_container {

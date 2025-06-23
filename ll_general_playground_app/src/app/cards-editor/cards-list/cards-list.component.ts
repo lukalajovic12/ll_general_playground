@@ -20,7 +20,7 @@ export class CardsListComponent {
   @Input() public sheetName = '';
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
-  protected rows = 1;
+  protected rows = 3;
 
   protected showOptions = true
 
@@ -39,6 +39,15 @@ export class CardsListComponent {
       pdf.save('exported-content.pdf');
     });
     this.showOptions = true;
+  }
+
+
+  protected cardCount(card:Card):number[] {
+    let num:number[]  =[];
+    for(let i=0;i<card.count;i++) {
+      num.push(i);
+    }
+    return num;
   }
 
   private delay(ms: number) {

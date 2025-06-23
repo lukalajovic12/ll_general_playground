@@ -7,6 +7,9 @@ export interface Card {
   description: string;
   protein:number;
   row:number;
+  count:number;
+  image_name:string;
+  image:string;  
 }
 
 export interface PostCard {
@@ -14,6 +17,7 @@ export interface PostCard {
   description: string;
   protein:number;
   row:number;
+  count:number;
   deleteRow:boolean;
 }
 
@@ -24,7 +28,7 @@ export class SheetsCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbzIztZwuNooSFHcxX_Rz5WbtDXZaG78oPlS8roty65tesotWxfRB9wBzA_p9RyxWenjQg/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbw2VYKV-if1FaOxj2hbviQ3GtRPvhDAH3vlnlqtFe1PGRNGmNb78JYBMbH4uxtw3OaJew/exec';
   constructor() {
   }
 
@@ -48,8 +52,8 @@ export class SheetsCardsService {
 }
 
 
-  public appendCard(name:string,description:string,protein:number,row:number,deleteRow:boolean,sheetName:string) {
-      const data:PostCard = {name:name,description:description,protein:protein,row:row,deleteRow:deleteRow};
+  public appendCard(name:string,description:string,protein:number,count:number,row:number,deleteRow:boolean,sheetName:string) {
+      const data:PostCard = {name:name,description:description,protein:protein,count:count,row:row,deleteRow:deleteRow};
       const scriptURL = `${this.urlCards}?sheetName=${sheetName}`;
       const headers = new HttpHeaders({ 
         'Content-Type': 'application/x-www-form-urlencoded' });

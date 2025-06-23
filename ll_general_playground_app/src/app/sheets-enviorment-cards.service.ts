@@ -6,7 +6,7 @@ export interface EnviormentalCard {
   name: string;
   description: string;
   image_name:string;
-  image:Blob;
+  image:string;
 }
 
 @Injectable({
@@ -16,7 +16,7 @@ export class SheetsEnviormentCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbzZNF6tQQ3D9i_l_fyrLPsElC0hnhWL_ZT7JWxyJK45PQTVforg0EdOfMXSqrU3mFm7/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbweqUzoy13RSiqGDUg_xX01a6xvEhBktLHsIOfP_9fKty3R0zgNDkXqhoAbP6c-7Wo/exec';
   constructor() {
   }
 
@@ -34,4 +34,8 @@ export class SheetsEnviormentCardsService {
         return []; // Important: Return an empty array in case of error
     }
   }
+
+
+
+
 }

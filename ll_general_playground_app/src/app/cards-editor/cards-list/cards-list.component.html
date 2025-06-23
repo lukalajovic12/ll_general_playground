@@ -1,26 +1,29 @@
 <div class="rows_container">
     <div class="rows_label">Rows: {{rows}}</div>
-    <input id="time" type="range" min="2" max="50" [(ngModel)]="rows" /> 
+    <input id="time" type="range" min="1" max="5" [(ngModel)]="rows" /> 
     <button (click)="exportPdf()" class="ll_button">Export PDF</button>
 </div>
 <div #pdfContent id="pdfContent" class="card_list" [class.one]="rows === 1" [class.two]="rows === 2" 
 [class.three]="rows === 3" [class.four]="rows === 4" [class.fice]="rows === 5">
     @for(card of cards;track card) {
-    <div class="card_container" >
-        <app-card [name]="card.name" [description]="card.description"
-            [protein]="card.protein" [sheetName]="sheetName"></app-card>
-           <div>
-        @if(showOptions) {
-         <div class="buttons_container">  
-            <button class="icon_class" (click)="editCard(card)">
-                <i class="fa fa-pencil"></i>
-            </button>
-            <button class="icon_class" (click)="deleteCard(card)">
-                <i class="fa fa-trash"></i>
-            </button>
-        </div> 
-    }
-    </div> 
+    
+        @for(index of cardCount(card); track index) {
+            <div class="card_container" >
+            <app-card [name]="card.name" [description]="card.description"
+                [protein]="card.protein" [sheetName]="sheetName" [image]="card.image" [image_name]="card.image_name" />
+            <div>
+            @if(showOptions) {
+            <div class="buttons_container">  
+                <button class="icon_class" (click)="editCard(card)">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button class="icon_class" (click)="deleteCard(card)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div> 
+            }
+        </div>
     </div>
+        }
     }
 </div>

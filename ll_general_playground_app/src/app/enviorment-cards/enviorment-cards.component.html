@@ -1,12 +1,22 @@
-
-<div class="card_list">
-    @for(card of cards;track card) {
-    <div class="card_container" >
-      <h2 class="card-title">{{ card.name }}</h2>
-      <p class="card-description">{{ card.description }}</p>
-      <img class="card-image" [src]="card.image" alt="{{ card.image_name }}" />
-    <div>
-    </div> 
+<div class="game_area">
+  <div>
+    <div class="enviorment_container">
+      <div class="title"> ENVIORMENTS</div>
+      <button (click)="exportPdf()" class="ll_button">Export PDF</button>
+      <button (click)="toHome()" class="ll_button"> Back </button>   
     </div>
-    }
+    <div class="card_list" #pdfContent id="pdfContent">
+      @if(loading) {
+        <div class="loading">Loading...</div>
+      } @else {
+        @for(cardUrl of cardUrls;track cardUrl) {
+          <div class="card_container" >
+            <img class="card-image" [src]="cardUrl" alt="NO FOTO" />
+          <div>
+          </div> 
+          </div>
+          }
+      }
+    </div>
+  </div>
 </div>

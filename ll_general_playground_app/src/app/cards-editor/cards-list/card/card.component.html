@@ -1,4 +1,8 @@
 <div class="card">
+  <p class="card-description">{{ description }}</p>
+   @if(sheetName!=='mother_nature') {
+  <img class="card-image" [src]="imageUrl" alt="NO FOTO" />
+  }
     <h2 class="card-title">{{ name }}</h2>
     <p class="card-description">{{ description }}</p>
     @if(sheetName!=='mother_nature') {

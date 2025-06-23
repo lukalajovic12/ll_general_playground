@@ -7,9 +7,6 @@
       <button class="ll_button" (click)="changeSheet('genes')" [class.selected]="sheetName === 'genes'">Genes </button>
       <button class="ll_button" (click)="changeSheet('mother_nature')" [class.selected]="sheetName === 'mother_nature'">Mother nature </button>
       <button class="ll_button" (click)="changeSheet('genetic_engineering')" [class.selected]="sheetName === 'genetic_engineering'">Genetic Engineering </button>
-      <button class="ll_button" (click)="changeSheet('environments')" [class.selected]="sheetName === 'environments'">Environments</button>
-
-      
     </div>  
     @if(loading) {
     <div class="loading">Loading...</div>

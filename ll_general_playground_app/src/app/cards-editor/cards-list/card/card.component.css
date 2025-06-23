@@ -35,3 +35,8 @@
     font-weight: bold;
     color: white;
   }
+
+  .card-image {
+    height: 100px;
+    width: 100px;
+}

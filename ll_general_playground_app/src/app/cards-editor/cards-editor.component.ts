@@ -62,16 +62,16 @@ export class CardsEditorComponent extends AreaBase {
   public deleteCard = (card:Card) => {
     let index= this.cards.indexOf(card);
     this.cards.splice(index,1);
-    this.sheetsCardsService.appendCard(card.name, card.description,card.protein,card.row,true,this.sheetName);
+    this.sheetsCardsService.appendCard(card.name, card.description,card.protein,0,card.row,true,this.sheetName);
 
   }
 
   protected onSubmitCard = (name:string,description:string,protein:number) => {
-      this.sheetsCardsService.appendCard(name, description,protein,this.row,false,this.sheetName);
+      this.sheetsCardsService.appendCard(name, description,protein,0,this.row,false,this.sheetName);
       if(this.row === -1) {
         let totalLength = 0;
         this.cards.push({name:name,
-          description:description,protein:protein,row:totalLength+2});
+          description:description,protein:protein,row:totalLength+2,count:0,image_name:name.replace(' ','_')+'.jpg',image:''});
       } else {
         this.cards[this.index].name=name;
         this.cards[this.index].description=description;

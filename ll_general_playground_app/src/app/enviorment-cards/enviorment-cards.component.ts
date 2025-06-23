@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, ElementRef, ViewChild  } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { EnviormentalCard, SheetsEnviormentCardsService } from '../sheets-enviorment-cards.service';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-enviorment-cards',
@@ -9,12 +11,15 @@ import { EnviormentalCard, SheetsEnviormentCardsService } from '../sheets-envior
   templateUrl: './enviorment-cards.component.html',
   styleUrl: './enviorment-cards.component.css'
 })
-export class EnviormentCardsComponent extends AreaBase{
+export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
+
+  @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
+
    protected loading = true;
  
-   public cards:EnviormentalCard[]=[];
+   protected cardUrls:string[]=[];
 
- 
+
    constructor(
    private sheetsEnviormentCardsService: SheetsEnviormentCardsService) {
    super();
@@ -22,9 +27,51 @@ export class EnviormentCardsComponent extends AreaBase{
  
    override async ngOnInit(): Promise<void> {
      super.ngOnInit();
-     this.loading=true;
-     this.cards = await this.sheetsEnviormentCardsService.loadCards();
+     this.loading = true;
+     this.cardUrls = [];
+     const cards:EnviormentalCard[] = await this.sheetsEnviormentCardsService.loadCards();
+     cards.forEach(card => {
+      this.cardUrls.push(this.cardUrl(card));
+     });
+
+
      this.loading=false;
    }
+
+   ngOnDestroy() {
+    this.cardUrls.forEach(imageUrl => {
+      if (imageUrl) {
+        URL.revokeObjectURL(imageUrl);
+      }
+     });
+
+  }  
+
+    private cardUrl(card:EnviormentalCard):string{
+      const byteCharacters = atob(card.image);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'JPG' });
+      return URL.createObjectURL(blob);
+    }
+
+    protected async exportPdf(): Promise<void> {
+      const DATA = await this.pdfContent.nativeElement;
+      html2canvas(DATA).then(canvas => {
+        const imgWidth = 208;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        let position = 10;
+  
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('exported-content.pdf');
+      });
+    }
+
+
 
    }

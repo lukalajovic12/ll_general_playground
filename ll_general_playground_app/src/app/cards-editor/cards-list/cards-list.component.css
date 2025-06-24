@@ -23,11 +23,6 @@
     grid-template-columns: auto auto auto auto;
 }
 
-.card_list.five {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-}
-
 .card_container {
     display:flex; 
     gap: 10px;

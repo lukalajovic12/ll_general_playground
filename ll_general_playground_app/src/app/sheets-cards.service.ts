@@ -5,19 +5,19 @@ import { lastValueFrom } from 'rxjs';
 export interface Card {
   name: string;
   description: string;
-  protein:number;
-  row:number;
   count:number;
   image_name:string;
+  protein:number;
+  row:number;
   image:string;  
 }
 
 export interface PostCard {
   name: string;
   description: string;
+  count:number;
   protein:number;
   row:number;
-  count:number;
   deleteRow:boolean;
 }
 
@@ -28,7 +28,7 @@ export class SheetsCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbw2VYKV-if1FaOxj2hbviQ3GtRPvhDAH3vlnlqtFe1PGRNGmNb78JYBMbH4uxtw3OaJew/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbwZqxYI9pUiot1HFsyFTjGl-dTlK_fllTGIfW7fsD9ZapFTU9aK47uZe1cEwt3B8QoCwg/exec';
   constructor() {
   }
 
@@ -52,7 +52,7 @@ export class SheetsCardsService {
 }
 
 
-  public appendCard(name:string,description:string,protein:number,count:number,row:number,deleteRow:boolean,sheetName:string) {
+  public appendCard(name:string,description:string,count:number,protein:number,row:number,deleteRow:boolean,sheetName:string) {
       const data:PostCard = {name:name,description:description,protein:protein,count:count,row:row,deleteRow:deleteRow};
       const scriptURL = `${this.urlCards}?sheetName=${sheetName}`;
       const headers = new HttpHeaders({ 

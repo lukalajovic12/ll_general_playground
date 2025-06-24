@@ -14,11 +14,12 @@ export class CardEditDialogComponent {
 
   @ViewChild('cardEditDialog') public dialog!: ElementRef<HTMLDialogElement>;  
 
-  @Input() public submit:(name:string,description:string,protein:number) => void;
+  @Input() public submit:(name:string,description:string,count:number,protein:number) => void;
   @Input() public sheetName='';
   public name = '';
   public description = '';
   public protein = 0;
+  public count = 0;
 
   constructor(private sanitizer: DomSanitizer) {}  
 
@@ -35,7 +36,7 @@ export class CardEditDialogComponent {
   }  
 
   protected onSubmit():void {
-    this.submit(this.name,this.description,this.protein);
+    this.submit(this.name,this.description,this.count,this.protein);
     this.dialog.nativeElement.close();
   }    
 

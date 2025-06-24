@@ -22,6 +22,8 @@ export class CardsListComponent {
 
   protected rows = 3;
 
+  protected showCount = false;
+
   protected showOptions = true
 
   protected async exportPdf(): Promise<void> {
@@ -44,7 +46,8 @@ export class CardsListComponent {
 
   protected cardCount(card:Card):number[] {
     let num:number[]  =[];
-    for(let i=0;i<card.count;i++) {
+    const count =this.showCount ? card.count:1;
+    for(let i=0;i<count;i++) {
       num.push(i);
     }
     return num;

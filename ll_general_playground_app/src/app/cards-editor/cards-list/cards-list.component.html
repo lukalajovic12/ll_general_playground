@@ -1,7 +1,13 @@
 <div class="rows_container">
     <div class="rows_label">Rows: {{rows}}</div>
-    <input id="time" type="range" min="1" max="5" [(ngModel)]="rows" /> 
+    <input id="time" type="range" min="1" max="4" [(ngModel)]="rows" /> 
     <button (click)="exportPdf()" class="ll_button">Export PDF</button>
+
+    <input type="checkbox" id="showCount" name="selectAll" [(ngModel)]="showCount">
+    <label for="showCount"> show count </label>
+
+
+
 </div>
 <div #pdfContent id="pdfContent" class="card_list" [class.one]="rows === 1" [class.two]="rows === 2" 
 [class.three]="rows === 3" [class.four]="rows === 4" [class.fice]="rows === 5">
@@ -9,7 +15,7 @@
     
         @for(index of cardCount(card); track index) {
             <div class="card_container" >
-            <app-card [name]="card.name" [description]="card.description"
+            <app-card [name]="card.name" [description]="card.description" [count]="card.count"
                 [protein]="card.protein" [sheetName]="sheetName" [image]="card.image" [image_name]="card.image_name" />
             <div>
             @if(showOptions) {

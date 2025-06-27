@@ -42,7 +42,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     this.circles.push({ x: 100, y: 500, r: 10 ,choosen:false});
     this.circles.push({ x: 500, y: 500, r: 10 ,choosen:false});
 
-    this.circles.push({ x: 50, y: 50, r: 20 ,choosen:false});
+    this.circles.push({ x: 100, y: 50, r: 20 ,choosen:false});
 
     this.calculateLines();
   
@@ -66,18 +66,22 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     let beta = Math.PI-alfa;
     let gama = this.calculateDotProductAngle(c1,c2);
     let delta = gama - alfa;
+    let direction=1;
 
-    
+    if(c2.x<c1.x && c1.y<c2.y ) {
+      direction=-1;
+    }
+
 
     let c1Angle=this.calculateAngel(c1.x,c1.y);
     let c2Angle=this.calculateAngel(c2.x,c2.y);
-    let x1 = c1.x+c1.r*Math.cos(c1Angle+delta);
-    let y1 = c1.y+c1.r*Math.sin(c1Angle+delta);
+    let x1 = c1.x+c1.r*Math.cos(c1Angle+delta*direction);
+    let y1 = c1.y+c1.r*Math.sin(c1Angle+delta*direction);
     let epsilon = this.calculateDotProductAngle(c2,c1);
     let zeta=beta-epsilon;
 
-    let x2 = c2.x+c2.r*Math.cos(c2Angle+zeta);
-    let y2 = c2.y+c2.r*Math.sin(c2Angle+zeta);
+    let x2 = c2.x+c2.r*Math.cos(c2Angle+zeta*direction);
+    let y2 = c2.y+c2.r*Math.sin(c2Angle+zeta*direction);
 
     let line1:Line ={x1:x1,y1:y1,x2:x2,y2:y2};
     this.lines.push(line1);
@@ -89,17 +93,17 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
     let theta = beta+epsilon;
 
-    let xx1 = c1.x+c1.r*Math.cos(c1Angle+eta);
-    let yy1 = c1.y+c1.r*Math.sin(c1Angle+eta);
-    let xx2 = c2.x+c2.r*Math.cos(c2Angle-theta);
-    let yy2 = c2.y+c2.r*Math.sin(c2Angle-theta);
+    let xx1 = c1.x+c1.r*Math.cos(c1Angle+eta*direction);
+    let yy1 = c1.y+c1.r*Math.sin(c1Angle+eta*direction);
+    let xx2 = c2.x+c2.r*Math.cos(c2Angle-theta*direction);
+    let yy2 = c2.y+c2.r*Math.sin(c2Angle-theta*direction);
 
     let line2:Line ={x1:xx1,y1:yy1,x2:xx2,y2:yy2};
     this.lines.push(line2);
     
 
 
-/*
+
     let line3:Line ={x1:c1.x,y1:c1.y,x2:x1,y2:y1};
     let line4:Line ={x1:c1.x,y1:c1.y,x2:xx1,y2:yy1};
     let line5:Line ={x1:c2.x,y1:c2.y,x2:x2,y2:y2};
@@ -113,7 +117,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     let line7:Line ={x1:c1.x,y1:c1.y,x2:c2.x,y2:c2.y};
 
     this.lines.push(line7);
-    */
+    
 
   }
 

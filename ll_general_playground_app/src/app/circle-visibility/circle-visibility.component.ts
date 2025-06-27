@@ -71,13 +71,13 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
     let c1Angle=this.calculateAngel(c1.x,c1.y);
     let c2Angle=this.calculateAngel(c2.x,c2.y);
-    let x1 = c1.x-c1.r*Math.cos(c1Angle+delta);
-    let y1 = c1.y-c1.r*Math.sin(c1Angle+delta);
+    let x1 = c1.x+c1.r*Math.cos(c1Angle+delta);
+    let y1 = c1.y+c1.r*Math.sin(c1Angle+delta);
     let epsilon = this.calculateDotProductAngle(c2,c1);
     let zeta=beta-epsilon;
 
-    let x2 = c2.x-c2.r*Math.cos(c2Angle+zeta);
-    let y2 = c2.y-c2.r*Math.sin(c2Angle+zeta);
+    let x2 = c2.x+c2.r*Math.cos(c2Angle+zeta);
+    let y2 = c2.y+c2.r*Math.sin(c2Angle+zeta);
 
     let line1:Line ={x1:x1,y1:y1,x2:x2,y2:y2};
     this.lines.push(line1);
@@ -89,10 +89,10 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
     let theta = beta+epsilon;
 
-    let xx1 = c1.x-c1.r*Math.cos(c1Angle+eta);
-    let yy1 = c1.y-c1.r*Math.sin(c1Angle+eta);
-    let xx2 = c2.x-c2.r*Math.cos(c2Angle-theta);
-    let yy2 = c2.y-c2.r*Math.sin(c2Angle-theta);
+    let xx1 = c1.x+c1.r*Math.cos(c1Angle+eta);
+    let yy1 = c1.y+c1.r*Math.sin(c1Angle+eta);
+    let xx2 = c2.x+c2.r*Math.cos(c2Angle-theta);
+    let yy2 = c2.y+c2.r*Math.sin(c2Angle-theta);
 
     let line2:Line ={x1:xx1,y1:yy1,x2:xx2,y2:yy2};
     this.lines.push(line2);

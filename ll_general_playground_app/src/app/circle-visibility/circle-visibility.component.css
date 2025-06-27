@@ -1,7 +1,7 @@
 :host {
     --ll-nim-canvas-color:white;
     --ll-nim-circle-color:blue;
-    --ll-nim-line-color:red;
+    --ll-nim-line-color:green;
 }
 .game_area .svg_canvas {
     background-color: var(--ll-nim-canvas-color);

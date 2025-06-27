@@ -16,8 +16,16 @@
     fill:var(--ll-nim-circle-color);
 }
 
-.circle-line.choosen {
-    stroke: red;
+.game_circle2 {
+    stroke: green;
+    stroke-width: 3;
+    fill:green;
+}
+
+.game_circle3 {
+    stroke: purple;
+    stroke-width: 3;
+    fill:purple;
 }
 
 .game_circle.choosen {
@@ -47,3 +55,14 @@
     gap: 10px;
     padding: 10px;
   }
+
+.circle-line {
+    stroke: var(--ll-nim-line-color);
+    stroke-width: 2;   
+    stroke: orange;
+}
+
+.circle-line.first {
+    stroke: purple;
+}
+

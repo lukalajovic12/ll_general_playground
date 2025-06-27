@@ -67,7 +67,6 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
 
     if(this.custumize){
       nimNumbers=this.custumeRows;
-      console.log('GOD: ',nimNumbers);
     } else {
       for(let i=0;i<this.numberOfRows;i++){
         let n = Math.floor(this.maxMatchesInRow*Math.random()+1);

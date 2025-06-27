@@ -1,7 +1,7 @@
 :host {
     --ll-nim-canvas-color:white;
     --ll-nim-circle-color:blue;
-    --ll-nim-line-color:black;
+    --ll-nim-line-color:red;
 }
 .game_area .svg_canvas {
     background-color: var(--ll-nim-canvas-color);
@@ -16,17 +16,6 @@
     fill:var(--ll-nim-circle-color);
 }
 
-.game_circle2 {
-    stroke: green;
-    stroke-width: 3;
-    fill:green;
-}
-
-.game_circle3 {
-    stroke: purple;
-    stroke-width: 3;
-    fill:purple;
-}
 
 .game_circle.choosen {
     stroke: red;
@@ -59,10 +48,6 @@
 .circle-line {
     stroke: var(--ll-nim-line-color);
     stroke-width: 2;   
-    stroke: orange;
 }
 
-.circle-line.first {
-    stroke: purple;
-}
 

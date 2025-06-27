@@ -35,17 +35,19 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
 
   ngAfterViewInit() {
+    /*
     this.circles = [];
-    this.circles.push({ x: 200, y: 200, r: 75 ,choosen:false});
+
+    this.circles.push({ x: 200, y: 200, r: 75 ,choosen:true});
     this.circles.push({ x: 500, y: 50, r: 10 ,choosen:false});
 
     this.circles.push({ x: 100, y: 500, r: 10 ,choosen:false});
     this.circles.push({ x: 500, y: 500, r: 10 ,choosen:false});
 
     this.circles.push({ x: 100, y: 50, r: 20 ,choosen:false});
-
+    this.selectedIndex = 0;
     this.calculateLines();
-  
+  */
   }
 
   private calculateDistance(c1: Circle, c2: Circle): number {
@@ -127,16 +129,18 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     } else {
       this.calculateLine(c2,c1);
     }
-
-
   }
 
   private calculateLines():void {
     this.lines = [];
-    this.calculatingLines(this.circles[0],this.circles[1]);
-    this.calculatingLines(this.circles[0],this.circles[2]);
-    this.calculatingLines(this.circles[0],this.circles[3]);
-    this.calculatingLines(this.circles[0],this.circles[4]);
+    if(this.selectedIndex !== -1 && this.circles.length > 1) {
+      for (let i = 0; i < this.circles.length; i++) {
+        if (i !== this.selectedIndex) {
+          this.calculatingLines(this.circles[this.selectedIndex], this.circles[i]);
+        }
+      }
+
+    }
   }
 
 
@@ -157,6 +161,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
       this.circles[i].choosen=false;
     }
     this.circles[this.selectedIndex].choosen=true;
+    this.calculateLines();
   }
 
   protected addCircle() {
@@ -169,6 +174,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
   protected clearAll() {
     this.circles = [];
+        this.calculateLines();
   }
 
   protected updateSelected() {
@@ -176,6 +182,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
       this.circles[this.selectedIndex].r = this.r;
     }
     this.calculateLines();
+
   }
 
   protected removeSelected() {
@@ -183,6 +190,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
       this.circles.splice(this.selectedIndex, 1);
       this.selectedIndex = -1;
     }
+    this.calculateLines();
   }  
 
 

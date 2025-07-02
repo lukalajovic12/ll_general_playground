@@ -6,10 +6,35 @@
     padding: 10px;
   }
 
-  .card_label {
-    color:white;
-  }
+.card-image {
+  height: 100px;
+  width: 100px;
+}
 
-  .number_label {
+dialog.mother_nature {
     color:white;
-  }
+    background-color: green;
+}
+dialog.mother_nature .ll_button {
+    color:white;
+    background-color: green;
+    border: 1px solid white;  
+}
+dialog.genes {
+    color:black;
+    background-color: yellow;
+}
+dialog.genes .ll_button {
+    color: black;
+    background-color: yellow;
+    border: 1px solid black;  
+}
+dialog.genetic_engineering {
+    color:white;
+    background-color: blue;
+}
+dialog.genetic_engineering .ll_button {
+    color:white;
+    background-color: blue;
+    border: 1px solid white;  
+}

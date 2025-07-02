@@ -1,5 +1,5 @@
 .nim_text {
-    color: white;
+    color: var(--ll-text-color);
 }
 .menu_class {
     text-align: center;  
@@ -20,5 +20,5 @@
 .ll_value {
     font-size: 18px;
     padding: 5px;
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }

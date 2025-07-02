@@ -5,7 +5,7 @@
 }
 
 .title {
-    color:white;
+    color:var(--ll-text-color);
     font-size: 24px;
 }
 .enviorment_container {

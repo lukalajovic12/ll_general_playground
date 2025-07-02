@@ -10,7 +10,7 @@
 .ll_value {
     font-size: 18px;
     padding: 1px;
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }
 
 .data_settings {
@@ -28,9 +28,9 @@
 }
 
 .source_language {
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }
 
 .target_language {
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }

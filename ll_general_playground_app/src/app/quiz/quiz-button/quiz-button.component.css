@@ -18,12 +18,12 @@ button {
     text-decoration: none;
     line-height: 50%;
     outline: none;
-    color: #fffffffb;
-    background-color: #02643b;
+    color: var(--ll-text-color);
+    background-color: var(--ll-background-color);
     border: none;
     border-radius: 15px;
     vertical-align: middle;
-    border: 1px solid #fffffffb;
+    border: 1px solid var(--ll-text-color);
 }
 
 .correct_anwser {

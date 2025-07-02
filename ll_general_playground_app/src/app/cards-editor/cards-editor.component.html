@@ -1,6 +1,6 @@
 <div class="game_area">
   <div>
-    <app-card-edit-dialog #cardEditDialogComponent [submit]="onSubmitCard" />
+    <app-card-edit-dialog #cardEditDialogComponent [sheetName]="sheetName" [submit]="onSubmitCard" />
     <h2>Cards</h2>
     <div class="buttons_container">
       <button (click)="toHome()" class="ll_button"> Back </button>      

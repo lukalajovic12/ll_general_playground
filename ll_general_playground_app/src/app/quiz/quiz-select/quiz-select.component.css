@@ -1,4 +1,4 @@
 .question {
-    color:#fffffffb;
+    color:var(--ll-text-color);
     font-size: 18px;
 }

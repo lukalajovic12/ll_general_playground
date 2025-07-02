@@ -28,7 +28,7 @@ export class SheetsCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbwZqxYI9pUiot1HFsyFTjGl-dTlK_fllTGIfW7fsD9ZapFTU9aK47uZe1cEwt3B8QoCwg/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbwsAfGWdS3bS8WJW8aBYGXb9UFahNZ67WPSEFtfEsZtY2njnE85R0Ax9dUHnQcOrISwFA/exec';
   constructor() {
   }
 
@@ -53,8 +53,8 @@ export class SheetsCardsService {
 
 
   public appendCard(name:string,description:string,count:number,protein:number,row:number,deleteRow:boolean,sheetName:string) {
-      const data:PostCard = {name:name,description:description,protein:protein,count:count,row:row,deleteRow:deleteRow};
-      const scriptURL = `${this.urlCards}?sheetName=${sheetName}`;
+    const data:PostCard = {name:name,description:description,protein:protein,count:count,row:row,deleteRow:deleteRow};
+    const scriptURL = `${this.urlCards}?sheetName=${sheetName}`;
       const headers = new HttpHeaders({ 
         'Content-Type': 'application/x-www-form-urlencoded' });
       this.http.post<PostCard>(scriptURL, { values: data }, { headers }).subscribe({

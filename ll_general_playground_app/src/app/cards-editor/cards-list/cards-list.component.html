@@ -2,12 +2,8 @@
     <div class="rows_label">Rows: {{rows}}</div>
     <input id="time" type="range" min="1" max="4" [(ngModel)]="rows" /> 
     <button (click)="exportPdf()" class="ll_button">Export PDF</button>
-
     <input type="checkbox" id="showCount" name="selectAll" [(ngModel)]="showCount">
     <label for="showCount"> show count </label>
-
-
-
 </div>
 <div #pdfContent id="pdfContent" class="card_list" [class.one]="rows === 1" [class.two]="rows === 2" 
 [class.three]="rows === 3" [class.four]="rows === 4" [class.fice]="rows === 5">

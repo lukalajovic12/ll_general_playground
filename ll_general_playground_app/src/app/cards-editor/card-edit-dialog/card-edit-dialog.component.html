@@ -1,5 +1,10 @@
-<dialog #cardEditDialog>
-    <div class="card_container">
+<dialog #cardEditDialog 
+[class.genes]="sheetName === 'genes'"
+[class.mother_nature]="sheetName === 'mother_nature'" 
+[class.genetic_engineering]="sheetName === 'genetic_engineering'">
+    <div class="card_container" >
+        <img class="card-image" [src]="imageUrl" alt="NO FOTO" />
+        <div></div>
         <div class="card_label">Name:</div>
         <input id="name" type="text" [(ngModel)]="name" />
         <div class="card_label">Description:</div>

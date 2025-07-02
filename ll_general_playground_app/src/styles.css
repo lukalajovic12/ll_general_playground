@@ -1,27 +1,13 @@
+
+:root {
+--ll-background-color:#02643b;
+--ll-text-color: #fffffffb;
+}
 body {
-    background-color: #02643b;
+    background-color: var(--ll-background-color);
     font-family: century-gothic;
+    color:var(--ll-text-color);
 }
-
-h1 {
-    color:#fffffffb;
-}
-
-h2 {
-    color:#fffffffb;
-}
-
-label {
-    color:#fffffffb;    
-}
-
-td {
-    color:#fffffffb;
-}
-th {
-    color:#fffffffb;
-}
-
 
 .ll_button {
     border-radius: 50%;
@@ -30,13 +16,13 @@ th {
     cursor: pointer;
     line-height: 50%;
     outline: none;
-    color: #fffffffb;
-    background-color: #02643b;
+    color:var(--ll-text-color);
+    background-color: var(--ll-background-color);
     border: none;
     border-radius: 15px;
     vertical-align: middle;
     vertical-align: middle;
-    border: 1px solid #fffffffb;  
+    border: 1px solid var(--ll-text-color);  
     padding:8px;
 }
 
@@ -59,8 +45,8 @@ th {
 }
 
 .icon_class {
-    color:#fffffffb;  
-    background-color: #02643b;
+    color:var(--ll-text-color);  
+    background-color: var(--ll-background-color);
     border-width: 0;
 }
 
@@ -74,7 +60,7 @@ th {
 }
 
 .loading {
-    color:#fffffffb;  
+    color:var(--ll-text-color);  
 }
 
 dialog {
@@ -82,5 +68,5 @@ dialog {
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    background-color: #02643b;
-  }
+    background-color: var(--ll-background-color);
+}

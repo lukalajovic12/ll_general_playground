@@ -1,5 +1,5 @@
 @import "../../../styles.css";
 .menu_class {
     text-align: center;   
-    background-color:#02643b;
+    background-color:var(--ll-background-color);
 }

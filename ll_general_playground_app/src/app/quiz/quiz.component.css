@@ -9,35 +9,35 @@
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fffffffb;
-    background-color: #02643b;
+    color: var(--ll-text-color);
+    background-color: var(--ll-background-color);
     border: none;
     vertical-align: middle;
-    border: 1px solid #fffffffb;  
+    border: 1px solid var(--ll-text-color);  
 }
 
 .quiz_button:hover {
     background-color: #fed131;
 }
 .quiz_button:active {
-    background-color: #02643b;
+    background-color: var(--ll-background-color);
     transform: translateY(4px);
 }
 
 .time {
-    color:#fffffffb;
+    color:var(--ll-text-color);
     font-size: 18px;
 }
 
 .question {
-    color:#fffffffb;
+    color:var(--ll-text-color);
     font-size: 18px;
 }
 
 .ll_value {
     font-size: 18px;
     padding: 5px;
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }
 
 .ll_button.quiz_button {

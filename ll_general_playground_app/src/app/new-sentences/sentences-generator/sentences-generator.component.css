@@ -25,5 +25,5 @@ td {
 .ll_value {
     font-size: 18px;
     padding: 5px;
-    color:#fffffffb;
+    color:var(--ll-text-color);
 }

@@ -1,5 +1,5 @@
 .game_area .svg_canvas {
-    background-color: #02643b;
+    background-color: var(--ll-background-color);
     width: calc(var(--window-width));    
     height: calc(var(--window-width));
 }

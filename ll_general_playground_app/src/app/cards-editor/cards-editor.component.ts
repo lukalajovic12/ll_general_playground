@@ -45,9 +45,19 @@ export class CardsEditorComponent extends AreaBase {
   public addCard() {
     this.cardEditDialogComponent.name='';
     this.cardEditDialogComponent.description='';
+
     this.cardEditDialogComponent.protein=0;
     this.cardEditDialogComponent.count=1;
+
+    this.cardEditDialogComponent.image=null;
+    this.cardEditDialogComponent.image_name='';
+
+
     this.cardEditDialogComponent.show();
+
+
+
+    
     this.row=-1;
   }
 
@@ -56,6 +66,8 @@ export class CardsEditorComponent extends AreaBase {
     this.cardEditDialogComponent.description=card.description;
     this.cardEditDialogComponent.protein=card.protein;
     this.cardEditDialogComponent.count=card.count;
+    this.cardEditDialogComponent.image=card.image;
+    this.cardEditDialogComponent.image_name=card.image_name;
     this.row=card.row;
     this.index= this.cards.indexOf(card)
     this.cardEditDialogComponent.show();

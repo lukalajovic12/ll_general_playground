@@ -20,6 +20,10 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
  
    protected cardUrls:string[]=[];
 
+     protected rows = 3;
+
+       protected page = 0;
+
     @HostBinding('style.--enviorment-width.px')
     protected widthEnviorment: number = 700;  
 
@@ -39,10 +43,32 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      cards.forEach(card => {
       this.cardUrls.push(this.cardUrl(card));
      });
-
-
      this.loading=false;
    }
+
+     protected displayList():string[] {
+
+       return this.cardUrls.slice(this.page * this.rows, (this.page + 1) * this.rows);
+     }
+   
+
+
+   protected plus1(){
+    if (this.page *  this.rows < this.cardUrls.length-1) {
+        this.page++;
+    } else {
+      this.page = 0; // Reset to the first page if it exceeds the count
+    }
+  }
+
+  protected minus1(){
+    if (this.page > 0) {
+      this.page--;
+    } else {
+      this.page = Math.floor(this.cardUrls.length /  this.rows); // Set to the last page if already at the first page
+    }
+  }
+  
 
    ngOnDestroy() {
     this.cardUrls.forEach(imageUrl => {

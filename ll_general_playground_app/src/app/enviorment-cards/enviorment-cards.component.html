@@ -9,14 +9,27 @@
       <div class="size_label">width: {{widthEnviorment}}</div>
       <input id="height" type="range" min="0" max="1000" [(ngModel)]="widthEnviorment"  />
       <div class="size_label">height: {{heightEnviorment}}</div>
-      <input id="vy" type="range" min="0" max="1000" [(ngModel)]="heightEnviorment"  />         
+      <input id="vy" type="range" min="0" max="1000" [(ngModel)]="heightEnviorment"  />        
+      
+      
+        <div class="rows_label">Rows: {{rows}}</div>
+        <input id="rows" type="range" min="1" max="5" [(ngModel)]="rows" /> 
+
+      <div></div>
+      <div></div>
+
+        <div class="rows_label">Page: {{page}}</div>
+        <button (click)="plus1()" class="ll_button">plus 1</button>
+        <button (click)="minus1()" class="ll_button">minus 1</button>
+
+<div></div>
   </div>
 
     <div class="card_list" #pdfContent id="pdfContent">
       @if(loading) {
         <div class="loading">Loading...</div>
       } @else {
-        @for(cardUrl of cardUrls;track cardUrl) {
+        @for(cardUrl of displayList();track cardUrl) {
           <div class="card_container" >
             <img class="card-image" [src]="cardUrl" />
           <div>

@@ -5,13 +5,20 @@
       <button (click)="exportPdf()" class="ll_button">Export PDF</button>
       <button (click)="toHome()" class="ll_button"> Back </button>   
     </div>
+  <div class="size_container">
+      <div class="size_label">width: {{widthEnviorment}}</div>
+      <input id="height" type="range" min="0" max="1000" [(ngModel)]="widthEnviorment"  />
+      <div class="size_label">height: {{heightEnviorment}}</div>
+      <input id="vy" type="range" min="0" max="1000" [(ngModel)]="heightEnviorment"  />         
+  </div>
+
     <div class="card_list" #pdfContent id="pdfContent">
       @if(loading) {
         <div class="loading">Loading...</div>
       } @else {
         @for(cardUrl of cardUrls;track cardUrl) {
           <div class="card_container" >
-            <img class="card-image" [src]="cardUrl" alt="NO FOTO" />
+            <img class="card-image" [src]="cardUrl" />
           <div>
           </div> 
           </div>

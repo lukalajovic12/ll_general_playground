@@ -24,7 +24,8 @@ export class CardsEditorComponent extends AreaBase {
 
   protected displayTabele=false;
 
-  public cards:Card[]=[];
+  public cards: { [key: string]: Card[]; } = {};
+
 
   protected sheetName='genes';
 
@@ -38,7 +39,7 @@ export class CardsEditorComponent extends AreaBase {
   override async ngOnInit(): Promise<void> {
     super.ngOnInit();
     this.loading=true;
-    this.cards = await this.sheetsCardsService.loadCards(this.sheetName);
+    this.cards[this.sheetName] = await this.sheetsCardsService.loadCards(this.sheetName);
     this.loading=false;
   }
 
@@ -69,13 +70,13 @@ export class CardsEditorComponent extends AreaBase {
     this.cardEditDialogComponent.image=card.image;
     this.cardEditDialogComponent.image_name=card.image_name;
     this.row=card.row;
-    this.index= this.cards.indexOf(card)
+    this.index= this.cards[this.sheetName].indexOf(card)
     this.cardEditDialogComponent.show();
   }
 
   public deleteCard = (card:Card) => {
-    let index= this.cards.indexOf(card);
-    this.cards.splice(index,1);
+    let index= this.cards[this.sheetName].indexOf(card);
+    this.cards[this.sheetName].splice(index,1);
     this.sheetsCardsService.appendCard(card.name, card.description,card.count,card.protein,card.row,true,this.sheetName);
 
   }
@@ -84,13 +85,13 @@ export class CardsEditorComponent extends AreaBase {
       this.sheetsCardsService.appendCard(name, description,protein,count,this.row,false,this.sheetName);
       if(this.row === -1) {
         let totalLength = 0;
-        this.cards.push({name:name,
+        this.cards[this.sheetName].push({name:name,
           description:description,protein:protein,row:totalLength+2,count:count,image_name:name.replace(' ','_')+'.jpg',image:''});
       } else {
-        this.cards[this.index].name=name;
-        this.cards[this.index].description=description;
-        this.cards[this.index].protein=protein;
-        this.cards[this.index].count=count;
+        this.cards[this.sheetName][this.index].name=name;
+        this.cards[this.sheetName][this.index].description=description;
+        this.cards[this.sheetName][this.index].protein=protein;
+        this.cards[this.sheetName][this.index].count=count;
       }
   }
 
@@ -101,9 +102,11 @@ export class CardsEditorComponent extends AreaBase {
   protected async changeSheet(sheetName:string):Promise<void> {
     this.sheetName=sheetName;
     this.loading=true;
-    this.cards = await this.sheetsCardsService.loadCards(this.sheetName);
-    this.loading=false;
 
+    if(!Object.keys(this.cards).includes(sheetName)) {
+      this.cards[this.sheetName] = await this.sheetsCardsService.loadCards(this.sheetName);
+    } 
+    this.loading=false;
   }
 
 }

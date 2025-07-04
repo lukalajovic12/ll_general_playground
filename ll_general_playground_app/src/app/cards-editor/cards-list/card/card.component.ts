@@ -1,4 +1,4 @@
-import { Component,Input,OnDestroy,OnInit } from '@angular/core';
+import { Component,Input,OnDestroy,OnInit,HostBinding } from '@angular/core';
 
 
 @Component({
@@ -16,6 +16,17 @@ export class CardComponent implements OnDestroy, OnInit {;
   @Input() public sheetName='';
   @Input() public image='';
   @Input() public image_name='';
+  @Input() public roundCorners=false;
+  
+  @HostBinding('style.--card-width.px')
+  @Input()
+  public widthCard: number = 200;  
+
+  
+  @HostBinding('style.--card-height.px')
+  @Input()
+  public heightCard: number = 250;
+  
 
   protected imageUrl ='';
 

@@ -20,9 +20,9 @@
       </button>
     </div>
     @if(displayTabele) {
-        <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" [sheetName]="sheetName" />
+        <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards[sheetName]" [sheetName]="sheetName" />
     } @else {
-        <app-cards-list [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards" [sheetName]="sheetName" />
+        <app-cards-list [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards[sheetName]" [sheetName]="sheetName" />
     }
   }
   </div>

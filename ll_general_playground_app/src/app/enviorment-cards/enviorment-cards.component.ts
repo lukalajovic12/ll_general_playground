@@ -1,13 +1,14 @@
-import { Component, OnDestroy, ElementRef, ViewChild  } from '@angular/core';
+import { Component, HostBinding, OnDestroy, ElementRef, ViewChild  } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { EnviormentalCard, SheetsEnviormentCardsService } from '../sheets-enviorment-cards.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-enviorment-cards',
   standalone: true,
-  imports: [],
+  imports: [FormsModule,CommonModule],
   templateUrl: './enviorment-cards.component.html',
   styleUrl: './enviorment-cards.component.css'
 })
@@ -19,6 +20,11 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
  
    protected cardUrls:string[]=[];
 
+    @HostBinding('style.--enviorment-width.px')
+    protected widthEnviorment: number = 700;  
+
+    @HostBinding('style.--enviorment-height.px')
+    protected heightEnviorment: number = 700;
 
    constructor(
    private sheetsEnviormentCardsService: SheetsEnviormentCardsService) {

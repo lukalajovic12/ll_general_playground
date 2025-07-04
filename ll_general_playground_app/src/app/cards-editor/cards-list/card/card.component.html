@@ -1,10 +1,11 @@
-<div class="card" [class.genes]="sheetName === 'genes'" [class.mother_nature]="sheetName === 'mother_nature'" [class.genetic_engineering]="sheetName === 'genetic_engineering'">
-  <img class="card-image" [src]="imageUrl" alt="NO FOTO" />
+<div class="card" [class.round-corners]="roundCorners" [class.genes]="sheetName === 'genes'" [class.mother_nature]="sheetName === 'mother_nature'" [class.genetic_engineering]="sheetName === 'genetic_engineering'">
+    @if(image_name!=='') {
+    <img class="card-image" [src]="imageUrl" />
+    } @else {
+    <div class="card-image"></div>
+    }
     <div class="card-title">{{ name }}</div>
     <p class="card-description">{{ description }}</p>
-    <div class="card-protein">
-      Count: <span class="protein-number">{{ count }}</span>
-    </div>
     @if(sheetName!=='mother_nature') {
     <div class="card-protein">
       Proteins: <span class="protein-number">{{ protein }}</span>

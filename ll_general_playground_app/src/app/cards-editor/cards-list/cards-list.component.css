@@ -1,8 +1,9 @@
 .card_list {
-    padding: 20px;    
+    padding-top: 10px;    
+    padding-bottom: 10px;  
     display: grid;
     grid-template-columns: auto;
-    gap: 20px;
+    gap: 5px;
 }
 
 .card_list.one {
@@ -23,15 +24,21 @@
     grid-template-columns: auto auto auto auto;
 }
 
+
 .card_container {
     display:flex; 
-    gap: 10px;
+    gap: 1px;
+}
+
+.size_container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 .buttons_container {
     display: grid;
     grid-template-columns: auto;
-    gap: 10px;
+    gap: 1px;
 }
 
 .rows_label {
@@ -39,7 +46,8 @@
 }
 
 .rows_container {
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1px;
 }
 

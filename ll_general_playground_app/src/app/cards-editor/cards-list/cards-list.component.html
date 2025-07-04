@@ -1,18 +1,38 @@
-<div class="rows_container">
-    <div class="rows_label">Rows: {{rows}}</div>
-    <input id="time" type="range" min="1" max="4" [(ngModel)]="rows" /> 
-    <button (click)="exportPdf()" class="ll_button">Export PDF</button>
-    <input type="checkbox" id="showCount" name="selectAll" [(ngModel)]="showCount">
-    <label for="showCount"> show count </label>
+@if(showAll) {
+    <div class="rows_container">
+        <div class="rows_label">Columns: {{columns}}</div>
+        <input id="columns" type="range" min="1" max="4" [(ngModel)]="columns" /> 
+        <div class="rows_label">Rows: {{rows}}</div>
+        <input id="rows" type="range" min="1" max="5" [(ngModel)]="rows" /> 
+
+        <div class="rows_label">Page: {{page}}</div>
+        <button (click)="plus1()" class="ll_button">plus 1</button>
+        <button (click)="minus1()" class="ll_button">minus 1</button>
+        
+        <button (click)="exportAsPNG()" class="ll_button">Export PNG</button>
+        <input type="checkbox" id="showCount" name="showCount" [(ngModel)]="showCount">
+        <label for="showCount"> show count </label>
+        <input type="checkbox" id="showOptions" name="showOptions" [(ngModel)]="showOptions">
+        <label for="showCount"> show options</label>
+        <input type="checkbox" id="roundCorners" name="roundCorners" [(ngModel)]="roundCorners">
+        <label for="showCount"> round corners</label>
+    </div>
+
+<div class="size_container">
+    <div class="size_label">width: {{widthCard}}</div>
+    <input id="height" type="range" min="0" max="1000" [(ngModel)]="widthCard"  />
+    <div class="size_label">height: {{heightCard}}</div>
+    <input id="vy" type="range" min="0" max="1000" [(ngModel)]="heightCard"  />         
 </div>
-<div #pdfContent id="pdfContent" class="card_list" [class.one]="rows === 1" [class.two]="rows === 2" 
-[class.three]="rows === 3" [class.four]="rows === 4" [class.fice]="rows === 5">
-    @for(card of cards;track card) {
-    
-        @for(index of cardCount(card); track index) {
+}
+<div
+ id="png-content" class="card_list" [class.one]="columns === 1" [class.two]="columns === 2" 
+[class.three]="columns === 3" [class.four]="columns === 4">
+    @for(card of displayList();track card) {
             <div class="card_container" >
             <app-card [name]="card.name" [description]="card.description" [count]="card.count"
-                [protein]="card.protein" [sheetName]="sheetName" [image]="card.image" [image_name]="card.image_name" />
+                [protein]="card.protein" [sheetName]="sheetName" [image]="card.image"
+                 [image_name]="card.image_name" [widthCard]="widthCard" [heightCard]="heightCard" [roundCorners]="roundCorners" />
             <div>
             @if(showOptions) {
             <div class="buttons_container">  
@@ -26,6 +46,5 @@
             }
         </div>
     </div>
-        }
     }
 </div>

@@ -15,7 +15,7 @@
 }
 
 .particle_label {
-    color:white;
+    color:var(--ll-text-color);
 }
 .ll_button.selected {
   background-color:#0049b4;
@@ -27,4 +27,4 @@
     grid-template-columns: auto auto;
     gap: 10px;
     padding: 10px;
-  }
+}

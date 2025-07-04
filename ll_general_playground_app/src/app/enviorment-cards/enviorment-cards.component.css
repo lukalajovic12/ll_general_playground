@@ -1,8 +1,4 @@
 
-.card-image {
-    height: 400px;
-    width: calc(var(--window-width) - 10px);
-}
 
 .title {
     color:var(--ll-text-color);
@@ -12,3 +8,20 @@
     display: flex;
     gap: 40px;
 }
+
+.card-image {
+    width: calc(var(--enviorment-width));    
+    height: calc(var(--enviorment-height));
+}
+
+.size_label {
+   color:var(--ll-text-color);
+}
+
+.size_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
+  }

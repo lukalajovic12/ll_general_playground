@@ -13,14 +13,13 @@ export class CardEditDialogComponent implements OnDestroy {
 
   @ViewChild('cardEditDialog') public dialog!: ElementRef<HTMLDialogElement>;  
 
-  @Input() public submit:(name:string,description:string,count:number,protein:number) => void;
+  @Input() public submit:(name:string,description:string,count:number) => void;
   @Input() public sheetName='';
   public image='';
   public image_name='';
   protected imageUrl ='';
   public name = '';
   public description = '';
-  public protein = 0;
   public count = 0;
 
   constructor() {}  
@@ -59,7 +58,7 @@ export class CardEditDialogComponent implements OnDestroy {
   }  
 
   protected onSubmit():void {
-    this.submit(this.name,this.description,this.count,this.protein);
+    this.submit(this.name,this.description,this.count);
     this.dialog.nativeElement.close();
   }    
 

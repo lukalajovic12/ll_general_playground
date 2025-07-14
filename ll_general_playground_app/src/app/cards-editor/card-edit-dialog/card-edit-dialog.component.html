@@ -11,10 +11,6 @@
         <textarea id="description" rows="5" cols="50" [(ngModel)]="description"> </textarea>
         <div class="number_label">Count: {{count}}</div>
         <input id="count" type="range" min="0" max="10" [(ngModel)]="count" />    
-        @if(sheetName!=='mother_nature') {
-        <div class="number_label">Protein: {{protein}}</div>
-        <input id="protein" type="range" min="0" max="10" [(ngModel)]="protein" /> 
-        }
         <button (click)="onSubmit()" class="ll_button" [disabled]="!allowSubmit()">Submit</button>
         <button (click)="close()" class="ll_button">Close</button>
     </div>

@@ -31,7 +31,7 @@
     @for(card of displayList();track card) {
             <div class="card_container" >
             <app-card [name]="card.name" [description]="card.description" [count]="card.count"
-                [protein]="card.protein" [sheetName]="sheetName" [image]="card.image"
+                 [sheetName]="sheetName" [image]="card.image"
                  [image_name]="card.image_name" [widthCard]="widthCard" [heightCard]="heightCard" [roundCorners]="roundCorners" />
             <div>
             @if(showOptions) {

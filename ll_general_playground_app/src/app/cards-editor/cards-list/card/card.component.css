@@ -25,16 +25,8 @@
   }
   
 .card-description {
-    font-size: 14px;
-  }
-  
-.card-protein {
-    font-size: 15px;
-  }
-  
-  .protein-number {
-    font-weight: bold;
-  }
+  font-size: 14px;
+}
 
 .card-image {
     height: 100px;

@@ -46,8 +46,6 @@ export class CardsEditorComponent extends AreaBase {
   public addCard() {
     this.cardEditDialogComponent.name='';
     this.cardEditDialogComponent.description='';
-
-    this.cardEditDialogComponent.protein=0;
     this.cardEditDialogComponent.count=1;
 
     this.cardEditDialogComponent.image=null;
@@ -65,7 +63,6 @@ export class CardsEditorComponent extends AreaBase {
   public editCard = (card:Card) => {
     this.cardEditDialogComponent.name=card.name;
     this.cardEditDialogComponent.description=card.description;
-    this.cardEditDialogComponent.protein=card.protein;
     this.cardEditDialogComponent.count=card.count;
     this.cardEditDialogComponent.image=card.image;
     this.cardEditDialogComponent.image_name=card.image_name;
@@ -77,20 +74,19 @@ export class CardsEditorComponent extends AreaBase {
   public deleteCard = (card:Card) => {
     let index= this.cards[this.sheetName].indexOf(card);
     this.cards[this.sheetName].splice(index,1);
-    this.sheetsCardsService.appendCard(card.name, card.description,card.count,card.protein,card.row,true,this.sheetName);
+    this.sheetsCardsService.appendCard(card.name, card.description,card.count,card.row,true,this.sheetName);
 
   }
 
-  protected onSubmitCard = (name:string,description:string,count:number,protein:number) => {
-      this.sheetsCardsService.appendCard(name, description,protein,count,this.row,false,this.sheetName);
+  protected onSubmitCard = (name:string,description:string,count:number) => {
+      this.sheetsCardsService.appendCard(name, description,count,this.row,false,this.sheetName);
       if(this.row === -1) {
         let totalLength = 0;
         this.cards[this.sheetName].push({name:name,
-          description:description,protein:protein,row:totalLength+2,count:count,image_name:name.replace(' ','_')+'.jpg',image:''});
+          description:description,row:totalLength+2,count:count,image_name:name.replace(' ','_')+'.jpg',image:''});
       } else {
         this.cards[this.sheetName][this.index].name=name;
         this.cards[this.sheetName][this.index].description=description;
-        this.cards[this.sheetName][this.index].protein=protein;
         this.cards[this.sheetName][this.index].count=count;
       }
   }

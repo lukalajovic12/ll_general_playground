@@ -10,12 +10,6 @@
             <th>
                 Count
             </th>
-
-            @if(sheetName!=='mother_nature') {
-            <th>
-                Protein
-            </th>
-            }
             <th>
                 Edit
             </th>
@@ -28,9 +22,6 @@
             <td>{{ card.name }}</td>
             <td>{{ card.description }}</td>
             <td>{{ card.count }}</td>
-            @if(sheetName!=='mother_nature') {
-            <td>{{ card.protein }}</td>
-            }
             <td>
                 <button class="icon_class" (click)="editCard(card)">
                     <i class="fa fa-pencil"></i>

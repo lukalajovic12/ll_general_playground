@@ -12,7 +12,6 @@ export class CardComponent implements OnDestroy, OnInit {;
   @Input() name!: string;
   @Input() description!: string;
   @Input() count!: number;
-  @Input() protein!: number;
   @Input() public sheetName='';
   @Input() public image='';
   @Input() public image_name='';

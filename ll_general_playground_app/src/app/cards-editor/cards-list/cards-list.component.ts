@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Card } from '../../sheets-cards.service';
 import { CardComponent } from './card/card.component';
 import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -76,28 +77,23 @@ export class CardsListComponent {
   }
 
  
-  protected async exportAsPNG() {
+  protected async exportAsPDF() {
     this.showOptions = false;
-    this.showAll = false;
     await this.delay(1000);
-    const element = document.getElementById('png-content');
+    const element = document.getElementById('pdf-content');
     if (!element) return;
 
     html2canvas(element, { scale: 2 }).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-
-      // Create a temporary link to trigger the download
-      const link = document.createElement('a');
-      link.href = imgData;
-      link.download = 'exported-image.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const imgWidth = 208;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png');
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      let position = 10;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.save('exported-content.pdf');
     });
     await this.delay(1000);
-    this.showAll = true;
   }
-
 
   protected cardCount(card:Card):number[] {
     let num:number[]  =[];

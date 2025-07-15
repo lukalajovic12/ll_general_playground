@@ -50,13 +50,8 @@ export class CardsEditorComponent extends AreaBase {
 
     this.cardEditDialogComponent.image=null;
     this.cardEditDialogComponent.image_name='';
-
-
     this.cardEditDialogComponent.show();
 
-
-
-    
     this.row=-1;
   }
 

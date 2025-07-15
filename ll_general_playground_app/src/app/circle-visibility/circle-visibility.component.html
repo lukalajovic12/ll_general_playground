@@ -23,7 +23,12 @@
     </div>
 
     <svg class="svg_canvas" 
-    (click)="onCanvasClick($event)">
+        (mousedown)="onCanvasClick($event)" (mousemove)="onCanvasClickMove($event)"  (mouseup)="up()"
+        (touchstart)="onCanvasTouch($event)" (touchmove)="onCanvasTouchMove($event)" (touchend)="up()"
+   
+    
+    
+    >
     @for(c of circles;track i; let i = $index){
         <circle class="game_circle" [attr.cx]="c.x" [attr.cy]="c.y"
             [attr.r]="c.r"

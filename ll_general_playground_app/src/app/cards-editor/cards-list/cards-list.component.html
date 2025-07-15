@@ -1,6 +1,6 @@
 @if(showAll) {
     <div class="rows_container">
-        <div class="rows_label">Columns: {{columns}}</div>
+        <div class="columns_label">Columns: {{columns}}</div>
         <input id="columns" type="range" min="1" max="4" [(ngModel)]="columns" /> 
         <div class="rows_label">Rows: {{rows}}</div>
         <input id="rows" type="range" min="1" max="5" [(ngModel)]="rows" /> 
@@ -9,7 +9,7 @@
         <button (click)="plus1()" class="ll_button">plus 1</button>
         <button (click)="minus1()" class="ll_button">minus 1</button>
         
-        <button (click)="exportAsPNG()" class="ll_button">Export PNG</button>
+        <button (click)="exportAsPDF()" class="ll_button">Export PDF</button>
         <input type="checkbox" id="showCount" name="showCount" [(ngModel)]="showCount">
         <label for="showCount"> show count </label>
         <input type="checkbox" id="showOptions" name="showOptions" [(ngModel)]="showOptions">
@@ -26,7 +26,7 @@
 </div>
 }
 <div
- id="png-content" class="card_list" [class.one]="columns === 1" [class.two]="columns === 2" 
+ id="pdf-content" class="card_list" [class.one]="columns === 1" [class.two]="columns === 2" 
 [class.three]="columns === 3" [class.four]="columns === 4">
     @for(card of displayList();track card) {
             <div class="card_container" >

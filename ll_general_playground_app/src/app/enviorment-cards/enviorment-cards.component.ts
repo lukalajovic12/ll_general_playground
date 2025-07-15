@@ -46,8 +46,7 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      this.loading=false;
    }
 
-     protected displayList():string[] {
-
+  protected displayList():string[] {
        return this.cardUrls.slice(this.page * this.rows, (this.page + 1) * this.rows);
      }
    

@@ -1,0 +1,15 @@
+<table>
+  <caption>बाराखडी तालिका (Barkhadi Table - Nepali)</caption>
+  <thead>
+    <tr>
+      <th>व्यंजन + स्वर</th>
+      <th *ngFor="let swar of swars">{{ swar }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of vyanjans">
+      <th>{{ row.base }}</th>
+      <td *ngFor="let form of row.forms">{{ form }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-cards-list',
   standalone: true,
-  imports: [CardComponent,CommonModule, FormsModule],
+  imports: [CardComponent, CommonModule, FormsModule],
   templateUrl: './cards-list.component.html',
   styleUrl: './cards-list.component.css'
 })
@@ -20,7 +20,7 @@ export class CardsListComponent {
   @Input() public sheetName = '';
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
-  public widthCard: number = 150;  
+  public widthCard: number = 150;
   public heightCard: number = 230;
 
   public roundCorners = false;
@@ -36,15 +36,15 @@ export class CardsListComponent {
 
   protected page = 0;
 
-  protected plus1(){
-    if (this.page * this.columns * this.rows < this.count()-1) {
-        this.page++;
+  protected plus1() {
+    if (this.page * this.columns * this.rows < Math.floor(this.count() / (this.columns * this.rows))) {
+      this.page++;
     } else {
       this.page = 0; // Reset to the first page if it exceeds the count
     }
   }
 
-  protected minus1(){
+  protected minus1() {
     if (this.page > 0) {
       this.page--;
     } else {
@@ -52,16 +52,16 @@ export class CardsListComponent {
     }
   }
 
-  private count():number {
+  private count(): number {
     let count = 0;
     for (let i = 0; i < this.cards.length; i++) {
       const card = this.cards[i];
-      count+= this.showCount ? card.count : 1;
+      count += this.showCount ? card.count : 1;
     }
     return count;
   }
 
-  protected displayList():Card[] {
+  protected displayList(): Card[] {
     let displayCards: Card[] = [];
     for (let i = 0; i < this.cards.length; i++) {
       const card = this.cards[i];
@@ -76,29 +76,44 @@ export class CardsListComponent {
     return displayCards.slice(this.page * this.columns * this.rows, (this.page + 1) * this.columns * this.rows);
   }
 
- 
+
   protected async exportAsPDF() {
     this.showOptions = false;
+    this.page = 0;
     await this.delay(1000);
+    const imgWidth = 208;
+    let pdf = new jsPDF('p', 'mm', 'a4');
     const element = document.getElementById('pdf-content');
-    if (!element) return;
+    await this.delay(1000);
 
-    html2canvas(element, { scale: 2 }).then(canvas => {
-      const imgWidth = 208;
+    const totalPages = Math.ceil(this.count() / (this.columns * this.rows));
+    for (let i = 0; i < totalPages; i++) {
+      this.page = i;
+      // Wait for Angular to update the view
+      await this.delay(500);
+      const canvas = await html2canvas(element!, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        backgroundColor: '#fff'
+      });
       const imgHeight = canvas.height * imgWidth / canvas.width;
       const contentDataURL = canvas.toDataURL('image/png');
-      let pdf = new jsPDF('p', 'mm', 'a4');
       let position = 10;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-      pdf.save('exported-content.pdf');
-    });
-    await this.delay(1000);
+      if (i < totalPages - 1) {
+        pdf.addPage();
+      }
+    }
+    await this.delay(500);
+    pdf.save('exported-content.pdf');
   }
 
-  protected cardCount(card:Card):number[] {
-    let num:number[]  =[];
-    const count =this.showCount ? card.count:1;
-    for(let i=0;i<count;i++) {
+  protected cardCount(card: Card): number[] {
+    let num: number[] = [];
+    const count = this.showCount ? card.count : 1;
+    for (let i = 0; i < count; i++) {
       num.push(i);
     }
     return num;

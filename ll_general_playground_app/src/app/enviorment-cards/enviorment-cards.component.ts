@@ -20,9 +20,9 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
  
    protected cardUrls:string[]=[];
 
-     protected rows = 3;
+    protected rows = 3;
 
-       protected page = 0;
+  protected page = 0;
 
     @HostBinding('style.--enviorment-width.px')
     protected widthEnviorment: number = 700;  
@@ -89,20 +89,41 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
       return URL.createObjectURL(blob);
     }
 
-    protected async exportPdf(): Promise<void> {
-      const DATA = await this.pdfContent.nativeElement;
-      html2canvas(DATA).then(canvas => {
-        const imgWidth = 208;
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        const contentDataURL = canvas.toDataURL('image/png');
-        let pdf = new jsPDF('p', 'mm', 'a4');
-        let position = 10;
-  
-        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        pdf.save('exported-content.pdf');
-      });
-    }
+  protected async exportPDF() {
+    this.page = 0;
+    await this.delay(1000);
+    const imgWidth = 208;
+    let pdf = new jsPDF('p', 'mm', 'a4');
+    const element = document.getElementById('pdf-content');
+    await this.delay(1000);
 
+    const totalPages = Math.ceil(this.cardUrls.length / this.rows);
+    for (let i = 0; i < totalPages; i++) {
+      this.page = i;
+      // Wait for Angular to update the view
+      await this.delay(500);
+      const canvas = await html2canvas(element!, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        backgroundColor: '#fff'
+      });
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png');
+      let position = 10;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      if (i < totalPages - 1) {
+        pdf.addPage();
+      }
+    }
+    await this.delay(500);
+    pdf.save('exported-content.pdf');
+  }
+
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 
    }

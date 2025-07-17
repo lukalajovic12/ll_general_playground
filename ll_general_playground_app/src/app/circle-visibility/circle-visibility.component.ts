@@ -35,6 +35,7 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
   private mouseDown = false;
 
+  @ViewChild('svgCanvas', { static: false }) svgCanvas!: ElementRef<SVGSVGElement>;
 
   ngAfterViewInit() {
     /*
@@ -248,8 +249,8 @@ protected onCanvasClick(event: MouseEvent) {
   }
 
   protected onCanvasTouchMove(event: TouchEvent) {
-        if(this.mouseDown){
-    const svgElement = event.target as SVGSVGElement;
+  if (this.mouseDown) {
+    const svgElement = this.svgCanvas.nativeElement;
     const point = svgElement.createSVGPoint();
     if (svgElement && point && svgElement.getScreenCTM()) {
       point.x = event.touches[0].clientX;
@@ -257,7 +258,7 @@ protected onCanvasClick(event: MouseEvent) {
       const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
       const clickX = svgPoint.x;
       const clickY = svgPoint.y;
-      this.findSelected(clickX,clickY);
+      this.findSelected(clickX, clickY);
     }
     this.calculateLines();
   }

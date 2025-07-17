@@ -2,7 +2,7 @@
   <div>
     <div class="enviorment_container">
       <div class="title"> ENVIORMENTS</div>
-      <button (click)="exportPdf()" class="ll_button">Export PDF</button>
+      <button (click)="exportPDF()" class="ll_button">Export PDF</button>
       <button (click)="toHome()" class="ll_button"> Back </button>   
     </div>
   <div class="size_container">
@@ -25,7 +25,7 @@
 <div></div>
   </div>
 
-    <div class="card_list" #pdfContent id="pdfContent">
+    <div class="card_list" id="pdf-content">
       @if(loading) {
         <div class="loading">Loading...</div>
       } @else {

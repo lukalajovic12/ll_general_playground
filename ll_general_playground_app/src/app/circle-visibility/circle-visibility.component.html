@@ -22,7 +22,7 @@
         <input id="m" type="range" min="10" max="200" [(ngModel)]="r" (change)="updateSelected()" />  
     </div>
 
-    <svg class="svg_canvas" 
+    <svg #svgCanvas class="svg_canvas"
         (mousedown)="onCanvasClick($event)" (mousemove)="onCanvasClickMove($event)"  (mouseup)="up()"
         (touchstart)="onCanvasTouch($event)" (touchmove)="onCanvasTouchMove($event)" (touchend)="up()"
    

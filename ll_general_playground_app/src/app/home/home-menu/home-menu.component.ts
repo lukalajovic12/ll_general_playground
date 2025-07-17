@@ -64,7 +64,9 @@ export class HomeMenuComponent {
     this.router.navigate(['/circle-visibility']);
   }
 
-
+  protected toNepali = () => {
+    this.router.navigate(['/nepali']);
+  }
   
   
 

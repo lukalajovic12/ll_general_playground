@@ -14,6 +14,7 @@ import { CircleFractalComponent } from './circle-fractal/circle-fractal.componen
 import { Model3dComponent } from './model3d/model3d.component';
 import { EnviormentCardsComponent } from './enviorment-cards/enviorment-cards.component';
 import { CircleVisibilityComponent } from './circle-visibility/circle-visibility.component';
+import { BarkhadiTableComponent } from './barkhadi-table/barkhadi-table.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component:HomeComponent}, 
@@ -31,4 +32,5 @@ export const APP_ROUTES: Routes = [
   { path: 'model3d', component:Model3dComponent},
   { path: 'enviorment', component:EnviormentCardsComponent},
   { path: 'circle-visibility', component:CircleVisibilityComponent},
+  {path: 'nepali', component:BarkhadiTableComponent},,
 ];

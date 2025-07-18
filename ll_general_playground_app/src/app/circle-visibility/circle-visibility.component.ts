@@ -146,16 +146,10 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     }
   }
 
-
-
-
-
   private calculateDotProductAngle(c1:Circle,c2:Circle){
     let dotProductUpper= c1.x*(c1.x-c2.x)+c1.y*(c1.y-c2.y);
     let dotProductLowwer=Math.sqrt(c1.x**2+c1.y**2)*this.calculateDistance(c1,c2);
     return Math.acos(dotProductUpper/dotProductLowwer);
-
-
   }
 
 
@@ -198,7 +192,14 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
 
 
-  protected onCircleClick(event: MouseEvent,index:number) {
+  protected onCircleClick(event: Event,index:number) {
+    this.selectedIndex=index;
+    this.r=this.circles[index].r;
+    this.updateSelection();
+    event.stopPropagation();
+  }
+
+  protected onCircleTouch(event: Event,index:number) {
     this.selectedIndex=index;
     this.r=this.circles[index].r;
     this.updateSelection();

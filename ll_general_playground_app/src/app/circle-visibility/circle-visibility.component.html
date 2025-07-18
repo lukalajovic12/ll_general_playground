@@ -28,7 +28,7 @@
     @for(c of circles;track i; let i = $index){
         <circle class="game_circle" [attr.cx]="c.x" [attr.cy]="c.y"
             [attr.r]="c.r"
-            [class.choosen]="c.choosen" (click)="onCircleClick($event,i)" (touch)="onCircleTouch($event,i)" />          
+            [class.choosen]="c.choosen" />          
     }
     @for(l of lines;track i; let i = $index){
         <line class="circle-line"  [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" 

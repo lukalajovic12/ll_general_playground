@@ -191,46 +191,33 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
   }  
 
 
-
-  protected onCircleClick(event: Event,index:number) {
-    this.selectedIndex=index;
-    this.r=this.circles[index].r;
-    this.updateSelection();
-    event.stopPropagation();
-  }
-
-  protected onCircleTouch(event: Event,index:number) {
-    this.selectedIndex=index;
-    this.r=this.circles[index].r;
-    this.updateSelection();
-    event.stopPropagation();
-  }
-
   protected up() {
     this.mouseDown = false;
   }
 
-protected onCanvasClick(event: MouseEvent) {
- this.mouseDown = true;
- this.onCanvasClickMove(event);
-}
-
   
-  protected onCanvasClickMove(event: MouseEvent) {
-    if(this.mouseDown){
-      const svgElement = event.target as SVGSVGElement;
-      const point = svgElement.createSVGPoint();
-      if (svgElement && point && svgElement.getScreenCTM()) {
-        point.x = event.clientX;
-        point.y = event.clientY;
-        const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
-        const clickX = svgPoint.x;
-        const clickY = svgPoint.y;
-        this.findSelected(clickX,clickY);
+
+
+  private isInCircle(c: Circle, x:number,y:number): boolean {
+    return (c.x -x) ** 2 + (c.y -y) ** 2<c.r**2;
+  }  
+
+
+  private select(x:number,y:number):void {
+      this.mouseDown = false;
+      for (let i = 0; i < this.circles.length; i++) {
+        this.circles[i].choosen=false;
       }
-      this.calculateLines();
-    }
-  }
+      for (let i = 0; i < this.circles.length; i++) {
+        if(this.isInCircle(this.circles[i],x,y)){
+          this.mouseDown = true;
+          this.selectedIndex=i;
+          this.r=this.circles[i].r;
+          this.updateSelection();
+          break;
+        }
+      }
+}
 
 
   private findSelected(clickX:number,clickY:number):void {
@@ -244,10 +231,52 @@ protected onCanvasClick(event: MouseEvent) {
       }
   }
 
-  protected onCanvasTouch(event: TouchEvent) {
-    this.mouseDown = true;
-    this.onCanvasTouchMove(event);
+  protected onCanvasClick(event: MouseEvent) {
+    const svgElement = this.svgCanvas.nativeElement;
+      const point = svgElement.createSVGPoint();
+      if (svgElement && point && svgElement.getScreenCTM()) {
+        point.x = event.clientX;
+        point.y = event.clientY;
+        const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
+        const clickX = svgPoint.x;
+        const clickY = svgPoint.y;
+        this.select(clickX,clickY);
+      }
+      this.calculateLines();
   }
+
+  protected onCanvasTouch(event: TouchEvent) {
+
+    const svgElement = this.svgCanvas.nativeElement;
+    const point = svgElement.createSVGPoint();
+    if (svgElement && point && svgElement.getScreenCTM()) {
+      point.x = event.touches[0].clientX;
+      point.y = event.touches[0].clientY;
+      const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
+      const clickX = svgPoint.x;
+      const clickY = svgPoint.y;
+      this.select(clickX, clickY);
+    }
+    this.calculateLines();
+  }
+
+  protected onCanvasClickMove(event: MouseEvent) {
+    if(this.mouseDown){
+      const svgElement = this.svgCanvas.nativeElement;
+      const point = svgElement.createSVGPoint();
+      if (svgElement && point && svgElement.getScreenCTM()) {
+
+        point.x = event.clientX;
+        point.y = event.clientY;
+        const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
+        const clickX = svgPoint.x;
+        const clickY = svgPoint.y;
+        this.findSelected(clickX,clickY);
+      }
+      this.calculateLines();
+    }
+  }
+
 
   protected onCanvasTouchMove(event: TouchEvent) {
   if (this.mouseDown) {

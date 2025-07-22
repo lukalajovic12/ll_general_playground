@@ -26,7 +26,7 @@ export class SheetsCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbzVEW-u4eBKA2baz0TrknAlB3OCnPVrvPkR9m0VyKDoKJ522x3z7yW2lBp_QpNPe6zmeg/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbwN_tWVCdMd34ErxgSQ_ASpX7c_QKw8IXwAhSDZmlSBKPqPb5S3gOgV3_mMDDnbIWM/exec';
   constructor() {
   }
 

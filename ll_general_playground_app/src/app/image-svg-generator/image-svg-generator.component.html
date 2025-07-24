@@ -8,7 +8,7 @@
             <button (click)="toHome()" class="ll_button"> Back </button> 
         </div>
         @if(loading==='loading') {
-            <div class="loading">Loading...</div>
+            <div class="loading"></div>
           } @else if(loading==='done'){
             <textarea [(ngModel)]="svgCode" rows="5" cols="50"></textarea>
             <div [innerHTML]="safeSvg"></div>

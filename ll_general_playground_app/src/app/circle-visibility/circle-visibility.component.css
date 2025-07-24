@@ -6,7 +6,7 @@
 .game_area .svg_canvas {
     background-color: var(--ll-nim-canvas-color);
     width: calc(var(--window-width) - 10px);
-    height: calc(var(--window-height) - 10px);
+    height: calc(var(--window-width) - 10px);
 
 }
 
@@ -30,14 +30,14 @@
     gap: 10px;
   }
 
-.particle_label {
+.radius_label {
     color:white;
 }
 .ll_button.selected {
   background-color:#0049b4;
 }
 
-.particle_container {
+.radius_container {
     padding-top: 5px;
     display: grid;
     grid-template-columns: auto auto;
@@ -45,9 +45,11 @@
     padding: 10px;
   }
 
+
+
+
 .circle-line {
     stroke: var(--ll-nim-line-color);
     stroke-width: 2;   
 }
-
 

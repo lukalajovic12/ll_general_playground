@@ -27,7 +27,7 @@
 
     <div class="card_list" id="pdf-content">
       @if(loading) {
-        <div class="loading">Loading...</div>
+        <div class="loading"></div>
       } @else {
         @for(cardUrl of displayList();track cardUrl) {
           <div class="card_container" >

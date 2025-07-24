@@ -17,8 +17,8 @@
   
     </div>
 
-    <div class="particle_container">    
-        <div class="particle_label">r: {{r}}</div>
+    <div class="radius_container">    
+        <div class="radius_label">r: {{r}}</div>
         <input id="m" type="range" min="10" max="200" [(ngModel)]="r" (change)="updateSelected()" />  
     </div>
 
@@ -33,9 +33,10 @@
     @for(l of lines;track i; let i = $index){
         <line class="circle-line"  [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" 
         [attr.y2]="l.y2"
-        />      
-            
+        />         
     }
+
+
     </svg>
     
 

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AreaBase } from '../area-base';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,7 @@ interface Line {
   templateUrl: './circle-visibility.component.html',
   styleUrl: './circle-visibility.component.css'
 })
-export class CircleVisibilityComponent extends AreaBase implements AfterViewInit {
+export class CircleVisibilityComponent extends AreaBase {
 
   protected r = 50;
 
@@ -37,21 +37,6 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
 
   @ViewChild('svgCanvas', { static: false }) svgCanvas!: ElementRef<SVGSVGElement>;
 
-  ngAfterViewInit() {
-    /*
-    this.circles = [];
-
-    this.circles.push({ x: 200, y: 200, r: 75 ,choosen:true});
-    this.circles.push({ x: 500, y: 50, r: 10 ,choosen:false});
-
-    this.circles.push({ x: 100, y: 500, r: 10 ,choosen:false});
-    this.circles.push({ x: 500, y: 500, r: 10 ,choosen:false});
-
-    this.circles.push({ x: 100, y: 50, r: 20 ,choosen:false});
-    this.selectedIndex = 0;
-    this.calculateLines();
-  */
-  }
 
   private calculateDistance(c1: Circle, c2: Circle): number {
     return Math.sqrt((c1.x - c2.x) ** 2 + (c1.y - c2.y) ** 2);
@@ -64,92 +49,120 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
     return Math.atan(y/x);
   }
 
-
-
   private calculateLine(c1:Circle,c2:Circle):void {
-    let alfa = Math.acos(((Math.abs(c1.r-c2.r)))/this.calculateDistance(c1,c2));
-    let beta = Math.PI-alfa;
-    let gama = this.calculateDotProductAngle(c1,c2);
-    let delta = gama - alfa;
-    let direction=1;
-
-    if(c2.x<c1.x && c1.y<c2.y ) {
-      direction=-1;
-    }
-
-
     let c1Angle=this.calculateAngel(c1.x,c1.y);
     let c2Angle=this.calculateAngel(c2.x,c2.y);
-    let x1 = c1.x+c1.r*Math.cos(c1Angle+delta*direction);
-    let y1 = c1.y+c1.r*Math.sin(c1Angle+delta*direction);
+    const alfa = Math.acos(((Math.abs(c1.r-c2.r)))/this.calculateDistance(c1,c2));
+    const beta = Math.PI-alfa;
+    let gama = this.calculateDotProductAngle(c1,c2);
+    if(c1Angle<c2Angle){
+      gama = 2*Math.PI-gama;
+    }
+    
+    const psi = gama + alfa+c1Angle-Math.PI;
+    let x1 = c1.x+c1.r*Math.cos(psi);
+    let y1 = c1.y+c1.r*Math.sin(psi);
     let epsilon = this.calculateDotProductAngle(c2,c1);
-    let zeta=beta-epsilon;
 
-    let x2 = c2.x+c2.r*Math.cos(c2Angle+zeta*direction);
-    let y2 = c2.y+c2.r*Math.sin(c2Angle+zeta*direction);
+    if(c1Angle<c2Angle){
+      epsilon = 2*Math.PI-epsilon;
+    }
+
+    const lambda = Math.PI-(epsilon+beta-c2Angle);
+    let x2 = c2.x+c2.r*Math.cos( lambda );
+    let y2 = c2.y+c2.r*Math.sin( lambda );
 
     let line1:Line ={x1:x1,y1:y1,x2:x2,y2:y2};
     this.lines.push(line1);
+ 
+    const psi2 = gama - alfa+c1Angle-Math.PI;
+
+    let xx1 = c1.x+c1.r*Math.cos(psi2);
+    let yy1 = c1.y+c1.r*Math.sin(psi2);
 
 
-    
-
-    let eta = gama+alfa;
-
-    let theta = beta+epsilon;
-
-    let xx1 = c1.x+c1.r*Math.cos(c1Angle+eta*direction);
-    let yy1 = c1.y+c1.r*Math.sin(c1Angle+eta*direction);
-    let xx2 = c2.x+c2.r*Math.cos(c2Angle-theta*direction);
-    let yy2 = c2.y+c2.r*Math.sin(c2Angle-theta*direction);
+    const lambda2 = Math.PI-(epsilon-beta-c2Angle);
+    let xx2 = c2.x+c2.r*Math.cos(lambda2);
+    let yy2 = c2.y+c2.r*Math.sin(lambda2);
 
     let line2:Line ={x1:xx1,y1:yy1,x2:xx2,y2:yy2};
     this.lines.push(line2);
-    
-
-
-
-    let line3:Line ={x1:c1.x,y1:c1.y,x2:x1,y2:y1};
-    let line4:Line ={x1:c1.x,y1:c1.y,x2:xx1,y2:yy1};
-    let line5:Line ={x1:c2.x,y1:c2.y,x2:x2,y2:y2};
-    let line6:Line ={x1:c2.x,y1:c2.y,x2:xx2,y2:yy2};
-
-    this.lines.push(line3);
-    this.lines.push(line4);
-    this.lines.push(line5);
-    this.lines.push(line6);
-
-    let line7:Line ={x1:c1.x,y1:c1.y,x2:c2.x,y2:c2.y};
-
-    this.lines.push(line7);
-    
 
   }
 
+ 
+  private calculateLine2(c1:Circle,c2:Circle):void {
+    let c1Angle=this.calculateAngel(c1.x,c1.y);
+    let c2Angle=this.calculateAngel(c2.x,c2.y);
+    const alfa = Math.acos(((Math.abs(c1.r+c2.r)))/this.calculateDistance(c1,c2));
+    let gama = this.calculateDotProductAngle(c1,c2);
+    if(c1Angle<c2Angle){
+      gama = 2*Math.PI-gama;
+    }
+    
+    const psi = gama + alfa+c1Angle-Math.PI;
+    let x1 = c1.x+c1.r*Math.cos(psi);
+    let y1 = c1.y+c1.r*Math.sin(psi);
+    let epsilon = this.calculateDotProductAngle(c2,c1);
+
+    if(c1Angle<c2Angle){
+      epsilon = 2*Math.PI-epsilon;
+    }
+
+    const lambda = Math.PI-(epsilon+alfa-c2Angle);
+    let x2 = c2.x+c2.r*Math.cos( lambda );
+    let y2 = c2.y+c2.r*Math.sin( lambda );
+
+ 
+    const psi2 = gama - alfa+c1Angle-Math.PI;
+
+    let xx1 = c1.x+c1.r*Math.cos(psi2);
+    let yy1 = c1.y+c1.r*Math.sin(psi2);
+
+
+    const lambda2 = Math.PI-(epsilon-alfa-c2Angle);
+    let xx2 = c2.x+c2.r*Math.cos(lambda2);
+    let yy2 = c2.y+c2.r*Math.sin(lambda2);
+
+
+    let line1:Line ={x1:x1,y1:y1,x2:xx2,y2:yy2};
+    this.lines.push(line1);
+
+    let line2:Line ={x1:xx1,y1:yy1,x2:x2,y2:y2};
+    this.lines.push(line2);
+
+  }
+
+
   private calculatingLines(c1:Circle,c2:Circle):void {
-    if(c1.r<c2.r) {
+    if(c1.r>c2.r) {
       this.calculateLine(c1,c2);
     } else {
       this.calculateLine(c2,c1);
     }
+    this.calculateLine2(c2,c1);
   }
 
   private calculateLines():void {
     this.lines = [];
     if(this.selectedIndex !== -1 && this.circles.length > 1) {
-      for (let i = 0; i < this.circles.length; i++) {
-        if (i !== this.selectedIndex) {
-          this.calculatingLines(this.circles[this.selectedIndex], this.circles[i]);
-        }
-      }
+
+
+
+      
+
+      let sortedlines =  this.circles.filter((c,index)=>index!=this.selectedIndex)
+      .sort( (l1,l2) => this.calculateDistance(this.circles[this.selectedIndex],l1)-this.calculateDistance(this.circles[this.selectedIndex],l2));
+      sortedlines.forEach(l=>this.calculatingLines(this.circles[this.selectedIndex],l));
 
     }
   }
 
   private calculateDotProductAngle(c1:Circle,c2:Circle){
     let dotProductUpper= c1.x*(c1.x-c2.x)+c1.y*(c1.y-c2.y);
-    let dotProductLowwer=Math.sqrt(c1.x**2+c1.y**2)*this.calculateDistance(c1,c2);
-    return Math.acos(dotProductUpper/dotProductLowwer);
+    let dotProductLower=Math.sqrt(c1.x**2+c1.y**2)*Math.sqrt((c1.x-c2.x)**2+(c1.y-c2.y)**2);
+    return Math.acos(dotProductUpper/dotProductLower);
+    
   }
 
 
@@ -162,7 +175,8 @@ export class CircleVisibilityComponent extends AreaBase implements AfterViewInit
   }
 
   protected addCircle() {
-    this.circles.push({ x: 100, y: 100, r: this.r ,choosen:false});
+    this.r=50;
+    this.circles.push({ x: 300, y: 300, r: this.r ,choosen:false});
     this.selectedIndex=this.circles.length-1;
     this.updateSelection();
     this.calculateLines();

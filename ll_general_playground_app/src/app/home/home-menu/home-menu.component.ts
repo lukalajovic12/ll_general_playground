@@ -28,6 +28,10 @@ export class HomeMenuComponent {
     this.router.navigate(['/menu'], { queryParams: { language: 'eng_srb' } });
   }
 
+  protected toNep = () => {
+    this.router.navigate(['/menu'], { queryParams: { language: 'eng_nep' } });
+  } 
+
   protected toNim = () => {
     this.router.navigate(['/nim']);
   }

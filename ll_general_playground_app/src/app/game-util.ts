@@ -21,10 +21,10 @@ import { lastValueFrom } from 'rxjs';
     anwsered:QuizObject
   }
 
-  export const languages = {'eng_slo':['eng','sl'],'eng_it':['eng','it'],'eng_de':['eng','de'],'eng_srb':['eng','sr'],};
+  export const languages = {'eng_slo':['eng','sl'],'eng_it':['eng','it'],'eng_de':['eng','de'],'eng_srb':['eng','sr'],'eng_nep':['eng','ne'],};
   export const languagesTitle = {'sl':'Learning slovenian',
      'de':'learning german',
-     'it':'learning italian','sr':'learning serbian'};
+     'it':'learning italian','sr':'learning serbian','ne':'learning nepelese'};
 
 
 

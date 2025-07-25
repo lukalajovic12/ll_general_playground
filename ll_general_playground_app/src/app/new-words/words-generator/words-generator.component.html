@@ -9,7 +9,7 @@
         <h1>Generator</h1>
         <div class="number_of_words">
           <div class="ll_value">Anwsers: {{numberOfWords}}</div>
-          <input id="time" type="range" min="2" max="5" [(ngModel)]="numberOfWords" /> 
+          <input id="wordCount" type="range" min="2" max="50" [(ngModel)]="numberOfWords" /> 
         </div>
         <h2> {{displayWords()}}  </h2>
         <textarea [(ngModel)]="prompt" rows="5" cols="50"></textarea>

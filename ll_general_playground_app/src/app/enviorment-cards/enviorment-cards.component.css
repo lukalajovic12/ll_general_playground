@@ -1,7 +1,6 @@
 
 
 .title {
-    color:var(--ll-text-color);
     font-size: 24px;
 }
 .enviorment_container {
@@ -9,13 +8,18 @@
     gap: 40px;
 }
 
-.card-image {
+.card-info {
+    display: flex;
+    gap: 4px;
+}
+
+.svg-image {
     width: calc(var(--enviorment-width));    
     height: calc(var(--enviorment-height));
 }
 
-.size_label {
-   color:var(--ll-text-color);
+i {
+    font-size: 24px;
 }
 
 .size_container {

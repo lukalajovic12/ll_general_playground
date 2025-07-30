@@ -20,8 +20,8 @@ export class CardsListComponent {
   @Input() public sheetName = '';
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
-  public widthCard: number = 150;
-  public heightCard: number = 230;
+  public widthCard: number = 200;
+  public heightCard: number = 235;
 
   public roundCorners = false;
 
@@ -37,7 +37,7 @@ export class CardsListComponent {
   protected page = 0;
 
   protected plus1() {
-    if (this.page * this.columns * this.rows < Math.floor(this.count() / (this.columns * this.rows))) {
+    if (this.page+1 < Math.floor(this.count() / (this.columns * this.rows))) {
       this.page++;
     } else {
       this.page = 0; // Reset to the first page if it exceeds the count
@@ -100,8 +100,7 @@ export class CardsListComponent {
       });
       const imgHeight = canvas.height * imgWidth / canvas.width;
       const contentDataURL = canvas.toDataURL('image/png');
-      let position = 10;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
       if (i < totalPages - 1) {
         pdf.addPage();
       }

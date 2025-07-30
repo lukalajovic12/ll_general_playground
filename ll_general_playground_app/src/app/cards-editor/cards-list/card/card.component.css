@@ -1,49 +1,60 @@
 .card {
-    width: calc(var(--card-width));    
-    height: calc(var(--card-height));
-    border: 1px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5px;
-    background-color: var(--ll-background-color);
-    transition: box-shadow 0.3s ease;
-    text-align: center;
-    display: block;
-    gap: 2px;
-  }
+  width: calc(var(--card-width));    
+  height: calc(var(--card-height));
+  border: 1px solid black;
+  padding: 5px;
+  background-color: var(--ll-background-color);
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+  display: block;
+  gap: 0;
+}
 
 .card.round-corners {
   border-radius: 16px;    
 }
   
-  .card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
   
 .card-title {
-    font-size: 16px;
-    font-weight: 600;
-  }
+  font-size: 16px;
+  font-weight: 600;
+}
   
 .card-description {
   font-size: 14px;
 }
 
 .card-image {
-    height: 100px;
-    width: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 .mother_nature {
-    color:white;
-    background-color: green;
+  color:white;
+  background-color: green;
+}
+
+.mother_nature div{
+  color:white;
 }
 
 .genes{
-    color:black;
-    background-color: yellow;
+  color:black;
+  background-color: yellow;
 }
 
-.genetic_engineering {
-    color:white;
-    background-color: blue;
+.genes div {
+  color:black;
+}
+
+.science {
+  color:white;
+  background-color: blue;
+}
+
+.science div {
+  color:white;
 }

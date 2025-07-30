@@ -25,19 +25,16 @@
 }
 
 .time {
-    color:var(--ll-text-color);
     font-size: 18px;
 }
 
 .question {
-    color:var(--ll-text-color);
     font-size: 18px;
 }
 
 .ll_value {
     font-size: 18px;
     padding: 5px;
-    color:var(--ll-text-color);
 }
 
 .ll_button.quiz_button {

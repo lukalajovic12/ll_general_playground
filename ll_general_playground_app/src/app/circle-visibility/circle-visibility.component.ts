@@ -17,6 +17,19 @@ interface Line {
   y2:number
 }
 
+interface Polygon {
+  x1:number,
+  y1:number,
+  x2:number,
+  y2:number,
+  xx1:number,
+  yy1:number,
+  xx2:number,
+  yy2:number  
+}
+
+
+
 @Component({
   selector: 'app-circle-visibility',
   standalone: true,
@@ -31,6 +44,9 @@ export class CircleVisibilityComponent extends AreaBase {
   private selectedIndex = -1;
 
   protected circles: Circle[] = [];
+
+  protected polygons: Polygon[] = [];
+
   protected lines: Line[] = [];
 
   private mouseDown = false;
@@ -73,7 +89,7 @@ export class CircleVisibilityComponent extends AreaBase {
     let y2 = c2.y+c2.r*Math.sin( lambda );
 
     let line1:Line ={x1:x1,y1:y1,x2:x2,y2:y2};
-    this.lines.push(line1);
+   // this.lines.push(line1);
  
     const psi2 = gama - alfa+c1Angle-Math.PI;
 
@@ -86,8 +102,38 @@ export class CircleVisibilityComponent extends AreaBase {
     let yy2 = c2.y+c2.r*Math.sin(lambda2);
 
     let line2:Line ={x1:xx1,y1:yy1,x2:xx2,y2:yy2};
-    this.lines.push(line2);
+   // this.lines.push(line2);
 
+
+   this.polygons.push({
+    x1:x1,
+    y1:y1,
+    x2:x2,
+    y2:y2,
+    xx1:xx1,
+    yy1:yy1,
+    xx2:xx2,
+    yy2:yy2});  
+
+  }
+
+
+  protected showPoints(p:Polygon):number[] {
+
+    return [    
+      p.x1,
+      p.y1,
+
+      p.x2,
+      p.y2,
+
+      p.xx2,
+      p.yy2,
+
+      p.xx1,
+      p.yy1,
+
+    ];
   }
 
  
@@ -131,6 +177,9 @@ export class CircleVisibilityComponent extends AreaBase {
     let line2:Line ={x1:xx1,y1:yy1,x2:x2,y2:y2};
     this.lines.push(line2);
 
+
+
+
   }
 
 
@@ -140,21 +189,16 @@ export class CircleVisibilityComponent extends AreaBase {
     } else {
       this.calculateLine(c2,c1);
     }
-    this.calculateLine2(c2,c1);
+ //   this.calculateLine2(c2,c1);
   }
 
   private calculateLines():void {
     this.lines = [];
+    this.polygons = [];
     if(this.selectedIndex !== -1 && this.circles.length > 1) {
-
-
-
-      
-
       let sortedlines =  this.circles.filter((c,index)=>index!=this.selectedIndex)
       .sort( (l1,l2) => this.calculateDistance(this.circles[this.selectedIndex],l1)-this.calculateDistance(this.circles[this.selectedIndex],l2));
       sortedlines.forEach(l=>this.calculatingLines(this.circles[this.selectedIndex],l));
-
     }
   }
 

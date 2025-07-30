@@ -18,20 +18,27 @@
       <div></div>
       <div></div>
 
-        <div class="rows_label">Page: {{page}}</div>
+        <div class="rows_label">Page: {{page+1}}</div>
         <button (click)="plus1()" class="ll_button">plus 1</button>
         <button (click)="minus1()" class="ll_button">minus 1</button>
 
 <div></div>
   </div>
-
     <div class="card_list" id="pdf-content">
       @if(loading) {
         <div class="loading"></div>
       } @else {
         @for(cardUrl of displayList();track cardUrl) {
           <div class="card_container" >
-            <img class="card-image" [src]="cardUrl" />
+            <div class="card-info"> 
+              @if(cardUrl.temperature < 0) {<i class="fa fa-snowflake"></i> }  
+              @if(cardUrl.temperature === -2) {<i class="fa fa-snowflake"></i> }  
+              @if(cardUrl.temperature > 0) {<i class="fa fa-sun"></i> }  
+              @if(cardUrl.temperature === 2) {<i class="fa fa-sun"></i> }  
+            </div>
+            <svg class="svg-image">
+            <image class="card-image" [attr.href]="cardUrl.url" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"  />
+            </svg>
           <div>
           </div> 
           </div>

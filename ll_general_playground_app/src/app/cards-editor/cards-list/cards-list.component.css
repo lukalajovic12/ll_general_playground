@@ -1,6 +1,6 @@
 .card_list {
     padding-top: 10px;    
-    padding-bottom: 10px; 
+    padding-bottom: 100px; 
      
     padding-left: 10px;    
     padding-right: 10px; 
@@ -43,14 +43,6 @@
     display: grid;
     grid-template-columns: auto;
     gap: 1px;
-}
-
-.rows_label {
-    color:var(--ll-text-color);
-}
-
-.columns_label {
-    color:var(--ll-text-color);
 }
 
 .rows_container {

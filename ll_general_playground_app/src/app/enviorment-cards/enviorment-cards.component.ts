@@ -5,6 +5,13 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+
+interface EnviormentalData {
+  url:string;
+  temperature:number;
+}
+
 @Component({
   selector: 'app-enviorment-cards',
   standalone: true,
@@ -18,7 +25,7 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
 
    protected loading = true;
  
-   protected cardUrls:string[]=[];
+   protected cardUrls:EnviormentalData[]=[];
 
     protected rows = 3;
 
@@ -28,7 +35,7 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
     protected widthEnviorment: number = 700;  
 
     @HostBinding('style.--enviorment-height.px')
-    protected heightEnviorment: number = 700;
+    protected heightEnviorment: number = 300;
 
    constructor(
    private sheetsEnviormentCardsService: SheetsEnviormentCardsService) {
@@ -41,22 +48,22 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      this.cardUrls = [];
      const cards:EnviormentalCard[] = await this.sheetsEnviormentCardsService.loadCards();
      cards.forEach(card => {
-      this.cardUrls.push(this.cardUrl(card));
+      this.cardUrls.push({url:this.cardUrl(card), temperature:card.temperature});
      });
      this.loading=false;
    }
 
-  protected displayList():string[] {
+  protected displayList():EnviormentalData[] {
        return this.cardUrls.slice(this.page * this.rows, (this.page + 1) * this.rows);
      }
    
 
 
    protected plus1(){
-    if (this.page *  this.rows < this.cardUrls.length-1) {
+    if ((this.page+1) *  this.rows < this.cardUrls.length) {
         this.page++;
     } else {
-      this.page = 0; // Reset to the first page if it exceeds the count
+      this.page = 0;
     }
   }
 
@@ -72,7 +79,7 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
    ngOnDestroy() {
     this.cardUrls.forEach(imageUrl => {
       if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
+        URL.revokeObjectURL(imageUrl.url);
       }
      });
 

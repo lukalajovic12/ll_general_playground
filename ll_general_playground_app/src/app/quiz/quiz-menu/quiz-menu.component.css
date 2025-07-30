@@ -10,7 +10,6 @@
 .ll_value {
     font-size: 18px;
     padding: 1px;
-    color:var(--ll-text-color);
 }
 
 .data_settings {
@@ -25,12 +24,4 @@
     grid-template-columns: auto auto auto;
     gap: 10px;
     padding: 10px;
-}
-
-.source_language {
-    color:var(--ll-text-color);
-}
-
-.target_language {
-    color:var(--ll-text-color);
 }

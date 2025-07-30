@@ -17,9 +17,8 @@ textarea {
     grid-template-columns: auto auto;
     gap: 10px;
     padding: 10px;
-  }
+}
 
 .title {
     font-size:24px;
-    color:var(--ll-text-color);
   }  

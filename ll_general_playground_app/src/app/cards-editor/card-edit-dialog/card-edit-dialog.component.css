@@ -29,12 +29,28 @@ dialog.genes .ll_button {
     background-color: yellow;
     border: 1px solid black;  
 }
-dialog.genetic_engineering {
+dialog.science {
     color:white;
     background-color: blue;
 }
-dialog.genetic_engineering .ll_button {
+dialog.science .ll_button {
     color:white;
     background-color: blue;
     border: 1px solid white;  
+}
+
+.genes {
+    color:black;
+    background-color: yellow;
+}
+
+.genes div {
+    color:black;
+}
+.science {
+    color:white;
+    background-color: blue;
+}
+.science div {
+    color:white;
 }

@@ -1,7 +1,6 @@
 @import "../../../styles.css";
 
 .question {
-    color:var(--ll-text-color);
     font-size: 18px;
     padding-bottom: 10px;
     padding-top: 20px;
@@ -13,13 +12,11 @@
 }
 
 .correct_left {
-    color:var(--ll-text-color);
     font-size: 18px;
     padding-right: 20px;
 }
 
 .correct_right {
-    color:var(--ll-text-color);
     font-size: 18px;
 }
 
@@ -28,7 +25,6 @@
 }
 
 .anwsered_left {
-    color:var(--ll-text-color);
     font-size: 18px;
     padding-right: 62px;
 }
@@ -36,8 +32,6 @@
 
 .anwsered_right {
     font-size: 18px;
-    color:var(--ll-text-color);
-
 }
 
 .anwsered.correct {

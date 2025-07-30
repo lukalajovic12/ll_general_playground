@@ -25,6 +25,13 @@
     <svg #svgCanvas class="svg_canvas"
         (mousedown)="onCanvasClick($event)" (mousemove)="onCanvasClickMove($event)"  (mouseup)="up()"
         (touchstart)="onCanvasTouch($event)" (touchmove)="onCanvasTouchMove($event)" (touchend)="up()">
+
+    @for(p of polygons;track i; let i = $index){
+          <polygon class="circle-line"  [attr.points]="showPoints(p)" style="fill:lime;stroke:lime;stroke-width:1"
+          />         
+      }
+
+
     @for(c of circles;track i; let i = $index){
         <circle class="game_circle" [attr.cx]="c.x" [attr.cy]="c.y"
             [attr.r]="c.r"

@@ -59,6 +59,10 @@ body {
     transform: translateY(4px);
 }
 
+h1, h2, table, div, label {
+    color:var(--ll-text-color);
+}
+
 dialog {
     border: solid 1px #ccc;
     border-radius: 5px;

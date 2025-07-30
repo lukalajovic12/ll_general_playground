@@ -1,11 +1,11 @@
 @if(showAll) {
     <div class="rows_container">
         <div class="columns_label">Columns: {{columns}}</div>
-        <input id="columns" type="range" min="1" max="4" [(ngModel)]="columns" /> 
+        <input id="columns" type="range" min="1" max="6" [(ngModel)]="columns" /> 
         <div class="rows_label">Rows: {{rows}}</div>
-        <input id="rows" type="range" min="1" max="5" [(ngModel)]="rows" /> 
+        <input id="rows" type="range" min="1" max="6" [(ngModel)]="rows" /> 
 
-        <div class="rows_label">Page: {{page}}</div>
+        <div class="rows_label">Page: {{page+1}}</div>
         <button (click)="plus1()" class="ll_button">plus 1</button>
         <button (click)="minus1()" class="ll_button">minus 1</button>
         

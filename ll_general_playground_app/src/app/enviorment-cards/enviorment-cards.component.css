@@ -19,7 +19,18 @@
 }
 
 i {
+    transform: translate(5px, 25px);
     font-size: 24px;
+}
+
+.fa-snowflake {
+    color:white;
+    background-color: black;
+}
+
+.fa-sun {
+    color: yellow;
+    background-color: black;
 }
 
 .size_container {
@@ -29,3 +40,19 @@ i {
     gap: 10px;
     padding: 10px;
   }
+
+.line {
+    stroke: black;
+    stroke-width: 1;   
+}
+
+.circle {
+    fill:white;
+    stroke: black;
+    stroke-width: 1;   
+}
+
+.line-number {
+    fill:black;
+    font-size:18;
+}

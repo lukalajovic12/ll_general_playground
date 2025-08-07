@@ -31,6 +31,9 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
 
   protected page = 0;
 
+
+  protected populationLimit=15;
+
     @HostBinding('style.--enviorment-width.px')
     protected widthEnviorment: number = 700;  
 
@@ -131,6 +134,15 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  protected lines(): number[] {
+    let num: number[] = [];
+    for (let i = 0; i < this.populationLimit; i++) {
+      num.push(i+1);
+    }
+    return num;
+  }
+
 
 
    }

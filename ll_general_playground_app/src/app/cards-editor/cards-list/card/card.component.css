@@ -41,12 +41,21 @@
   color:white;
 }
 
-.genes{
+.permament_genes{
   color:black;
   background-color: yellow;
 }
 
-.genes div {
+.permament_genes div {
+  color:black;
+}
+
+.one_time_genes{
+  color:black;
+  background-color: orange;
+}
+
+.one_time_genes div {
   color:black;
 }
 
@@ -57,4 +66,13 @@
 
 .science div {
   color:white;
+}
+
+.primary {
+  color:black;
+  background-color: white;
+}
+
+.primary div {
+  color:black;
 }

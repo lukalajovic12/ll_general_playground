@@ -27,7 +27,7 @@ export class CardsEditorComponent extends AreaBase {
   public cards: { [key: string]: Card[]; } = {};
 
 
-  protected sheetName='genes';
+  protected sheetName='permament_genes';
 
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
@@ -94,10 +94,18 @@ export class CardsEditorComponent extends AreaBase {
     this.sheetName=sheetName;
     this.loading=true;
 
-    if(!Object.keys(this.cards).includes(sheetName)) {
+    if(!Object.keys(this.cards).includes(this.sheetName)) {
       this.cards[this.sheetName] = await this.sheetsCardsService.loadCards(this.sheetName);
     } 
     this.loading=false;
   }
+
+  protected async reload():Promise<void> {
+    this.loading=true;
+    this.cards[this.sheetName] = await this.sheetsCardsService.loadCards(this.sheetName);
+    this.loading=false;
+  }
+
+  
 
 }

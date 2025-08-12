@@ -20,15 +20,29 @@ dialog.mother_nature .ll_button {
     background-color: green;
     border: 1px solid white;  
 }
-dialog.genes {
+
+
+dialog.permament_genes {
     color:black;
     background-color: yellow;
 }
-dialog.genes .ll_button {
+dialog.permament_genes .ll_button {
     color: black;
     background-color: yellow;
     border: 1px solid black;  
 }
+
+dialog.one_time_genes {
+    color:black;
+    background-color: orange;
+}
+dialog.one_time_genes .ll_button {
+    color: black;
+    background-color: orange;
+    border: 1px solid black;  
+}
+
+
 dialog.science {
     color:white;
     background-color: blue;
@@ -39,13 +53,22 @@ dialog.science .ll_button {
     border: 1px solid white;  
 }
 
-.genes {
+.permament_genes {
     color:black;
     background-color: yellow;
 }
 
-.genes div {
+.permament_genes div {
     color:black;
+}
+
+.one_time_genes {
+    color:black;
+    background-color: orange;
+}
+
+.one_time_genes div {
+    color:orange;
 }
 .science {
     color:white;
@@ -53,4 +76,24 @@ dialog.science .ll_button {
 }
 .science div {
     color:white;
+}
+
+dialog.primary {
+    color:black;
+    background-color: white;
+}
+dialog.science .ll_button {
+    color:black;
+    background-color: white;
+    border: 1px solid black;  
+}
+
+
+.primary {
+    color:black;
+    background-color: white;
+}
+
+.primary div {
+    color:black;
 }

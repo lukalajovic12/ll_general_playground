@@ -4,9 +4,12 @@
     <h2>Cards</h2>
     <div class="buttons_container">
       <button (click)="toHome()" class="ll_button"> Back </button>      
-      <button class="ll_button" (click)="changeSheet('genes')" [class.selected]="sheetName === 'genes'">Genes </button>
+      <button class="ll_button" (click)="changeSheet('permament_genes')" [class.selected]="sheetName === 'permament_genes'">Permament Genes </button>
+      <button class="ll_button" (click)="changeSheet('one_time_genes')" [class.selected]="sheetName === 'one_time_genes'">One Time genes </button>
       <button class="ll_button" (click)="changeSheet('mother_nature')" [class.selected]="sheetName === 'mother_nature'">Mother nature </button>
       <button class="ll_button" (click)="changeSheet('science')" [class.selected]="sheetName === 'science'">Science </button>
+      <button class="ll_button" (click)="changeSheet('primary')" [class.selected]="sheetName === 'primary'">Primary </button>
+      <button class="ll_button" (click)="reload()" >Reload </button>
     </div>  
     @if(loading) {
     <div class="loading"></div>

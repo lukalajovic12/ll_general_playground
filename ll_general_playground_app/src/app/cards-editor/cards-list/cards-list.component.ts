@@ -106,7 +106,7 @@ export class CardsListComponent {
       }
     }
     await this.delay(500);
-    pdf.save('exported-content.pdf');
+    pdf.save(this.sheetName+'.pdf');
   }
 
   protected cardCount(card: Card): number[] {

@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 interface EnviormentalData {
   url:string;
   temperature:number;
+  capacity:number;
 }
 
 @Component({
@@ -31,9 +32,6 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
 
   protected page = 0;
 
-
-  protected populationLimit=15;
-
     @HostBinding('style.--enviorment-width.px')
     protected widthEnviorment: number = 700;  
 
@@ -51,16 +49,19 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      this.cardUrls = [];
      const cards:EnviormentalCard[] = await this.sheetsEnviormentCardsService.loadCards();
      cards.forEach(card => {
-      this.cardUrls.push({url:this.cardUrl(card), temperature:card.temperature});
+      this.cardUrls.push({url:this.cardUrl(card), temperature:card.temperature,capacity:card.capacity});
      });
      this.loading=false;
    }
 
   protected displayList():EnviormentalData[] {
        return this.cardUrls.slice(this.page * this.rows, (this.page + 1) * this.rows);
-     }
+  }
    
-
+  calculateWidth(card:EnviormentalData) {
+    const maxCapacity = Math.max(...this.cardUrls.map(o => o.capacity));
+    return card.capacity*this.widthEnviorment/maxCapacity;
+  }
 
    protected plus1(){
     if ((this.page+1) *  this.rows < this.cardUrls.length) {
@@ -128,21 +129,19 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
       }
     }
     await this.delay(500);
-    pdf.save('exported-content.pdf');
+    pdf.save('enviorments.pdf');
   }
 
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  protected lines(): number[] {
+  protected lines(card:EnviormentalData): number[] {
     let num: number[] = [];
-    for (let i = 0; i < this.populationLimit; i++) {
+    for (let i = 0; i < card.capacity; i++) {
       num.push(i+1);
     }
     return num;
   }
 
-
-
-   }
+}

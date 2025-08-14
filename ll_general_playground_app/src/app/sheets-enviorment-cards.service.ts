@@ -8,6 +8,7 @@ export interface EnviormentalCard {
   image_name:string;
   image:string;
   temperature:number;
+  capacity:number;
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export class SheetsEnviormentCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbyTOZtVpVGpyqEag3LQxCzpEEm7YMhZg7FilG8iM96Dl1ZsfdgTuIZbwUUh38vNjesw/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbzmWpDbJSHgi-4iBLQOWss1EShSbCL2Gyk2_aTAfQjeuiFna7L7FTz8Mvs8GSd2RK2k/exec';
   constructor() {
   }
 

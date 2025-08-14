@@ -97,3 +97,13 @@ dialog.science .ll_button {
 .primary div {
     color:black;
 }
+
+dialog.primary {
+    color:black;
+    background-color: white;
+}
+dialog.primary .ll_button {
+    color:black;
+    background-color: white;
+    border: 1px solid black;  
+}

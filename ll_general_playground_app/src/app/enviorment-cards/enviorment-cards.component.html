@@ -26,37 +26,25 @@
   </div>
     <div class="card_list" id="pdf-content">
       @if(loading) {
-        <svg class="svg-image">
-          @for(l of lines();track l){
-            <line class="line"  [attr.x1]="widthEnviorment*l/populationLimit" [attr.x2]="widthEnviorment*l/populationLimit" [attr.y1]="0" 
-            [attr.y2]="heightEnviorment"
-            />  
-            <circle class="circle" r="15" [attr.cx]="widthEnviorment*(l-1)/populationLimit+15" [attr.cy]="heightEnviorment-15"  />
-            <text class="line-number" [attr.x]="widthEnviorment*(l-1)/populationLimit+10" [attr.y]="heightEnviorment-10">{{l}}</text>
-          }
-          </svg>
-
-
-
         <div class="loading"></div>
       } @else {
-        @for(cardUrl of displayList();track cardUrl) {
-          <div class="card_container" >
+        @for(card of displayList();track card) {
+          <div class="card_container" [class.temperature_zero]="card.temperature === 0">
             <div class="card-info"> 
-              @if(cardUrl.temperature < 0) {<i class="fa fa-snowflake"></i> }  
-              @if(cardUrl.temperature === -2) {<i class="fa fa-snowflake"></i> }  
-              @if(cardUrl.temperature > 0) {<i class="fa fa-sun"></i> }  
-              @if(cardUrl.temperature === 2) {<i class="fa fa-sun"></i> }  
+              @if(card.temperature < 0) {<i class="fa fa-snowflake"></i> }  
+              @if(card.temperature === -2) {<i class="fa fa-snowflake"></i> }  
+              @if(card.temperature > 0) {<i class="fa fa-sun"></i> }  
+              @if(card.temperature === 2) {<i class="fa fa-sun"></i> }  
             </div>
-            <svg class="svg-image">
-            <image class="card-image" [attr.href]="cardUrl.url" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"  />
+            <svg class="svg-image" [attr.width]="calculateWidth(card)">
+            <image class="card-image" [attr.href]="card.url" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"  />
 
-            @for(l of lines();track l){
-              <line class="line"  [attr.x1]="widthEnviorment*l/populationLimit" [attr.x2]="widthEnviorment*l/populationLimit" [attr.y1]="0" 
+            @for(l of lines(card);track l){
+              <line class="line"  [attr.x1]="calculateWidth(card)*l/card.capacity" [attr.x2]="calculateWidth(card)*l/card.capacity" [attr.y1]="0" 
               [attr.y2]="heightEnviorment"
               />  
-              <circle class="circle" r="15" [attr.cx]="widthEnviorment*(l-1)/populationLimit+15" [attr.cy]="heightEnviorment-15"  />
-              <text class="line-number" [attr.x]="widthEnviorment*(l-1)/populationLimit+10" [attr.y]="heightEnviorment-10">{{l}}</text>
+              <circle class="circle" r="15" [attr.cx]="calculateWidth(card)*(l-1)/card.capacity+15" [attr.cy]="heightEnviorment-15"  />
+              <text class="line-number" [attr.x]="calculateWidth(card)*(l-1)/card.capacity+10" [attr.y]="heightEnviorment-10">{{l}}</text>
             }
             </svg>
           <div>

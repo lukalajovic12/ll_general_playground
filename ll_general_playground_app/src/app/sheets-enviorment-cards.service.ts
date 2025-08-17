@@ -7,7 +7,8 @@ export interface EnviormentalCard {
   description: string;
   image_name:string;
   image:string;
-  temperature:number;
+  heat:number;
+  cold:number;
   capacity:number;
 }
 
@@ -18,7 +19,7 @@ export class SheetsEnviormentCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbzmWpDbJSHgi-4iBLQOWss1EShSbCL2Gyk2_aTAfQjeuiFna7L7FTz8Mvs8GSd2RK2k/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbz_tbTAgqfrWOyL55MVl3I5rzlanBbZrBftZM_Ms2f8KZ6l4djC5elmuik570BfLaRf/exec';
   constructor() {
   }
 

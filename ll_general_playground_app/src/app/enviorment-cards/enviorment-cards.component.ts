@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
 
 interface EnviormentalData {
   url:string;
-  temperature:number;
+  heat:number;
+  cold:number;
   capacity:number;
 }
 
@@ -49,7 +50,7 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      this.cardUrls = [];
      const cards:EnviormentalCard[] = await this.sheetsEnviormentCardsService.loadCards();
      cards.forEach(card => {
-      this.cardUrls.push({url:this.cardUrl(card), temperature:card.temperature,capacity:card.capacity});
+      this.cardUrls.push({url:this.cardUrl(card), heat:card.heat, cold:card.cold,capacity:card.capacity});
      });
      this.loading=false;
    }

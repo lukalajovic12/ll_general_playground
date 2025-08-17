@@ -29,12 +29,12 @@
         <div class="loading"></div>
       } @else {
         @for(card of displayList();track card) {
-          <div class="card_container" [class.temperature_zero]="card.temperature === 0">
+          <div class="card_container" [class.temperature_zero]="card.cold === 0 && card.heat === 0">
             <div class="card-info"> 
-              @if(card.temperature < 0) {<i class="fa fa-snowflake"></i> }  
-              @if(card.temperature === -2) {<i class="fa fa-snowflake"></i> }  
-              @if(card.temperature > 0) {<i class="fa fa-sun"></i> }  
-              @if(card.temperature === 2) {<i class="fa fa-sun"></i> }  
+              @if(card.cold > 0) {<i class="fa fa-snowflake"></i> }  
+              @if(card.cold === 2) {<i class="fa fa-snowflake"></i> }  
+              @if(card.heat > 0) {<i class="fa fa-sun"></i> }  
+              @if(card.heat === 2) {<i class="fa fa-sun"></i> }  
             </div>
             <svg class="svg-image" [attr.width]="calculateWidth(card)">
             <image class="card-image" [attr.href]="card.url" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"  />

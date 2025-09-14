@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GeminiWordGeneratorService, GeneratedWord } from '../../gemini-word-generator.service';
 import { WordEditDialogComponent } from '../word-edit-dialog/word-edit-dialog.component';
-
+import { languageCodes } from '../../game-util';
 @Component({
   selector: 'app-words-generator',
   standalone: true,
@@ -33,11 +33,8 @@ export class WordsGeneratorComponent {
   }
 
   protected displayWords(){
-    if(this.numberOfWords>1){
-      return 'Generate ' + this.numberOfWords +' words about';
-    } else {
-      return 'Generate 1 word about';
-    }
+      return 'Generate ' + this.numberOfWords +'in '+ languageCodes[this.sourceLanguage]+' words about '+this.prompt+' and translate them to '+languageCodes[this.targetLanguage];
+
   }
 
    async ngOnInit(): Promise<void> {

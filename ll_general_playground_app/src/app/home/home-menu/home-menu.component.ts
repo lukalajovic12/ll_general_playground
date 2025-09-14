@@ -25,7 +25,7 @@ export class HomeMenuComponent {
   }
 
   protected toSrb = () => {
-    this.router.navigate(['/menu'], { queryParams: { language: 'eng_srb' } });
+    this.router.navigate(['/menu'], { queryParams: { language: 'de_srb' } });
   }
 
   protected toNep = () => {

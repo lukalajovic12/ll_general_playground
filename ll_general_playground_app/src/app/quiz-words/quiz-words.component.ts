@@ -29,12 +29,9 @@ export class QuizWordsComponent implements OnInit {
     this.sourceLanguage = languages[this.language][0];
     this.targetLanguage = languages[this.language][1];
 
-
-
-
-
-
   }
+
+
 
   async ngOnInit(): Promise<void> {
     let wordsList: Word[] = await this.sheetsWordsService.fetchSheetWords(this.language);

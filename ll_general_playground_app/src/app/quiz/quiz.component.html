@@ -7,7 +7,7 @@
             [startGame]="startGame"
             [(time)]="time"
             [title]="title"
-            [loading]="loading"
+            [loading]="isLoading()"
             />    
         </ng-container>
         <ng-container *ngIf="gameState === 'game'">

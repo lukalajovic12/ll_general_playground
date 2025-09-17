@@ -57,6 +57,12 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     this.loading=false;
   }
 
+
+  isLoading(): boolean {
+    return this.loading || Object.keys(this.quizList).length === 0
+  }
+
+
 /*
   public displaySourceLanguage:() => string = () => {
 

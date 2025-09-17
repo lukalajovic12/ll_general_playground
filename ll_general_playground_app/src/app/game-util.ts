@@ -40,7 +40,7 @@ import { lastValueFrom } from 'rxjs';
      'sl':'slovenian',
      'de':'german',
      'it':'italian',
-     'sr':'lernen',
+     'sr':'serbian in cyrillic',
      'ne':'nepelese'
     };
 

@@ -33,8 +33,7 @@ export class WordsGeneratorComponent {
   }
 
   protected displayWords(){
-      return 'Generate ' + this.numberOfWords +'in '+ languageCodes[this.sourceLanguage]+' words about '+this.prompt+' and translate them to '+languageCodes[this.targetLanguage];
-
+      return 'Generate ' + this.numberOfWords +' words in '+ languageCodes[this.sourceLanguage] + ' and translate them to ' + languageCodes[this.targetLanguage]+'. The words should be about ';
   }
 
    async ngOnInit(): Promise<void> {
@@ -45,7 +44,7 @@ export class WordsGeneratorComponent {
 
   async generateWords() {
     this.loading = true;
-    this.words = await this.geminiWordGeneratorService.generateWords(this.displayWords(),this.prompt,this.sourceLanguage,this.targetLanguage);
+    this.words = await this.geminiWordGeneratorService.generateWords(this.displayWords(),this.prompt);
     this.loading = false;
   }
 

@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { lastValueFrom } from 'rxjs';
-import { translate } from './game-util';
 
 export interface GeneratedWord {
   sourceLanguage: string;
@@ -55,21 +54,28 @@ export class GeminiWordGeneratorService {
     }
   }
 
-  generateSentences
+  
 
-  public async generateWords(prefixPrompt: string, prompt: string, sourceLanguage: string, targetLanguage: string): Promise<GeneratedWord[]> {
+  public async generateWords(prefixPrompt: string, prompt: string): Promise<GeneratedWord[]> {
     await this.fetchSheetKey();
     const genAI = new GoogleGenerativeAI(this.geminiApiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    const result = await model.generateContent(prefixPrompt + ' ' + prompt + ' seperated by commas without spaces in between.');
+    const fullPrompt =prefixPrompt + ' ' + prompt + '. Return the result in a javascript dictionary in the form word:translation,word:translation,... Only return a dictionary.'
+     console.log('fullPrompt: ', fullPrompt);
+    const result = await model.generateContent(fullPrompt);
     const generatedText = result.response.text();
 
-    const words: string[] = generatedText.split(',').filter(word => word.trim() !== '');
+    const startIndex = generatedText.indexOf('{');
+    const endIndex = generatedText.lastIndexOf('}');
+   const dictionaryString = generatedText.substring(startIndex, endIndex+1);
+
+    console.log('Generated text: ', dictionaryString);
+    const dictionary: Record<string, any> = JSON.parse(dictionaryString);
+
     let generatedWords: GeneratedWord[] = [];
 
-    for (let s of words) {
-      let t = await translate(sourceLanguage, targetLanguage, s, this.http);
-      let w: GeneratedWord = { sourceLanguage: s, targetLanguage: t };
+    for (const [word, translation] of Object.entries(dictionary)) {
+      let w: GeneratedWord = { sourceLanguage: word, targetLanguage: translation };
       generatedWords.push(w);
     }
     return generatedWords;

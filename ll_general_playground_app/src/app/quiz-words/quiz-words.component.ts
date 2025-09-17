@@ -42,7 +42,15 @@ export class QuizWordsComponent implements OnInit {
     this.categories = [];
 
     const displayQuestion: (qo: string) => string = (tl: string) => {
-      return "what does " + tl + " mean?";
+      if (this.sourceLanguage === 'eng') {
+        return "What does " + tl + " mean?";
+      } 
+      if (this.sourceLanguage === 'de') {
+        return "Was bedeuted " + tl + "?";
+      } 
+
+
+      return "";
     };
 
     wordsList.forEach(w => {

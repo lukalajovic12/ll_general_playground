@@ -31,9 +31,9 @@
         </button>
         -->
         <div class="ll_value">Anwsers: {{numberOfQuestions}}</div>
-        <input id="numberOfQuestions" type="range" min="2" max="50" [(ngModel)]="numberOfQuestions" /> 
+        <input id="numberOfQuestions" type="range" min="2" max="5" [(ngModel)]="numberOfQuestions" /> 
         <div class="ll_value">Time: {{time}}s</div>
-        <input id="time" type="range" min="2" max="50" [(ngModel)]="time" /> 
+        <input id="time" type="range" min="30" max="150" [(ngModel)]="time" /> 
         <button (click)="startGame()" class="ll_button menu_button" [disabled]="disableStart()">Play </button>             
         <button (click)="toHome()" class="ll_button menu_button"> Back </button>    
     </div>  

@@ -12,6 +12,10 @@ interface EnviormentalData {
   heat:number;
   cold:number;
   capacity:number;
+  water:boolean;
+  mountain:number;
+  forest:number;
+  dark:boolean;
 }
 
 @Component({
@@ -29,20 +33,20 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
  
    protected cardUrls:EnviormentalData[]=[];
 
-    protected rows = 3;
+  protected rows = 3;
 
   protected page = 0;
 
-    @HostBinding('style.--enviorment-width.px')
-    protected widthEnviorment: number = 700;  
+  @HostBinding('style.--enviorment-width.px')
+  protected widthEnviorment: number = 700;  
 
-    @HostBinding('style.--enviorment-height.px')
-    protected heightEnviorment: number = 300;
+  @HostBinding('style.--enviorment-height.px')
+  protected heightEnviorment: number = 300;
 
-   constructor(
+  constructor(
    private sheetsEnviormentCardsService: SheetsEnviormentCardsService) {
    super();
-   }
+  }
  
    override async ngOnInit(): Promise<void> {
      super.ngOnInit();
@@ -50,7 +54,12 @@ export class EnviormentCardsComponent extends AreaBase implements OnDestroy {
      this.cardUrls = [];
      const cards:EnviormentalCard[] = await this.sheetsEnviormentCardsService.loadCards();
      cards.forEach(card => {
-      this.cardUrls.push({url:this.cardUrl(card), heat:card.heat, cold:card.cold,capacity:card.capacity});
+      this.cardUrls.push({url:this.cardUrl(card), heat:card.heat, cold:card.cold,capacity:card.capacity,
+        water:card.water?true:false,
+        mountain:card.mountain,
+        forest:card.forest,
+        dark:card.dark?true:false,
+        });
      });
      this.loading=false;
    }

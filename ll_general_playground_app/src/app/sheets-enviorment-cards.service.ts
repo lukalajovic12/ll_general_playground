@@ -10,6 +10,10 @@ export interface EnviormentalCard {
   heat:number;
   cold:number;
   capacity:number;
+  water:number;
+  mountain:number;
+  forest:number;
+  dark:number;
 }
 
 @Injectable({
@@ -19,7 +23,7 @@ export class SheetsEnviormentCardsService {
  error: string | null = null;
   private readonly http = inject(HttpClient);
 
-  private urlCards = 'https://script.google.com/macros/s/AKfycbz_tbTAgqfrWOyL55MVl3I5rzlanBbZrBftZM_Ms2f8KZ6l4djC5elmuik570BfLaRf/exec';
+  private urlCards = 'https://script.google.com/macros/s/AKfycbxqNuO8yRz-bz8TYkkHFRNWnF-NTDP8L4-NqJWrTSJherXJLVERSq-4eLmvyzu5Muw0/exec';
   constructor() {
   }
 

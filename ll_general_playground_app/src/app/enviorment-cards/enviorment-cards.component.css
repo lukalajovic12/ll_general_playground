@@ -26,14 +26,20 @@ i {
     font-size: 24px;
 }
 
+.fa-tree {
+    color:green;
+}
+
+.fa {
+    background-color: black;
+}
+
 .fa-snowflake {
     color:white;
-    background-color: black;
 }
 
 .fa-sun {
     color: yellow;
-    background-color: black;
 }
 
 .size_container {

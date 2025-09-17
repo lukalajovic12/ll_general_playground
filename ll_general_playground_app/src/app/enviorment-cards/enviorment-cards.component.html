@@ -35,6 +35,12 @@
               @if(card.cold === 2) {<i class="fa fa-snowflake"></i> }  
               @if(card.heat > 0) {<i class="fa fa-sun"></i> }  
               @if(card.heat === 2) {<i class="fa fa-sun"></i> }  
+              @if(card.water ) {<i class="fa fa-water"></i> }  
+              @if(card.forest > 0) {<i class="fa fa-tree"></i> }  
+              @if(card.forest === 2) {<i class="fa fa-tree"></i> }  
+              @if(card.dark) {<i class="fa fa-lightbulb"></i> }  
+              @if(card.mountain > 0) {<i class="fa fa-mountain"></i> }  
+              @if(card.mountain === 2) {<i class="fa fa-mountain"></i> }  
             </div>
             <svg class="svg-image" [attr.width]="calculateWidth(card)">
             <image class="card-image" [attr.href]="card.url" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"  />

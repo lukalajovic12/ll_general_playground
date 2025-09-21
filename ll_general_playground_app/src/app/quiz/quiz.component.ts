@@ -42,7 +42,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   protected questions:QuizObject[] = [];
   protected question:QuizObject;
 
- // private direction = true;
+  private direction = true;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -63,7 +63,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
   }
 
 
-/*
+
   public displaySourceLanguage:() => string = () => {
 
     if(this.direction) {
@@ -81,7 +81,7 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
       return this.sourceLanguage;
     }
   };
-*/
+
 
   protected displayQuestionText():string {
     if(this.question) {
@@ -150,10 +150,9 @@ export class QuizComponent extends AreaBase implements OnDestroy  {
     this.startCountdown();
   }
 
-  /*
  public languageDirection = () => {
     this.direction=!this.direction;
-  } */
+  } 
 
 
   public playAgain = () => { 

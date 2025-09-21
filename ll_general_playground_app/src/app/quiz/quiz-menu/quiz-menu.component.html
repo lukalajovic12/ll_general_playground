@@ -23,17 +23,17 @@
     </div>   
     }
     <div class="data_settings">
-        <!--
         <div class="source_language">{{displaySourceLanguage()}}</div>
         <div class="target_language">{{displayTargetLanguage()}}</div>
         <button class="icon_class" (click)="languageDirection()">
             <i class="fa fa-exchange"></i>
         </button>
-        -->
         <div class="ll_value">Anwsers: {{numberOfQuestions}}</div>
         <input id="numberOfQuestions" type="range" min="2" max="5" [(ngModel)]="numberOfQuestions" /> 
+        <div></div>
         <div class="ll_value">Time: {{time}}s</div>
         <input id="time" type="range" min="30" max="150" [(ngModel)]="time" /> 
+        <div></div>
         <button (click)="startGame()" class="ll_button menu_button" [disabled]="disableStart()">Play </button>             
         <button (click)="toHome()" class="ll_button menu_button"> Back </button>    
     </div>  

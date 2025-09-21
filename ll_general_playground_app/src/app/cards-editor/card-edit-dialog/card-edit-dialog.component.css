@@ -43,11 +43,11 @@ dialog.one_time_genes .ll_button {
 }
 
 
-dialog.science {
+dialog.human {
     color:white;
     background-color: blue;
 }
-dialog.science .ll_button {
+dialog.human .ll_button {
     color:white;
     background-color: blue;
     border: 1px solid white;  
@@ -70,11 +70,11 @@ dialog.science .ll_button {
 .one_time_genes div {
     color:orange;
 }
-.science {
+.human {
     color:white;
     background-color: blue;
 }
-.science div {
+.human div {
     color:white;
 }
 
@@ -82,7 +82,7 @@ dialog.primary {
     color:black;
     background-color: white;
 }
-dialog.science .ll_button {
+dialog.human .ll_button {
     color:black;
     background-color: white;
     border: 1px solid black;  

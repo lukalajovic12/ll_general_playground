@@ -28,6 +28,9 @@ export class QuizMenuComponent {
   @Output() protected timeChange = new EventEmitter<number>();
 
   @Input()
+  languageDirection:() => void;
+
+  @Input()
   public loading = true;
   @Input()
   public displaySourceLanguage:() => string;

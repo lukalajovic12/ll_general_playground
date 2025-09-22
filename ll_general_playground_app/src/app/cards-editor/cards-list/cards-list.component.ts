@@ -36,6 +36,11 @@ export class CardsListComponent {
 
   protected page = 0;
 
+
+  protected  showPages():boolean {
+    return Math.floor(this.count() / (this.columns * this.rows)) >1;
+  } 
+
   protected plus1() {
     if (this.page+1 < Math.floor(this.count() / (this.columns * this.rows))) {
       this.page++;
@@ -77,7 +82,7 @@ export class CardsListComponent {
   }
 
 
-  protected async exportAsPDF() {
+  public async exportAsPDF() {
     this.showOptions = false;
     this.page = 0;
     await this.delay(1000);

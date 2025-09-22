@@ -11,11 +11,11 @@
   width: 100px;
 }
 
-dialog.mother_nature {
+dialog.disasters {
     color:white;
     background-color: green;
 }
-dialog.mother_nature .ll_button {
+dialog.disasters .ll_button {
     color:white;
     background-color: green;
     border: 1px solid white;  

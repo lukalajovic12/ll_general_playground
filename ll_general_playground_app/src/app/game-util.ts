@@ -38,6 +38,7 @@ import { lastValueFrom } from 'rxjs';
 
   export const languageCodes = {
      'sl':'slovenian',
+     'en':'english',
      'de':'german',
      'it':'italian',
      'sr':'serbian in cyrillic',

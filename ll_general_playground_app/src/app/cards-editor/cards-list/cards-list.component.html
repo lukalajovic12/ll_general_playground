@@ -4,18 +4,21 @@
         <input id="columns" type="range" min="1" max="6" [(ngModel)]="columns" /> 
         <div class="rows_label">Rows: {{rows}}</div>
         <input id="rows" type="range" min="1" max="6" [(ngModel)]="rows" /> 
-
+    @if(showPages()){
         <div class="rows_label">Page: {{page+1}}</div>
         <button (click)="plus1()" class="ll_button">plus 1</button>
         <button (click)="minus1()" class="ll_button">minus 1</button>
-        
-        <button (click)="exportAsPDF()" class="ll_button">Export PDF</button>
+    }
+    @if(!showOptions) {
         <input type="checkbox" id="showCount" name="showCount" [(ngModel)]="showCount">
         <label for="showCount"> show count </label>
+    }
+    @if(!showCount) {
         <input type="checkbox" id="showOptions" name="showOptions" [(ngModel)]="showOptions">
-        <label for="showCount"> show options</label>
+        <label for="showOptions"> show options</label>
+    }    
         <input type="checkbox" id="roundCorners" name="roundCorners" [(ngModel)]="roundCorners">
-        <label for="showCount"> round corners</label>
+        <label for="roundCorners"> round corners</label>
     </div>
 
 <div class="size_container">

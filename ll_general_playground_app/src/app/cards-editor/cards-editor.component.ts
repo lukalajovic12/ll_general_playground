@@ -31,6 +31,16 @@ export class CardsEditorComponent extends AreaBase {
 
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
+
+  @ViewChild('cardsListComponent') public cardsListComponent: CardsListComponent;
+
+  public exportPdf():void {
+    if(this.cardsListComponent) {
+      this.cardsListComponent.exportAsPDF();
+    }
+
+  }
+
   constructor(
   private sheetsCardsService: SheetsCardsService) {
   super();

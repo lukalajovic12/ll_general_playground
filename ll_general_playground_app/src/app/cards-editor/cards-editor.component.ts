@@ -27,7 +27,7 @@ export class CardsEditorComponent extends AreaBase {
   public cards: { [key: string]: Card[]; } = {};
 
 
-  protected sheetName='permament_genes';
+  protected sheetName='reproduction';
 
   @ViewChild('cardEditDialogComponent') public cardEditDialogComponent!: CardEditDialogComponent;
 
@@ -80,7 +80,12 @@ export class CardsEditorComponent extends AreaBase {
     let index= this.cards[this.sheetName].indexOf(card);
     this.cards[this.sheetName].splice(index,1);
     this.sheetsCardsService.appendCard(card.name, card.description,card.count,card.row,true,this.sheetName);
+  }
 
+  public hideCard = (card:Card) => {
+    let index= this.cards[this.sheetName].indexOf(card);
+    this.cards[this.sheetName].splice(index,1);
+    this.sheetsCardsService.appendCard(card.name, card.description,card.count,card.row,true,this.sheetName);
   }
 
   protected onSubmitCard = (name:string,description:string,count:number) => {

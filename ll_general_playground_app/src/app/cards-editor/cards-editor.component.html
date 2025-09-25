@@ -4,8 +4,9 @@
     <h2>Cards</h2>
     <div class="buttons_container">
       <button (click)="toHome()" class="ll_button"> Back </button>      
-      <button class="ll_button" (click)="changeSheet('permament_genes')" [class.selected]="sheetName === 'permament_genes'">Permament Genes </button>
-      <button class="ll_button" (click)="changeSheet('one_time_genes')" [class.selected]="sheetName === 'one_time_genes'">One Time genes </button>
+      <button class="ll_button" (click)="changeSheet('permament_genes')" [class.selected]="sheetName === 'permament_genes'">Genes </button>
+      <button class="ll_button" (click)="changeSheet('one_time_genes')" [class.selected]="sheetName === 'one_time_genes'">Actions</button>
+      <button class="ll_button" (click)="changeSheet('reproduction')" [class.selected]="sheetName === 'reproduction'">Reproduction</button>
       <button class="ll_button" (click)="changeSheet('disasters')" [class.selected]="sheetName === 'disasters'">Disasters</button>
       <button class="ll_button" (click)="changeSheet('human')" [class.selected]="sheetName === 'human'">Human </button>
       <button class="ll_button" (click)="changeSheet('primary')" [class.selected]="sheetName === 'primary'">Primary </button>
@@ -29,7 +30,7 @@
     @if(displayTabele) {
         <app-cards-tabele [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards[sheetName]" [sheetName]="sheetName" />
     } @else {
-        <app-cards-list #cardsListComponent [editCard]="editCard" [deleteCard]="deleteCard" [cards]="cards[sheetName]" [sheetName]="sheetName" />
+        <app-cards-list #cardsListComponent [editCard]="editCard" [deleteCard]="deleteCard" [hideCard]="hideCard" [cards]="cards[sheetName]" [sheetName]="sheetName" />
     }
   }
   </div>

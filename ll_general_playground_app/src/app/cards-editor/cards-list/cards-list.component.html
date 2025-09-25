@@ -4,23 +4,24 @@
         <input id="columns" type="range" min="1" max="6" [(ngModel)]="columns" /> 
         <div class="rows_label">Rows: {{rows}}</div>
         <input id="rows" type="range" min="1" max="6" [(ngModel)]="rows" /> 
-    @if(showPages()){
-        <div class="rows_label">Page: {{page+1}}</div>
-        <button (click)="plus1()" class="ll_button">plus 1</button>
-        <button (click)="minus1()" class="ll_button">minus 1</button>
-    }
-    @if(!showOptions) {
+
         <input type="checkbox" id="showCount" name="showCount" [(ngModel)]="showCount">
         <label for="showCount"> show count </label>
-    }
-    @if(!showCount) {
+
         <input type="checkbox" id="showOptions" name="showOptions" [(ngModel)]="showOptions">
         <label for="showOptions"> show options</label>
-    }    
+
         <input type="checkbox" id="roundCorners" name="roundCorners" [(ngModel)]="roundCorners">
         <label for="roundCorners"> round corners</label>
     </div>
+    @if(showPages()){
+    <div class="pages_container">
+        <div class="rows_label">Page: {{page+1}}</div>
+        <button (click)="plus1()" class="ll_button">plus 1</button>
+        <button (click)="minus1()" class="ll_button">minus 1</button>
 
+    </div>
+}
 <div class="size_container">
     <div class="size_label">width: {{widthCard}}</div>
     <input id="height" type="range" min="0" max="1000" [(ngModel)]="widthCard"  />
@@ -28,15 +29,16 @@
     <input id="vy" type="range" min="0" max="1000" [(ngModel)]="heightCard"  />         
 </div>
 }
+<div>
 <div
  id="pdf-content" class="card_list" [class.one]="columns === 1" [class.two]="columns === 2" 
 [class.three]="columns === 3" [class.four]="columns === 4">
     @for(card of displayList();track card) {
-            <div class="card_container" >
+            <div [class.card_container]="showOptions">
             <app-card [name]="card.name" [description]="card.description" [count]="card.count"
                  [sheetName]="sheetName" [image]="card.image"
-                 [image_name]="card.image_name" [widthCard]="widthCard" [heightCard]="heightCard" [roundCorners]="roundCorners" />
-            <div>
+                 [image_name]="card.image_name" [widthCard]="widthCard" [heightCard]="heightCard" [roundCorners]="roundCorners" />      
+                 <div>
             @if(showOptions) {
             <div class="buttons_container">  
                 <button class="icon_class" (click)="editCard(card)">
@@ -45,9 +47,14 @@
                 <button class="icon_class" (click)="deleteCard(card)">
                     <i class="fa fa-trash"></i>
                 </button>
+                <button class="icon_class" (click)="hideCard(card)">
+                    <i class="fa fa-minus"></i>
+                </button>
             </div> 
             }
+            
         </div>
     </div>
     }
+</div>
 </div>

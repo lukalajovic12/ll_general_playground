@@ -1,13 +1,7 @@
 .card_list {
-    padding-top: 10px;    
-    padding-bottom: 100px; 
-     
-    padding-left: 10px;    
-    padding-right: 10px; 
-
     display: grid;
     grid-template-columns: auto;
-    gap: 5px;
+    gap: 1px;
 }
 
 .card_list.one {
@@ -21,6 +15,7 @@
 .card_list.three {
     display: grid;
     grid-template-columns: auto auto auto;
+    gap: 1px;
 }
 
 .card_list.four {
@@ -31,7 +26,7 @@
 
 .card_container {
     display:flex; 
-    gap: 1px;
+    gap: 0px;
 }
 
 .size_container {
@@ -51,3 +46,7 @@
     gap: 1px;
 }
 
+.pages_container {
+    display: flex;
+    gap: 1px;
+}

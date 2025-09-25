@@ -13,11 +13,11 @@
 
 dialog.disasters {
     color:white;
-    background-color: green;
+    background-color: red;
 }
 dialog.disasters .ll_button {
     color:white;
-    background-color: green;
+    background-color: red;
     border: 1px solid white;  
 }
 
@@ -96,6 +96,15 @@ dialog.human .ll_button {
 
 .primary div {
     color:black;
+}
+
+.reproduction {
+    color:white;
+    background-color: #7a0177;
+}
+
+.reproduction div {
+    color:white;
 }
 
 dialog.primary {

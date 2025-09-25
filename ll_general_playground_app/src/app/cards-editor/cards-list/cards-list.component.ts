@@ -17,6 +17,7 @@ export class CardsListComponent {
   @Input() public cards: Card[] = [];
   @Input() public editCard: (card: Card) => void;
   @Input() public deleteCard: (card: Card) => void;
+  @Input() public hideCard: (card: Card) => void;
   @Input() public sheetName = '';
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
@@ -30,19 +31,19 @@ export class CardsListComponent {
 
   protected rows = 3;
 
-  protected showCount = false;
+  protected showCount = true;
 
-  protected showOptions = true;
+  protected showOptions = false;
 
   protected page = 0;
 
 
   protected  showPages():boolean {
-    return Math.floor(this.count() / (this.columns * this.rows)) >1;
+    return Math.floor(this.count() / (this.columns * this.rows)) >=1;
   } 
 
   protected plus1() {
-    if (this.page+1 < Math.floor(this.count() / (this.columns * this.rows))) {
+    if (this.page+1 <= Math.floor(this.count() / (this.columns * this.rows))) {
       this.page++;
     } else {
       this.page = 0; // Reset to the first page if it exceeds the count

@@ -2,7 +2,7 @@
   width: calc(var(--card-width));    
   height: calc(var(--card-height));
   border: 1px solid black;
-  padding: 5px;
+  padding: 0px;
   background-color: var(--ll-background-color);
   transition: box-shadow 0.3s ease;
   text-align: center;
@@ -34,7 +34,8 @@
 
 .disasters {
   color:white;
-  background-color: green;
+  border-color: white;
+  background-color: red;
 }
 
 .disasters div{
@@ -75,4 +76,14 @@
 
 .primary div {
   color:black;
+}
+
+.reproduction {
+  color:white;
+  background-color: #7a0177;
+  border-color: white;
+}
+
+.reproduction div {
+  color:white;
 }
